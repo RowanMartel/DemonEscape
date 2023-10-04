@@ -1683,7 +1683,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2230,6 +2230,7 @@ MonoBehaviour:
   gunAudio: {fileID: 1382123645}
   clipHurt: {fileID: 8300000, guid: b02b9be498548354cb738e0b70f4176c, type: 3}
   clipDie: {fileID: 8300000, guid: 185d17c7ae4d2a94d90d76f17babc76c, type: 3}
+  clipGun: {fileID: 8300000, guid: d7f6c780ba3028c478910d6718ef4ffc, type: 3}
   pistolAnim: {fileID: 1042714205}
   portrait: {fileID: 236565280}
   idleSprite: {fileID: 21300000, guid: 5fe6752b0ca41cd438c2e0721a54c06d, type: 3}

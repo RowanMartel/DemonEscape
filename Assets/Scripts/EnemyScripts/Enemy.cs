@@ -21,6 +21,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected AudioSource gunAudio;
     [SerializeField] protected AudioClip clipHurt;
     [SerializeField] protected AudioClip clipDie;
+    [SerializeField] protected AudioClip clipGun;
 
     [SerializeField] protected Sprite idleSprite;
     [SerializeField] protected Sprite attackingSprite;
@@ -51,6 +52,7 @@ public abstract class Enemy : MonoBehaviour
         {
             if (agent.isOnNavMesh)
                 agent.SetDestination(transform.position);
+            KillThis();
             return;
         }
         ResetSprite();
@@ -86,6 +88,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Attack()
     {
+        gunAudio.PlayOneShot(clipGun);
         ChangeSprite(attackingSprite);
 
         RaycastHit hit;
@@ -101,17 +104,17 @@ public abstract class Enemy : MonoBehaviour
     }
     void ResetSprite()
     {
-        if (animTimer <= 0 && !dead) return;
+        if (animTimer <= 0) return;
         animTimer -= Time.deltaTime;
         if (animTimer > 0) return;
         sprite.sprite = idleSprite;
-
-        // destroy on dead code runs here so animation can finish
-        if (dead) KillThis();
+        if (dead) canvas.enabled = false;
     }
 
     public void TakeDamage(float damage)
     {
+        if (dead) return;
+
         health -= damage;
         if (health <= 0)
         {
@@ -131,11 +134,11 @@ public abstract class Enemy : MonoBehaviour
         health = 0;
         dead = true;
         ChangeSprite(deadSprite);
+        voiceAudio.PlayOneShot(clipDie);
     }
 
     void KillThis()
     {
-        canvas.enabled = false;
         if (!voiceAudio.isPlaying)
             Destroy(gameObject);
     }

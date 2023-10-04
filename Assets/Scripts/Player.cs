@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioSource gunAudio;
     [SerializeField] AudioClip clipHurt;
     [SerializeField] AudioClip clipDie;
+    [SerializeField] AudioClip clipGun;
 
     bool dead;
 
@@ -100,6 +101,7 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
+        gunAudio.PlayOneShot(clipGun);
         ChangePortrait(attackingSprite);
         gunAnim.SetTrigger("Fired");
         ammo--;

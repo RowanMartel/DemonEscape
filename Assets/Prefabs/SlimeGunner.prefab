@@ -477,6 +477,7 @@ MonoBehaviour:
   gunAudio: {fileID: 2895335094980933782}
   clipHurt: {fileID: 8300000, guid: a6d50629595e55f4a83316123ab12dab, type: 3}
   clipDie: {fileID: 8300000, guid: 8a4e4b7d2bba40444ae53f4249e440cd, type: 3}
+  clipGun: {fileID: 8300000, guid: d7f6c780ba3028c478910d6718ef4ffc, type: 3}
   idleSprite: {fileID: 21300000, guid: a9c60d6b0118c2a469d309e220d45257, type: 3}
   attackingSprite: {fileID: 21300000, guid: c5793c5e7884ee24ea25486105b4f21d, type: 3}
   hurtSprite: {fileID: 21300000, guid: 76a224b3bcd8e4c429baee2e4a38e36d, type: 3}
@@ -548,7 +549,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
