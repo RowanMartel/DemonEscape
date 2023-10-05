@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Constants : MonoBehaviour
 {
-    // layers
-    public static int playerLayer = ~3;
-    public static int enemyLayer = 8;
-
     // player stats
     public static float playerStartingHP = 100;
     public static float playerMaxHP = 150;

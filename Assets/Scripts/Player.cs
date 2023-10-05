@@ -104,7 +104,11 @@ public class Player : MonoBehaviour
         gunAudio.PlayOneShot(clipGun);
         ChangePortrait(attackingSprite);
         gunAnim.SetTrigger("Fired");
+
         ammo--;
+        canAttack = false;
+        attackCooldownTimer = gun.firingCooldown;
+
         RaycastHit hit;
         bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, gun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
@@ -116,6 +120,7 @@ public class Player : MonoBehaviour
     {
         CooldownAttack();
         if (!Input.GetMouseButtonDown(0)) return;
+        if (!canAttack) return;
         if (ammo <= 0)
         {
             // click SFX
