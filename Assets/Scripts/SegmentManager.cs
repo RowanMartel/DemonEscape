@@ -10,17 +10,21 @@ public class SegmentManager : MonoBehaviour
     [SerializeField] List<GameObject> segmentPrefabs;
     [SerializeField] Transform segmentParent;
 
-    List<GameObject> exitedSegments = new List<GameObject>();
+    List<GameObject> segments = new List<GameObject>();
     [SerializeField] GameObject currentSegment;
-    GameObject nextSegmentLeft;
-    GameObject nextSegmentRight;
-    GameObject nextSegmentFwd;
+
+    public int currentSegmentIndex;
 
     enum Direction
     {
         left,
         right,
         fwd
+    }
+
+    private void Start()
+    {
+        currentSegmentIndex = 0;
     }
 
     void GenerateSegment(Direction direction)
@@ -35,19 +39,17 @@ public class SegmentManager : MonoBehaviour
             case Direction.left:
                 newSegment.transform.eulerAngles += new Vector3(0, -90, 0);
                 newSegment.transform.position -= currentSegment.transform.right * 10;
-                nextSegmentLeft = newSegment;
                 break;
             case Direction.right:
                 newSegment.transform.eulerAngles += new Vector3(0, 90, 0);
                 newSegment.transform.position += currentSegment.transform.right * 10;
-                nextSegmentRight = newSegment;
                 break;
             case Direction.fwd:
                 newSegment.transform.position += currentSegment.transform.forward * 10;
-                nextSegmentFwd = newSegment;
                 break;
         }
         newSegment.GetComponent<Segment>().SpawnEnemy(enemies[0]);
+        segments.Add(newSegment);
     }
 
     GameObject GetRandomSegment()
@@ -55,40 +57,30 @@ public class SegmentManager : MonoBehaviour
         return segmentPrefabs[Random.Range(0, segmentPrefabs.Count)];
     }
 
-    public void OnExitEnter(object source, ExitEnterEventArgs e)
+    public void OnEnter(object source, EnterEventArgs e)
     {
-        if (e.exit)
-        {
-            exitedSegments.Add(e.thisSegment);
-            if (exitedSegments.Count >= 2)
-            {
-                Destroy(exitedSegments[0]);
-                exitedSegments.RemoveAt(0);
-            }
-        }
-        else if (e.enter)
-        {
-            currentSegment = e.thisSegment;
-            
-            if (currentSegment == nextSegmentFwd)
-            {
-                if (nextSegmentLeft != null) Destroy(nextSegmentLeft);
-                if (nextSegmentRight != null) Destroy(nextSegmentRight);
-            }
-            else if (currentSegment == nextSegmentLeft)
-            {
-                if (nextSegmentFwd != null) Destroy(nextSegmentFwd);
-                if (nextSegmentRight != null) Destroy(nextSegmentRight);
-            }
-            else if (currentSegment == nextSegmentRight)
-            {
-                if (nextSegmentFwd != null) Destroy(nextSegmentFwd);
-                if (nextSegmentLeft != null) Destroy(nextSegmentLeft);
-            }
+        if (e.thisSegment.GetComponent<Segment>().exited) return;
 
-            if (currentSegment.GetComponent<Segment>().hasLeftExit) GenerateSegment(Direction.left);
-            if (currentSegment.GetComponent<Segment>().hasRightExit) GenerateSegment(Direction.right);
-            if (currentSegment.GetComponent<Segment>().hasFwdExit) GenerateSegment(Direction.fwd);
+        currentSegment = e.thisSegment;
+
+        List<GameObject> segmentsToDestroy = new List<GameObject>();
+
+        currentSegmentIndex++;
+        foreach (GameObject segment in segments)
+        {
+            if (segment.GetComponent<Segment>().segmentIndex <= currentSegmentIndex && segment != currentSegment)
+            {
+                segmentsToDestroy.Add(segment);
+            }
         }
+        foreach (GameObject segment in segmentsToDestroy)
+        {
+            segments.Remove(segment);
+            Destroy(segment);
+        }
+
+        if (currentSegment.GetComponent<Segment>().hasLeftExit) GenerateSegment(Direction.left);
+        if (currentSegment.GetComponent<Segment>().hasRightExit) GenerateSegment(Direction.right);
+        if (currentSegment.GetComponent<Segment>().hasFwdExit) GenerateSegment(Direction.fwd);
     }
 }

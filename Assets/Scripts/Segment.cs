@@ -6,36 +6,42 @@ using UnityEngine;
 
 public class Segment : MonoBehaviour
 {
-    public EventHandler<ExitEnterEventArgs> ExitEnter;
+    public EventHandler<EnterEventArgs> Enter;
     SegmentManager segmentManager;
 
     public bool hasLeftExit;
     public bool hasRightExit;
     public bool hasFwdExit;
 
+    public bool exited;
+    public bool entered;
+
+    public int segmentIndex;
+
     private void Start()
     {
         segmentManager = FindObjectOfType<SegmentManager>();
-        ExitEnter += segmentManager.OnExitEnter;
+        Enter += segmentManager.OnEnter;
+        segmentIndex = segmentManager.currentSegmentIndex;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerCapsule"))
-            OnExitEnter(false, true);
-        else Debug.Log(other.name);
+        {
+            entered = true;
+            OnEnter();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("PlayerCapsule"))
-            OnExitEnter(true, false);
-        else Debug.Log(other.name);
+        exited = true;
     }
 
-    void OnExitEnter(bool exit, bool enter)
+    void OnEnter()
     {
-        if (ExitEnter != null)
-            ExitEnter(this, new ExitEnterEventArgs(exit, enter, gameObject));
+        if (Enter != null)
+            Enter(this, new EnterEventArgs(gameObject));
     }
 
     public void SpawnEnemy(GameObject enemy)
@@ -44,15 +50,11 @@ public class Segment : MonoBehaviour
         spawnedEnemy.transform.position += new Vector3(0, 2, 0);
     }
 }
-public class ExitEnterEventArgs : EventArgs
+public class EnterEventArgs : EventArgs
 {
-    public bool exit;
-    public bool enter;
     public GameObject thisSegment;
-    public ExitEnterEventArgs(bool exit, bool enter, GameObject thisSegment)
+    public EnterEventArgs(GameObject thisSegment)
     {
-        this.exit = exit;
-        this.enter = enter;
         this.thisSegment = thisSegment;
     }
 }
