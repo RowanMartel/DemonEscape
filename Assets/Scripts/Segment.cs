@@ -16,17 +16,20 @@ public class Segment : MonoBehaviour
     public bool exited;
     public bool entered;
 
+    public bool isHallway = false;
+    public GameObject hallEndSegment;
+
     public int segmentIndex;
 
     private void Start()
     {
         segmentManager = FindObjectOfType<SegmentManager>();
         Enter += segmentManager.OnEnter;
-        segmentIndex = segmentManager.currentSegmentIndex;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!isHallway) return;
         if (other.CompareTag("PlayerCapsule"))
         {
             entered = true;

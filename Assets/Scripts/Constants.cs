@@ -27,4 +27,7 @@ public class Constants : MonoBehaviour
     public static float slimeGunnerAttackCooldown = 3;
     public static float slimeGunnerFiringDistance = 20;
     public static float slimeGunnerAttackRange = 20;
+
+    // segment generation
+    public static int segmentsAhead = 2;
 }

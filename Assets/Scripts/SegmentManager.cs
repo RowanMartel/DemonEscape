@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class SegmentManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemies;
+    public List<GameObject> enemies;
 
-    [SerializeField] List<GameObject> segmentPrefabs;
-    [SerializeField] Transform segmentParent;
+    public List<GameObject> segmentPrefabs;
+    public GameObject hallwayPrefab;
+    public Transform segmentParent;
 
-    List<GameObject> segments = new List<GameObject>();
-    [SerializeField] GameObject currentSegment;
+    public List<GameObject> segments = new List<GameObject>();
+    public GameObject currentSegment;
+    public GameObject currentSegmentHall;
 
     public int currentSegmentIndex;
 
@@ -27,9 +29,9 @@ public class SegmentManager : MonoBehaviour
         currentSegmentIndex = 0;
     }
 
-    void GenerateSegment(Direction direction)
+    GameObject AddHallway(Direction direction)
     {
-        GameObject newSegment = Instantiate(GetRandomSegment());
+        GameObject newSegment = Instantiate(hallwayPrefab);
         newSegment.transform.parent = segmentParent;
         newSegment.transform.eulerAngles = currentSegment.transform.eulerAngles;
         newSegment.transform.position = currentSegment.transform.position;
@@ -48,6 +50,34 @@ public class SegmentManager : MonoBehaviour
                 newSegment.transform.position += currentSegment.transform.forward * 10;
                 break;
         }
+        newSegment.GetComponent<Segment>().isHallway = true;
+        segments.Add(newSegment);
+        return newSegment;
+    }
+
+    void GenerateSegment(Direction direction)
+    {
+        GameObject hallway = AddHallway(direction);
+        GameObject newSegment = Instantiate(GetRandomSegment());
+        hallway.GetComponent<Segment>().hallEndSegment = newSegment;
+        newSegment.transform.parent = segmentParent;
+        newSegment.transform.eulerAngles = currentSegment.transform.eulerAngles;
+        newSegment.transform.position = currentSegment.transform.position;
+
+        switch (direction)
+        {
+            case Direction.left:
+                newSegment.transform.eulerAngles += new Vector3(0, -90, 0);
+                newSegment.transform.position -= currentSegment.transform.right * 20;
+                break;
+            case Direction.right:
+                newSegment.transform.eulerAngles += new Vector3(0, 90, 0);
+                newSegment.transform.position += currentSegment.transform.right * 20;
+                break;
+            case Direction.fwd:
+                newSegment.transform.position += currentSegment.transform.forward * 20;
+                break;
+        }
         newSegment.GetComponent<Segment>().SpawnEnemy(enemies[0]);
         segments.Add(newSegment);
     }
@@ -61,14 +91,15 @@ public class SegmentManager : MonoBehaviour
     {
         if (e.thisSegment.GetComponent<Segment>().exited) return;
 
-        currentSegment = e.thisSegment;
+        currentSegment = e.thisSegment.GetComponent<Segment>().hallEndSegment;
+        currentSegmentHall = e.thisSegment;
 
         List<GameObject> segmentsToDestroy = new List<GameObject>();
 
         currentSegmentIndex++;
         foreach (GameObject segment in segments)
         {
-            if (segment.GetComponent<Segment>().segmentIndex <= currentSegmentIndex && segment != currentSegment)
+            if (segment.GetComponent<Segment>().segmentIndex <= currentSegmentIndex && segment != currentSegment && segment != currentSegmentHall)
             {
                 segmentsToDestroy.Add(segment);
             }
@@ -79,8 +110,11 @@ public class SegmentManager : MonoBehaviour
             Destroy(segment);
         }
 
-        if (currentSegment.GetComponent<Segment>().hasLeftExit) GenerateSegment(Direction.left);
-        if (currentSegment.GetComponent<Segment>().hasRightExit) GenerateSegment(Direction.right);
-        if (currentSegment.GetComponent<Segment>().hasFwdExit) GenerateSegment(Direction.fwd);
+        if (currentSegment.GetComponent<Segment>().hasLeftExit)
+            GenerateSegment(Direction.left);
+        if (currentSegment.GetComponent<Segment>().hasRightExit)
+            GenerateSegment(Direction.right);
+        if (currentSegment.GetComponent<Segment>().hasFwdExit)
+            GenerateSegment(Direction.fwd);
     }
 }
