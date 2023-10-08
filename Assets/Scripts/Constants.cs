@@ -34,4 +34,6 @@ public class Constants : MonoBehaviour
     // scene build indexes
     public static int singletonSceneIndex = 0;
     public static int gameplaySceneIndex = 1;
+    public static int savesMenuSceneIndex = 2;
+    public static int titleScreenSceneIndex = 3;
 }

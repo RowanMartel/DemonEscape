@@ -8,27 +8,31 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoad : MonoBehaviour
 {
+    public int saveFileNum;
+
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
         SaveData data = new SaveData();
         bf.Serialize(file, data);
         file.Close();
     }
 
-    public void Load()
+    public void Load(int saveFileNum)
     {
-        if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        this.saveFileNum = saveFileNum;
+
+        if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
 
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(Constants.gameplaySceneIndex);
         }
     }
 }
