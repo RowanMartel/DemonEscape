@@ -30,4 +30,8 @@ public class Constants : MonoBehaviour
 
     // segment generation
     public static int segmentsAhead = 2;
+
+    // scene build indexes
+    public static int singletonSceneIndex = 0;
+    public static int gameplaySceneIndex = 1;
 }

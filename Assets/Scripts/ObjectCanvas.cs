@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ObjectCanvas : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         Camera camera = Camera.main;

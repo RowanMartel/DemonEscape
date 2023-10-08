@@ -42,7 +42,7 @@ public abstract class Enemy : MonoBehaviour
         sprite = GetComponentInChildren<Image>();
         canvas = GetComponentInChildren<Canvas>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameManager.player;
+        player = FindObjectOfType<Player>().gameObject;
         cooldownTimer = attackCooldown;
     }
 
