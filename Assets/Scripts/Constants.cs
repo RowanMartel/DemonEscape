@@ -36,4 +36,5 @@ public class Constants : MonoBehaviour
     public static int gameplaySceneIndex = 1;
     public static int savesMenuSceneIndex = 2;
     public static int titleScreenSceneIndex = 3;
+    public static int upgradeScreenSceneIndex = 4;
 }
