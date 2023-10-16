@@ -2457,6 +2457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1382123644}
   - component: {fileID: 1382123645}
+  - component: {fileID: 1382123646}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -2575,6 +2576,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1382123646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382123643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!43 &1393103386
 Mesh:
   m_ObjectHideFlags: 0
@@ -3605,6 +3619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870516449}
   - component: {fileID: 1870516450}
+  - component: {fileID: 1870516451}
   m_Layer: 0
   m_Name: Voice
   m_TagString: Untagged
@@ -3723,6 +3738,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1870516451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870516448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!1 &1922264696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2416479892080353252, guid: e544dea514de83a4784105bc2d59347f, type: 3}

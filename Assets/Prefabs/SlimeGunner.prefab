@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101270299229597667}
   - component: {fileID: 8118197922346233330}
+  - component: {fileID: 5130078255674464196}
   m_Layer: 8
   m_Name: Voice
   m_TagString: Untagged
@@ -128,6 +129,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5130078255674464196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456188295358300405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0
 --- !u!1 &3262032046257400290
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8975742747169472372}
   - component: {fileID: 2895335094980933782}
+  - component: {fileID: 5476040799961925785}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -633,3 +648,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5476040799961925785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954578611245372617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBGM: 0

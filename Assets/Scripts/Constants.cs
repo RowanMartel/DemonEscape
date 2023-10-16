@@ -15,7 +15,7 @@ public class Constants : MonoBehaviour
     public static float pistolMaxAmmo = 60;
     public static float pistolDamage = 10;
     public static float pistolRange = 20;
-    public static float pistolFiringCooldown = 0.5f;
+    public static float pistolFiringCooldown = .5f;
 
     // enemy stats
 
@@ -37,4 +37,8 @@ public class Constants : MonoBehaviour
     public static int savesMenuSceneIndex = 2;
     public static int titleScreenSceneIndex = 3;
     public static int upgradeScreenSceneIndex = 4;
+
+    // volume
+    public static float startingBGMVol = .5f;
+    public static float startingSFXVol = .5f;
 }

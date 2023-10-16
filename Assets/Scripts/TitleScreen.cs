@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
-    GameManager gameManager;
+    Options options;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        options = FindObjectOfType<Options>();
     }
 
     public void SaveFilesBtnMethod()
