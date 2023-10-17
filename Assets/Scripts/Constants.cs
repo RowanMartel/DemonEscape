@@ -9,16 +9,25 @@ public class Constants : MonoBehaviour
     public static float playerMaxHP = 150;
 
     // gun stats
-
-    // pistols stats
+    // pistol stats
     public static float pistolStartingAmmo = 30;
     public static float pistolMaxAmmo = 60;
     public static float pistolDamage = 10;
     public static float pistolRange = 20;
     public static float pistolFiringCooldown = .5f;
+    public static string pistolName = "Pistol";
+    public static Gun.FiringType pistolFiringType = Gun.FiringType.rayCast;
+    // shotgun stats
+    public static float shotgunStartingAmmo = 15;
+    public static float shotgunMaxAmmo = 30;
+    public static float shotgunDamage = 20;
+    public static float shotgunRange = 15;
+    public static float shotgunFiringCooldown = 1;
+    public static string shotgunName = "Shotgun";
+    public static Gun.FiringType shotgunFiringType = Gun.FiringType.sphereCastAll;
+    public static float shotgunRangeRadius = 1;
 
     // enemy stats
-
     // slime gunner
     public static float slimeGunnerHP = 20;
     public static float slimeGunnerDamage = 5;

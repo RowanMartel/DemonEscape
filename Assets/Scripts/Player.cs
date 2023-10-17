@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip clipDie;
     [SerializeField] AudioClip clipGun;
 
-    bool dead;
+    public bool dead;
 
     bool canAttack;
     float attackCooldownTimer;
@@ -53,8 +53,13 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite deadSprite;
     float portraitTimer;
 
+    GameManager gameManager;
+    Results results;
+
     void Start()
     {
+        results = FindObjectOfType<Results>();
+        gameManager = FindObjectOfType<GameManager>();
         dead = false;
         canAttack = true;
         attackCooldownTimer = 0;
@@ -64,6 +69,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (gameManager.Paused) return;
         ResetPortrait();
         TryAttack();
     }
@@ -91,7 +97,7 @@ public class Player : MonoBehaviour
         ChangePortrait(deadSprite);
         dead = true;
         health = 0;
-        Debug.Log("player died");
+        results.Open();
     }
 
     public void ResetStats()
@@ -109,6 +115,21 @@ public class Player : MonoBehaviour
         canAttack = false;
         attackCooldownTimer = gun.firingCooldown;
 
+        switch (gun.firingType)
+        {
+            case Gun.FiringType.rayCast:
+                RaycastAttack();
+                break;
+            case Gun.FiringType.sphereCastAll:
+                SpherecastAttack();
+                break;
+            case Gun.FiringType.projectile:
+                ProjectileAttack();
+                break;
+        }
+    }
+    void RaycastAttack()
+    {
         RaycastHit hit;
         bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, gun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
@@ -116,8 +137,17 @@ public class Player : MonoBehaviour
             hit.collider.GetComponent<Enemy>().TakeDamage(gun.damage);
         }
     }
+    void SpherecastAttack()
+    {
+        Physics.SphereCastAll
+    }
+    void ProjectileAttack()
+    {
+
+    }
     void TryAttack()
     {
+        if (dead) return;
         CooldownAttack();
         if (!Input.GetMouseButtonDown(0)) return;
         if (!canAttack) return;

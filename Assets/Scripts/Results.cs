@@ -3,25 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Options : MonoBehaviour
+public class Results : MonoBehaviour
 {
     public Canvas canvas;
-    [SerializeField] GameObject upgradesBtn;
     [SerializeField] GameManager gameManager;
 
     private void Start()
     {
         canvas = GetComponent<Canvas>();
         Close();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex == Constants.gameplaySceneIndex)
-        {
-            if (gameManager.Paused) Close();
-            else Open();
-        }
     }
 
     public void TitleBtnMethod()
@@ -32,16 +22,13 @@ public class Options : MonoBehaviour
 
     public void Close()
     {
-        gameManager.Paused = false;
         canvas.enabled = false;
+        gameManager.Paused = false;
     }
     public void Open()
     {
-        gameManager.Paused = true;
         canvas.enabled = true;
-        if (SceneManager.GetActiveScene().buildIndex == Constants.gameplaySceneIndex)
-            upgradesBtn.SetActive(true);
-        else upgradesBtn.SetActive(false);
+        gameManager.Paused = true;
     }
 
     public void ExitGame()

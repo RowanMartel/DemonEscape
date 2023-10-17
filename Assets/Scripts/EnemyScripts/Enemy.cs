@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
+    GameManager gameManager;
     GameObject player;
     NavMeshAgent agent;
     Image sprite;
@@ -38,6 +39,7 @@ public abstract class Enemy : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         dead = false;
         sprite = GetComponentInChildren<Image>();
         canvas = GetComponentInChildren<Canvas>();
@@ -48,6 +50,7 @@ public abstract class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (gameManager.Paused) return;
         if (dead)
         {
             if (agent.isOnNavMesh)
