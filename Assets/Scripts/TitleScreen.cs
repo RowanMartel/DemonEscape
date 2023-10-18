@@ -18,7 +18,7 @@ public class TitleScreen : MonoBehaviour
     }
     public void OptionsBtnMethod()
     {
-
+        options.Open();
     }
     public void CloseGameBtnMethod()
     {

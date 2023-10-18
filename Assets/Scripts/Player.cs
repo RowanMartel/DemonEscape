@@ -43,8 +43,10 @@ public class Player : MonoBehaviour
     float attackCooldownTimer;
 
     Gun gun;
+    [SerializeField] GameObject[] guns;
     Animator gunAnim;
     [SerializeField] Animator pistolAnim;
+    [SerializeField] Animator shotgunAnim;
 
     [SerializeField] Image portrait;
     [SerializeField] Sprite idleSprite;
@@ -64,7 +66,7 @@ public class Player : MonoBehaviour
         canAttack = true;
         attackCooldownTimer = 0;
         ResetStats();
-        EquipGun(new Pistol());
+        EquipGun(new Shotgun());
     }
 
     void Update()
@@ -139,7 +141,12 @@ public class Player : MonoBehaviour
     }
     void SpherecastAttack()
     {
-        Physics.SphereCastAll
+        RaycastHit[] hits;
+        hits = Physics.SphereCastAll(transform.position, gun.rangeRadius, Camera.main.transform.forward, gun.range, LayerMask.GetMask("Enemy"));
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].collider.GetComponent<Enemy>().TakeDamage(gun.damage);
+        }
     }
     void ProjectileAttack()
     {
@@ -181,10 +188,19 @@ public class Player : MonoBehaviour
         gun = newGun;
         ammo = gun.startingAmmo;
 
+        for (int i = 0; i < guns.Length; i++)
+        {
+            guns[i].SetActive(false);
+            if (guns[i].name == gun.name)
+                guns[i].SetActive(true);
+        }
         switch (gun.name)
         {
-            case "Pistol":
+            case var _ when gun.name == Constants.pistolName:
                 gunAnim = pistolAnim;
+                break;
+            case var _ when gun.name == Constants.shotgunName:
+                gunAnim = shotgunAnim;
                 break;
         }
     }

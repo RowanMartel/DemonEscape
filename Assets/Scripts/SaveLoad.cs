@@ -12,13 +12,15 @@ public class SaveLoad : MonoBehaviour
     public int saveFileNum;
 
     [SerializeField] Sprite emptySave;
+    [SerializeField] UpgradeManager upgradeManager;
+    [SerializeField] GameManager gameManager;
 
     public void Save(Sprite preview)
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
-        SaveData data = new SaveData(preview);
+        SaveData data = new SaveData(preview, upgradeManager.upgrades, gameManager.money);
         bf.Serialize(file, data);
         file.Close();
     }
@@ -37,7 +39,11 @@ public class SaveLoad : MonoBehaviour
 
             SceneManager.LoadScene(Constants.upgradeScreenSceneIndex);
         }
-        else SceneManager.LoadScene(Constants.gameplaySceneIndex);
+        else
+        {
+            gameManager.NewGame();
+            SceneManager.LoadScene(Constants.gameplaySceneIndex);
+        }
     }
 
     public Sprite GetPreview(int saveFileNum)
@@ -60,9 +66,13 @@ public class SaveLoad : MonoBehaviour
 class SaveData
 {
     public Sprite preview;
+    public List<Upgrade> upgrades;
+    public float money;
 
-    public SaveData(Sprite preview)
+    public SaveData(Sprite preview, List<Upgrade> upgrades, float money)
     {
         this.preview = preview;
+        this.upgrades = upgrades;
+        this.money = money;
     }
 }

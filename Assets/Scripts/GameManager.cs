@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] Options options;
     [SerializeField] Results results;
+    [SerializeField] UpgradeManager upgradeManager;
+
+    public float money;
 
     private bool paused = false;
     public bool Paused
@@ -27,16 +30,23 @@ public class GameManager : MonoBehaviour
             SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
-    void OnSceneChanged(Scene current, Scene next)
+    public void NewGame()
     {
+        money = 0;
+        upgradeManager.upgrades.Clear();
+    }
+
+    void OnSceneChanged(Scene replacedScene, Scene newScene)
+    {
+        Constants.Reset();
+
         options.Close();
         results.Close();
 
-        switch (current.buildIndex)
+        switch (newScene.buildIndex)
         {
-            case 0:
-                break;
-            case 1:
+            case Constants.gameplaySceneIndex:
+                upgradeManager.ApplyUpgrades();
                 break;
         }
     }
