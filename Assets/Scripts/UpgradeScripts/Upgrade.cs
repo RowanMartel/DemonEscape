@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public abstract class Upgrade
 {
+    public enum Upgrades
+    {
+        pistol1, pistol2,
+        shotgun1, shotgun2
+    }
+
     public float[] cost = new float[3];
     public int upgradeNo;
 
@@ -25,6 +32,10 @@ public abstract class Upgrade
     public float[] shotgunRange = new float[3];
     public float[] shotgunFiringCooldown = new float[3];
     public float[] shotgunRangeRadius = new float[3];
+
+    // upgrade screen info
+    public string[] upgradeName = new string[3];
+    public string[] description = new string[3];
 
     public void Apply()
     {

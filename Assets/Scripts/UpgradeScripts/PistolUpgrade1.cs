@@ -1,7 +1,9 @@
 ﻿public class PistolUpgrade1 : Upgrade
 {
-    PistolUpgrade1()
+    public PistolUpgrade1(int level)
     {
+        upgradeNo = level;
+
         cost[0] = 50;
         cost[1] = 80;
         cost[2] = 180;
@@ -14,5 +16,12 @@
         pistolFiringCooldown[0] = .35f;
         pistolFiringCooldown[1] = .2f;
         pistolFiringCooldown[2] = .05f;
+
+        upgradeName[0] = "Faster Pistol";
+        upgradeName[1] = "Supercharge Pistol";
+        upgradeName[2] = "Pistol la Vista";
+        description[0] = "Increases firing speed and ammo";
+        description[1] = "Try not to run out of bullets";
+        description[2] = "How fast can you click?";
     }
 }

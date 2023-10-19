@@ -16,7 +16,7 @@ public abstract class Gun
     public float damage;
     public float range;
     public float firingCooldown;
-    public string name;
+    public string gunName;
     public FiringType firingType;
     public float rangeRadius;
 }
@@ -29,7 +29,7 @@ public class Pistol : Gun
         damage = Constants.pistolDamage;
         range = Constants.pistolRange;
         firingCooldown = Constants.pistolFiringCooldown;
-        name = Constants.pistolName;
+        gunName = Constants.pistolName;
         firingType = Constants.pistolFiringType;
     }
 }
@@ -42,7 +42,7 @@ public class Shotgun : Gun
         damage = Constants.shotgunDamage;
         range = Constants.shotgunRange;
         firingCooldown = Constants.shotgunFiringCooldown;
-        name = Constants.shotgunName;
+        gunName = Constants.shotgunName;
         firingType = Constants.shotgunFiringType;
         rangeRadius = Constants.shotgunRangeRadius;
     }

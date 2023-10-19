@@ -191,15 +191,15 @@ public class Player : MonoBehaviour
         for (int i = 0; i < guns.Length; i++)
         {
             guns[i].SetActive(false);
-            if (guns[i].name == gun.name)
+            if (guns[i].name == gun.gunName)
                 guns[i].SetActive(true);
         }
-        switch (gun.name)
+        switch (gun.gunName)
         {
-            case var _ when gun.name == Constants.pistolName:
+            case var _ when gun.gunName == Constants.pistolName:
                 gunAnim = pistolAnim;
                 break;
-            case var _ when gun.name == Constants.shotgunName:
+            case var _ when gun.gunName == Constants.shotgunName:
                 gunAnim = shotgunAnim;
                 break;
         }

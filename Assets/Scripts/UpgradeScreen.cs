@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UpgradeScreen : MonoBehaviour
 {
@@ -9,6 +11,13 @@ public class UpgradeScreen : MonoBehaviour
 
     [SerializeField] GameObject gunUpgrades;
     [SerializeField] GameObject suitUpgrades;
+
+    [SerializeField] GameObject infoPanel;
+    [SerializeField] TMP_Text upgradeName;
+    [SerializeField] TMP_Text upgradeDescription;
+    [SerializeField] TMP_Text upgradeCost;
+    [SerializeField] Image upgradeIcon;
+    Upgrade selectedUpgrade;
 
     void Start()
     {
@@ -39,8 +48,28 @@ public class UpgradeScreen : MonoBehaviour
         gunUpgrades.SetActive(false);
     }
 
-    public void ShowUpgradeDetails(Upgrade upgrade)
+    public void ShowUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon)
     {
-        Debug.Log("Showing upgrade: " + upgrade.GetType().Name);
+        level--;
+        switch (upgrade)
+        {
+            case Upgrade.Upgrades.pistol1:
+                selectedUpgrade = new PistolUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.pistol2:
+                selectedUpgrade = new PistolUpgrade2(level);
+                break;
+            case Upgrade.Upgrades.shotgun1:
+                selectedUpgrade = new ShotgunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.shotgun2:
+                selectedUpgrade = new ShotgunUpgrade2(level);
+                break;
+        }
+
+        upgradeName.text = selectedUpgrade.upgradeName[level];
+        upgradeDescription.text = selectedUpgrade.description[level];
+        upgradeCost.text = selectedUpgrade.cost[level].ToString() + '$';
+        upgradeIcon.sprite = icon;
     }
 }
