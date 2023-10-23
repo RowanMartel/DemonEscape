@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UpgradeScreen : MonoBehaviour
 {
     Options options;
+    GameManager gameManager;
+    UpgradeManager upgradeManager;
 
     [SerializeField] GameObject gunUpgrades;
     [SerializeField] GameObject suitUpgrades;
@@ -16,22 +18,27 @@ public class UpgradeScreen : MonoBehaviour
     [SerializeField] TMP_Text upgradeName;
     [SerializeField] TMP_Text upgradeDescription;
     [SerializeField] TMP_Text upgradeCost;
+    [SerializeField] TMP_Text money;
     [SerializeField] Image upgradeIcon;
     Upgrade selectedUpgrade;
 
     void Start()
     {
-        options = FindObjectOfType<Options>();
+        gameManager = Singleton.Instance.GetComponentInChildren<GameManager>();
+        upgradeManager = Singleton.Instance.GetComponentInChildren<UpgradeManager>();
+        options = Singleton.Instance.GetComponentInChildren<Options>();
+
         ShowGunUpgrades();
+        infoPanel.SetActive(false);
     }
 
     public void TitleBtnMethod()
     {
-        SceneManager.LoadScene(Constants.titleScreenSceneIndex);
+        gameManager.LoadScene(Constants.titleScreenSceneIndex);
     }
     public void GamePlayBtnMethod()
     {
-        SceneManager.LoadScene(Constants.gameplaySceneIndex);
+        gameManager.LoadScene(Constants.gameplaySceneIndex);
     }
     public void OptionsBtnMethod()
     {
@@ -50,6 +57,7 @@ public class UpgradeScreen : MonoBehaviour
 
     public void ShowUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon)
     {
+        infoPanel.SetActive(true);
         level--;
         switch (upgrade)
         {
@@ -67,9 +75,39 @@ public class UpgradeScreen : MonoBehaviour
                 break;
         }
 
+        selectedUpgrade.upgradeNo = level;
         upgradeName.text = selectedUpgrade.upgradeName[level];
         upgradeDescription.text = selectedUpgrade.description[level];
         upgradeCost.text = selectedUpgrade.cost[level].ToString() + '$';
+        money.text = "Money:\n" + gameManager.money;
         upgradeIcon.sprite = icon;
+    }
+
+    public void BuyBtn()
+    {
+        if (selectedUpgrade == null || gameManager.money < selectedUpgrade.cost[selectedUpgrade.upgradeNo]) return;
+
+        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        {
+            if (upgradeManager.upgrades[i] == selectedUpgrade)
+            {
+                if (upgradeManager.upgrades[i].upgradeNo >= selectedUpgrade.upgradeNo) return;
+                else
+                {
+                    upgradeManager.upgrades[i] = selectedUpgrade;
+                    break;
+                }
+            }
+        }
+
+        Debug.Log("upgrade" + selectedUpgrade + "bought");
+
+        gameManager.money -= selectedUpgrade.cost[selectedUpgrade.upgradeNo];
+        money.text = "Money:\n" + gameManager.money;
+        upgradeManager.upgrades.Add(selectedUpgrade);
+    }
+    public void SellBtn()
+    {
+        if (selectedUpgrade == null) return;
     }
 }

@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
     Options options;
+    GameManager gameManager;
 
     void Start()
     {
         options = FindObjectOfType<Options>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void SaveFilesBtnMethod()
     {
-        SceneManager.LoadScene(Constants.savesMenuSceneIndex);
+        gameManager.LoadScene(Constants.savesMenuSceneIndex);
     }
     public void OptionsBtnMethod()
     {

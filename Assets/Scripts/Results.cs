@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Results : MonoBehaviour
 {
-    public Canvas canvas;
+    [SerializeField] Canvas canvas;
     [SerializeField] GameManager gameManager;
 
     private void Start()
     {
-        canvas = GetComponent<Canvas>();
         Close();
     }
 
     public void TitleBtnMethod()
     {
         canvas = GetComponent<Canvas>();
-        SceneManager.LoadScene(Constants.titleScreenSceneIndex);
+        gameManager.LoadScene(Constants.titleScreenSceneIndex);
     }
 
     public void Close()
@@ -37,10 +35,10 @@ public class Results : MonoBehaviour
     }
     public void EndRound()
     {
-        SceneManager.LoadScene(Constants.upgradeScreenSceneIndex);
+        gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
     }
     public void QuitToTitle()
     {
-        SceneManager.LoadScene(Constants.titleScreenSceneIndex);
+        gameManager.LoadScene(Constants.titleScreenSceneIndex);
     }
 }

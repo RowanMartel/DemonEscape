@@ -166,7 +166,7 @@ namespace StarterAssets
             // move the player
 
             //_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-            _controller.Move(new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime + transform.forward * Time.deltaTime * MoveSpeed + new Vector3(sidewaysSpeed, 0, 0) * Time.deltaTime);
+            _controller.Move(new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime + transform.forward * Time.deltaTime * MoveSpeed + transform.right * sidewaysSpeed * Time.deltaTime);
 		}
 
 		private void JumpAndGravity()

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Options options;
-    [SerializeField] Results results;
+    public Results results;
     [SerializeField] UpgradeManager upgradeManager;
 
     public float money;
@@ -24,10 +24,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Awake()
+    void Start()
     {
-        if (Singleton.Instance == GetComponentInParent<Singleton>())
-            SceneManager.activeSceneChanged += OnSceneChanged;
+        SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
     public void NewGame()
@@ -36,17 +35,33 @@ public class GameManager : MonoBehaviour
         upgradeManager.upgrades.Clear();
     }
 
-    void OnSceneChanged(Scene replacedScene, Scene newScene)
+    public void LoadScene(int buildIndex)
     {
         Constants.Reset();
 
+        switch (buildIndex)
+        {
+            case Constants.gameplaySceneIndex:
+                upgradeManager.ApplyUpgrades();
+                break;
+        }
+
+        SceneManager.LoadScene(buildIndex);
+    }
+
+    void OnSceneChanged(Scene replacedScene, Scene newScene)
+    {
         options.Close();
         results.Close();
 
         switch (newScene.buildIndex)
         {
             case Constants.gameplaySceneIndex:
-                upgradeManager.ApplyUpgrades();
+                Player player = FindObjectOfType<Player>();
+                player.gameManager = this;
+                player.results = results;
+                break;
+            case Constants.upgradeScreenSceneIndex:
                 break;
         }
     }

@@ -27,7 +27,7 @@ public class Options : MonoBehaviour
     public void TitleBtnMethod()
     {
         canvas = GetComponent<Canvas>();
-        SceneManager.LoadScene(Constants.titleScreenSceneIndex);
+        gameManager.LoadScene(Constants.titleScreenSceneIndex);
     }
 
     public void Close()
@@ -50,10 +50,10 @@ public class Options : MonoBehaviour
     }
     public void EndRound()
     {
-        SceneManager.LoadScene(Constants.upgradeScreenSceneIndex);
+        gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
     }
     public void QuitToTitle()
     {
-        SceneManager.LoadScene(Constants.titleScreenSceneIndex);
+        gameManager.LoadScene(Constants.titleScreenSceneIndex);
     }
 }

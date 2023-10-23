@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Constants : MonoBehaviour
 {
-    private void Awake()
-    {
-        Reset();
-    }
-
     // player stats
     public static float playerStartingHP = 100;
     public static float playerMaxHP = 150;
@@ -35,12 +30,13 @@ public class Constants : MonoBehaviour
     // enemy stats
     // slime gunner
     public static float slimeGunnerHP = 20;
-    public static float slimeGunnerDamage = 5;
+    public static float slimeGunnerDamage = 10;
     public static float slimeGunnerSpeed = 2;
     public static float slimeGunnerAllowedProximity = 15;
     public static float slimeGunnerAttackCooldown = 3;
     public static float slimeGunnerFiringDistance = 20;
     public static float slimeGunnerAttackRange = 20;
+    public static int slimeGunnerMoney = 5;
 
     // segment generation
     public const int segmentsAhead = 2;
@@ -80,7 +76,7 @@ public class Constants : MonoBehaviour
         // enemy stats
         // slime gunner
         slimeGunnerHP = 20;
-        slimeGunnerDamage = 5;
+        slimeGunnerDamage = 10;
         slimeGunnerSpeed = 2;
         slimeGunnerAllowedProximity = 15;
         slimeGunnerAttackCooldown = 3;

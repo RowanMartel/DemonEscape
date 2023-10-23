@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SaveLoad : MonoBehaviour
@@ -17,10 +16,10 @@ public class SaveLoad : MonoBehaviour
 
     public void Save(Sprite preview)
     {
-        BinaryFormatter bf = new BinaryFormatter();
+        BinaryFormatter bf = new();
         FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
-        SaveData data = new SaveData(preview, upgradeManager.upgrades, gameManager.money);
+        SaveData data = new(preview, upgradeManager.upgrades, gameManager.money);
         bf.Serialize(file, data);
         file.Close();
     }
@@ -31,18 +30,20 @@ public class SaveLoad : MonoBehaviour
 
         if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            BinaryFormatter bf = new();
             FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
 
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            SceneManager.LoadScene(Constants.upgradeScreenSceneIndex);
+            gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
+            gameManager.money = data.money;
+            upgradeManager.upgrades = data.upgrades;
         }
         else
         {
             gameManager.NewGame();
-            SceneManager.LoadScene(Constants.gameplaySceneIndex);
+            gameManager.LoadScene(Constants.gameplaySceneIndex);
         }
     }
 
@@ -50,7 +51,7 @@ public class SaveLoad : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
         {
-            BinaryFormatter bf = new BinaryFormatter();
+            BinaryFormatter bf = new();
             FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
 
             SaveData data = (SaveData)bf.Deserialize(file);

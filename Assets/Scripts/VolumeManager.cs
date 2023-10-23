@@ -26,14 +26,12 @@ public class VolumeManager : MonoBehaviour
     public void SetSFXVol()
     {
         SFXVol = SFXSlider.value;
-        if (SFXVolChanged != null)
-            SFXVolChanged(this, new SetVolEventArgs(SFXVol));
+        SFXVolChanged?.Invoke(this, new SetVolEventArgs(SFXVol));
     }
     public void SetBGMVol()
     {
         BGMVol = BGMSlider.value;
-        if (BGMVolChanged != null)
-            BGMVolChanged(this, new SetVolEventArgs(BGMVol));
+        BGMVolChanged?.Invoke(this, new SetVolEventArgs(BGMVol));
     }
 }
 

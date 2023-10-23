@@ -36,6 +36,7 @@ public abstract class Enemy : MonoBehaviour
     protected float damage;
     protected float firingDistance;
     protected float attackRange;
+    protected int money;
 
     void Start()
     {
@@ -132,6 +133,7 @@ public abstract class Enemy : MonoBehaviour
     }
     void Die()
     {
+        player.GetComponent<Player>().GetMoney(money);
         voiceAudio.Stop();
         voiceAudio.PlayOneShot(clipDie);
         health = 0;

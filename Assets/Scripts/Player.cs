@@ -7,29 +7,40 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private float Health;
-    float health
+    private float health;
+    float Health
     {
-        get { return Health; }
+        get { return health; }
         set
         {
-            Health = value;
+            health = value;
             tmpHealth.text = "Health: " + value;
         }
     }
-    private float Ammo;
-    float ammo
+    private float ammo;
+    float Ammo
     {
-        get { return Ammo; }
+        get { return ammo; }
         set
         {
-            Ammo = value;
+            ammo = value;
             tmpAmmo.text = "Ammo: " + value;
+        }
+    }
+    private float money;
+    float Money
+    {
+        get { return money; }
+        set
+        {
+            money = value;
+            tmpMoney.text = "Money:\n" + value;
         }
     }
 
     [SerializeField] TMP_Text tmpHealth;
     [SerializeField] TMP_Text tmpAmmo;
+    [SerializeField] TMP_Text tmpMoney;
 
     [SerializeField] AudioSource voiceAudio;
     [SerializeField] AudioSource gunAudio;
@@ -55,13 +66,11 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite deadSprite;
     float portraitTimer;
 
-    GameManager gameManager;
-    Results results;
+    public GameManager gameManager;
+    public Results results;
 
     void Start()
     {
-        results = FindObjectOfType<Results>();
-        gameManager = FindObjectOfType<GameManager>();
         dead = false;
         canAttack = true;
         attackCooldownTimer = 0;
@@ -79,8 +88,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (dead) return;
-        health -= damage;
-        if (health <= 0)
+        Health -= damage;
+        if (Health <= 0)
         {
             Die();
         }
@@ -98,13 +107,15 @@ public class Player : MonoBehaviour
         voiceAudio.PlayOneShot(clipDie);
         ChangePortrait(deadSprite);
         dead = true;
-        health = 0;
+        Health = 0;
+        gameManager.money += Money;
+        gameManager.Paused = true;
         results.Open();
     }
 
     public void ResetStats()
     {
-        health = Constants.playerStartingHP;
+        Health = Constants.playerStartingHP;
     }
 
     void Attack()
@@ -113,7 +124,7 @@ public class Player : MonoBehaviour
         ChangePortrait(attackingSprite);
         gunAnim.SetTrigger("Fired");
 
-        ammo--;
+        Ammo--;
         canAttack = false;
         attackCooldownTimer = gun.firingCooldown;
 
@@ -158,7 +169,7 @@ public class Player : MonoBehaviour
         CooldownAttack();
         if (!Input.GetMouseButtonDown(0)) return;
         if (!canAttack) return;
-        if (ammo <= 0)
+        if (Ammo <= 0)
         {
             // click SFX
             return;
@@ -182,11 +193,11 @@ public class Player : MonoBehaviour
         }
         else if (gun.GetType() == newGun.GetType())
         {
-            ammo += newGun.startingAmmo;
+            Ammo += newGun.startingAmmo;
             return;
         }
         gun = newGun;
-        ammo = gun.startingAmmo;
+        Ammo = gun.startingAmmo;
 
         for (int i = 0; i < guns.Length; i++)
         {
@@ -216,5 +227,10 @@ public class Player : MonoBehaviour
         portraitTimer -= Time.deltaTime;
         if (portraitTimer > 0) return;
         portrait.sprite = idleSprite;
+    }
+
+    public void GetMoney(int money)
+    {
+        this.Money += money;
     }
 }

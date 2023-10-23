@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public List<Upgrade> upgrades;
+    public List<Upgrade> upgrades = new();
 
     public void ApplyUpgrades()
     {

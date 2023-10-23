@@ -13,5 +13,6 @@ public class SlimeGunner : Enemy
         firingDistance = Constants.slimeGunnerFiringDistance;
         health = Constants.slimeGunnerHP;
         allowedProximity = Constants.slimeGunnerAllowedProximity;
+        money = Constants.slimeGunnerMoney;
     }
 }

@@ -11,7 +11,7 @@ public class SegmentManager : MonoBehaviour
     public GameObject hallwayPrefab;
     public Transform segmentParent;
 
-    public List<GameObject> segments = new List<GameObject>();
+    public List<GameObject> segments = new();
     public GameObject currentSegment;
     public GameObject currentSegmentHall;
 
@@ -94,7 +94,7 @@ public class SegmentManager : MonoBehaviour
         currentSegment = e.thisSegment.GetComponent<Segment>().hallEndSegment;
         currentSegmentHall = e.thisSegment;
 
-        List<GameObject> segmentsToDestroy = new List<GameObject>();
+        List<GameObject> segmentsToDestroy = new();
 
         currentSegmentIndex++;
         foreach (GameObject segment in segments)
