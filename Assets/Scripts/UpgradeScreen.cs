@@ -21,6 +21,7 @@ public class UpgradeScreen : MonoBehaviour
     [SerializeField] TMP_Text money;
     [SerializeField] Image upgradeIcon;
     Upgrade selectedUpgrade;
+    UpgradeButton selectedBtn;
 
     void Start()
     {
@@ -55,8 +56,9 @@ public class UpgradeScreen : MonoBehaviour
         gunUpgrades.SetActive(false);
     }
 
-    public void ShowUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon)
+    public void ShowUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon, UpgradeButton upgradeButton)
     {
+        selectedBtn = upgradeButton;
         infoPanel.SetActive(true);
         level--;
         switch (upgrade)
@@ -100,14 +102,35 @@ public class UpgradeScreen : MonoBehaviour
             }
         }
 
-        Debug.Log("upgrade" + selectedUpgrade + "bought");
-
         gameManager.money -= selectedUpgrade.cost[selectedUpgrade.upgradeNo];
         money.text = "Money:\n" + gameManager.money;
         upgradeManager.upgrades.Add(selectedUpgrade);
+        selectedBtn.Buy();
     }
     public void SellBtn()
     {
         if (selectedUpgrade == null) return;
+        Upgrade thisUpgrade = null;
+        int thisIndex = 0;
+        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        {
+            if (upgradeManager.upgrades[i].upgradeName[0] == selectedUpgrade.upgradeName[0])
+            {
+                thisUpgrade = selectedUpgrade;
+                thisIndex = i;
+            }
+        }
+        if (thisUpgrade == null) return;
+        else upgradeManager.upgrades.RemoveAt(thisIndex);
+
+        gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo];
+        selectedBtn.Sell();
+        if (selectedBtn.unlockThis != null && selectedBtn.unlockThis.bought)
+        {
+            gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1];
+            if (selectedBtn.unlockThis.unlockThis != null && selectedBtn.unlockThis.unlockThis.bought)
+                gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2];
+        }
+        money.text = "Money:\n" + gameManager.money;
     }
 }

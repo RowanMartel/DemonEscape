@@ -50,6 +50,8 @@ public class Options : MonoBehaviour
     }
     public void EndRound()
     {
+        Player player = FindObjectOfType<Player>();
+        gameManager.money += player.Money;
         gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
     }
     public void QuitToTitle()

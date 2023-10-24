@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         }
     }
     private float money;
-    float Money
+    public float Money
     {
         get { return money; }
         set
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         canAttack = true;
         attackCooldownTimer = 0;
         ResetStats();
-        EquipGun(new Shotgun());
+        EquipGun(new Pistol());
     }
 
     void Update()
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
         portrait.sprite = idleSprite;
     }
 
-    public void GetMoney(int money)
+    public void AddMoney(int money)
     {
         this.Money += money;
     }

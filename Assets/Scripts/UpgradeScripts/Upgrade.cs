@@ -39,70 +39,18 @@ public abstract class Upgrade
 
     public void Apply()
     {
-        for (int i = 0; i < playerStartingHP.Length; i++)
-        {
-            if (playerStartingHP[i] != 0)
-                Constants.playerStartingHP = playerStartingHP[i];
-        }
-        for (int i = 0; i < playerMaxHP.Length; i++)
-        {
-            if (playerMaxHP[i] != 0)
-                Constants.playerMaxHP = playerMaxHP[i];
-        }
-        for (int i = 0; i < pistolStartingAmmo.Length; i++)
-        {
-            if (pistolStartingAmmo[i] != 0)
-                Constants.pistolStartingAmmo = pistolStartingAmmo[i];
-        }
-        for (int i = 0; i < pistolMaxAmmo.Length; i++)
-        {
-            if (pistolMaxAmmo[i] != 0)
-                Constants.pistolMaxAmmo = pistolMaxAmmo[i];
-        }
-        for (int i = 0; i < pistolDamage.Length; i++)
-        {
-            if (pistolDamage[i] != 0)
-                Constants.pistolDamage = pistolDamage[i];
-        }
-        for (int i = 0; i < pistolRange.Length; i++)
-        {
-            if (pistolRange[i] != 0)
-                Constants.pistolRange = pistolRange[i];
-        }
-        for (int i = 0; i < pistolFiringCooldown.Length; i++)
-        {
-            if (pistolFiringCooldown[i] != 0)
-                Constants.pistolFiringCooldown = pistolFiringCooldown[i];
-        }
-        for (int i = 0; i < shotgunStartingAmmo.Length; i++)
-        {
-            if (shotgunStartingAmmo[i] != 0)
-                Constants.shotgunStartingAmmo = shotgunStartingAmmo[i];
-        }
-        for (int i = 0; i < shotgunMaxAmmo.Length; i++)
-        {
-            if (shotgunMaxAmmo[i] != 0)
-                Constants.shotgunMaxAmmo = shotgunMaxAmmo[i];
-        }
-        for (int i = 0; i < shotgunDamage.Length; i++)
-        {
-            if (shotgunDamage[i] != 0)
-                Constants.shotgunDamage = shotgunDamage[i];
-        }
-        for (int i = 0; i < shotgunRange.Length; i++)
-        {
-            if (shotgunRange[i] != 0)
-                Constants.shotgunRange = shotgunRange[i];
-        }
-        for (int i = 0; i < shotgunFiringCooldown.Length; i++)
-        {
-            if (shotgunFiringCooldown[i] != 0)
-                Constants.shotgunFiringCooldown = shotgunFiringCooldown[i];
-        }
-        for (int i = 0; i < shotgunRangeRadius.Length; i++)
-        {
-            if (shotgunRangeRadius[i] != 0)
-                Constants.shotgunRangeRadius = shotgunRangeRadius[i];
-        }
+        if (playerStartingHP[upgradeNo] != 0) Constants.playerStartingHP = playerStartingHP[upgradeNo];
+        if (playerMaxHP[upgradeNo] != 0) Constants.playerMaxHP = playerMaxHP[upgradeNo];
+        if (pistolStartingAmmo[upgradeNo] != 0) Constants.pistolStartingAmmo = pistolStartingAmmo[upgradeNo];
+        if (pistolMaxAmmo[upgradeNo] != 0) Constants.pistolMaxAmmo = pistolMaxAmmo[upgradeNo];
+        if (pistolDamage[upgradeNo] != 0) Constants.pistolDamage = pistolDamage[upgradeNo];
+        if (pistolRange[upgradeNo] != 0) Constants.pistolRange = pistolRange[upgradeNo];
+        if (pistolFiringCooldown[upgradeNo] != 0) Constants.pistolFiringCooldown = pistolFiringCooldown[upgradeNo];
+        if (shotgunStartingAmmo[upgradeNo] != 0) Constants.shotgunStartingAmmo = shotgunStartingAmmo[upgradeNo];
+        if (shotgunMaxAmmo[upgradeNo] != 0) Constants.shotgunMaxAmmo = shotgunMaxAmmo[upgradeNo];
+        if (shotgunDamage[upgradeNo] != 0) Constants.shotgunDamage = shotgunDamage[upgradeNo];
+        if (shotgunRange[upgradeNo] != 0) Constants.shotgunRange = shotgunRange[upgradeNo];
+        if (shotgunFiringCooldown[upgradeNo] != 0) Constants.shotgunFiringCooldown = shotgunFiringCooldown[upgradeNo];
+        if (shotgunRangeRadius[upgradeNo] != 0) Constants.shotgunRangeRadius = shotgunRangeRadius[upgradeNo];
     }
 }

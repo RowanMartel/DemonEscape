@@ -11,5 +11,6 @@ public class MouseUnlocker : MonoBehaviour
     {
         if (gameManager.Paused == true || SceneManager.GetActiveScene().buildIndex != Constants.gameplaySceneIndex)
             Cursor.lockState = CursorLockMode.None;
+        else Cursor.lockState = CursorLockMode.Locked;
     }
 }

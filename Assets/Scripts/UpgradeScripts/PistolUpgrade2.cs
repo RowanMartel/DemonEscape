@@ -14,7 +14,7 @@
         pistolRange[1] = 32;
         pistolRange[2] = 40;
 
-        upgradeName[0] = "High-Caliber Pistol";
+        upgradeName[0] = "High-Cal Pistol";
         upgradeName[1] = "Bulldog";
         upgradeName[2] = "Hole-Punch";
         description[0] = "Higher damage and range";

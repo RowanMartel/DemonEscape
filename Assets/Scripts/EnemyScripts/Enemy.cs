@@ -133,7 +133,7 @@ public abstract class Enemy : MonoBehaviour
     }
     void Die()
     {
-        player.GetComponent<Player>().GetMoney(money);
+        player.GetComponent<Player>().AddMoney(money);
         voiceAudio.Stop();
         voiceAudio.PlayOneShot(clipDie);
         health = 0;
