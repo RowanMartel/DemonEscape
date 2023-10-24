@@ -2,6 +2,7 @@
 {
     public PistolUpgrade2(int level)
     {
+        upgradeType = Upgrades.pistol2;
         upgradeNo = level;
 
         cost[0] = 50;

@@ -26,6 +26,17 @@ public class Constants : MonoBehaviour
     public static string shotgunName = "Shotgun";
     public static Gun.FiringType shotgunFiringType = Gun.FiringType.sphereCastAll;
     public static float shotgunRangeRadius = 1;
+    // rocket launcher
+    public static float rocketLauncherStartingAmmo = 8;
+    public static float rocketLauncherMaxAmmo = 12;
+    public static float rocketLauncherDamage = 10;
+    public static float rocketLauncherFiringCooldown = 3;
+    public static string rocketLauncherName = "Rocket Launcher";
+    public static Gun.FiringType rocketLauncherFiringType = Gun.FiringType.projectile;
+    public static float rocketLauncherProjectileSpeed = 2;
+    public static bool rocketLauncherExplodes = true;
+    public static float rocketLauncherBlastDamage = 40;
+    public static float rocketLauncherBlastRadius = 1;
 
     // enemy stats
     // slime gunner
@@ -72,6 +83,15 @@ public class Constants : MonoBehaviour
         shotgunRange = 15;
         shotgunFiringCooldown = 1;
         shotgunRangeRadius = 1;
+        // rocket launcher
+        rocketLauncherStartingAmmo = 8;
+        rocketLauncherMaxAmmo = 12;
+        rocketLauncherDamage = 10;
+        rocketLauncherFiringCooldown = 3;
+        rocketLauncherProjectileSpeed = 2;
+        rocketLauncherExplodes = true;
+        rocketLauncherBlastDamage = 40;
+        rocketLauncherBlastRadius = 1;
 
         // enemy stats
         // slime gunner

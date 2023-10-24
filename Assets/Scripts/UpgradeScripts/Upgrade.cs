@@ -10,6 +10,7 @@ public abstract class Upgrade
         pistol1, pistol2,
         shotgun1, shotgun2
     }
+    public Upgrades upgradeType;
 
     public float[] cost = new float[3];
     public int upgradeNo;

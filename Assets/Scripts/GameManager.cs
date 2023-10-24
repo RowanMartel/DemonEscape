@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
-        money = 50;
+        money = 500;
     }
 
     public void NewGame()

@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip clipDie;
     [SerializeField] AudioClip clipGun;
 
+    [SerializeField] GameObject projectile;
+
     public bool dead;
 
     bool canAttack;
@@ -58,6 +60,7 @@ public class Player : MonoBehaviour
     Animator gunAnim;
     [SerializeField] Animator pistolAnim;
     [SerializeField] Animator shotgunAnim;
+    [SerializeField] Animator rocketLauncherAnim;
 
     [SerializeField] Image portrait;
     [SerializeField] Sprite idleSprite;
@@ -161,7 +164,9 @@ public class Player : MonoBehaviour
     }
     void ProjectileAttack()
     {
-
+        GameObject proj = Instantiate(projectile);
+        proj.GetComponent<Projectile>().Init(gun);
+        proj.transform.SetPositionAndRotation(transform.position + new Vector3(0, 1, 1.5f), transform.rotation);
     }
     void TryAttack()
     {
@@ -212,6 +217,9 @@ public class Player : MonoBehaviour
                 break;
             case var _ when gun.gunName == Constants.shotgunName:
                 gunAnim = shotgunAnim;
+                break;
+            case var _ when gun.gunName == Constants.rocketLauncherName:
+                gunAnim = rocketLauncherAnim;
                 break;
         }
     }

@@ -19,6 +19,10 @@ public abstract class Gun
     public string gunName;
     public FiringType firingType;
     public float rangeRadius;
+    public float projectileSpeed;
+    public bool explodes;
+    public float blastDamage;
+    public float blastRadius;
 }
 public class Pistol : Gun
 {
@@ -45,5 +49,21 @@ public class Shotgun : Gun
         gunName = Constants.shotgunName;
         firingType = Constants.shotgunFiringType;
         rangeRadius = Constants.shotgunRangeRadius;
+    }
+}
+public class RocketLauncher : Gun
+{
+    public RocketLauncher()
+    {
+        startingAmmo= Constants.rocketLauncherStartingAmmo;
+        maxAmmo = Constants.rocketLauncherMaxAmmo;
+        damage = Constants.rocketLauncherDamage;
+        firingCooldown = Constants.rocketLauncherFiringCooldown;
+        gunName = Constants.rocketLauncherName;
+        firingType = Constants.rocketLauncherFiringType;
+        projectileSpeed = Constants.rocketLauncherProjectileSpeed;
+        explodes = Constants.rocketLauncherExplodes;
+        blastDamage = Constants.rocketLauncherBlastDamage;
+        blastRadius = Constants.rocketLauncherBlastRadius;
     }
 }

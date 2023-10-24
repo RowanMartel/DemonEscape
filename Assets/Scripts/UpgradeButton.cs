@@ -12,6 +12,7 @@ public class UpgradeButton : MonoBehaviour
     Sprite icon;
     [SerializeField] Image lockImg;
     [SerializeField] Image boughtImg;
+    UpgradeManager upgradeManager;
 
     public bool locked;
     public UpgradeButton unlockThis;
@@ -21,6 +22,7 @@ public class UpgradeButton : MonoBehaviour
 
     void Start()
     {
+        upgradeManager = Singleton.Instance.GetComponentInChildren<UpgradeManager>();
         upgradeScreen = GetComponentInParent<UpgradeScreen>();
         button = GetComponent<Button>();
         icon = GetComponent<Image>().sprite;
@@ -28,6 +30,15 @@ public class UpgradeButton : MonoBehaviour
         button.onClick.AddListener(delegate () { OnClick(); });
 
         if (locked) lockImg.enabled = true;
+
+        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        {
+            if (upgradeManager.upgrades[i].upgradeType == upgrade)
+            {
+                if (upgradeManager.upgrades[i].upgradeNo >= level - 1)
+                    Buy();
+            }
+        }
     }
 
     void OnClick()
@@ -61,7 +72,7 @@ public class UpgradeButton : MonoBehaviour
         bought = false;
         if (lockThis != null) lockThis.Unlock();
         if (unlockThis != null) unlockThis.Lock();
-        if (unlockThis.bought) unlockThis.Sell();
+        if (unlockThis != null && unlockThis.bought) unlockThis.Sell();
         boughtImg.enabled = false;
     }
 }
