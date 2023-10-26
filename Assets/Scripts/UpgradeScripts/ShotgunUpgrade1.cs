@@ -15,7 +15,7 @@
         shotgunRangeRadius[1] = 2.5f;
         shotgunRangeRadius[2] = 4;
 
-        upgradeName[0] = "Long-Range Shotgun";
+        upgradeName[0] = "Varmint Gun";
         upgradeName[1] = "Sniper Shotgun";
         upgradeName[2] = "The Hunter";
         description[0] = "Increases range and spread";

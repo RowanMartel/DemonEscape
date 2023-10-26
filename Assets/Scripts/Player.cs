@@ -164,9 +164,9 @@ public class Player : MonoBehaviour
     }
     void ProjectileAttack()
     {
-        GameObject proj = Instantiate(projectile);
+        GameObject proj = Instantiate(projectile, transform);
         proj.GetComponent<Projectile>().Init(gun);
-        proj.transform.SetPositionAndRotation(transform.position + new Vector3(0, 1, 1.5f), transform.rotation);
+        proj.transform.Translate(0, 1, 2, Space.Self);
     }
     void TryAttack()
     {
@@ -201,6 +201,8 @@ public class Player : MonoBehaviour
             Ammo += newGun.startingAmmo;
             return;
         }
+        else ChangePortrait(attackingSprite);
+
         gun = newGun;
         Ammo = gun.startingAmmo;
 

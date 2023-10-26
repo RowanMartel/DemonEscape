@@ -8,7 +8,8 @@ public abstract class Upgrade
     public enum Upgrades
     {
         pistol1, pistol2,
-        shotgun1, shotgun2
+        shotgun1, shotgun2,
+        rocketLauncher1, rocketLauncher2
     }
     public Upgrades upgradeType;
 
@@ -33,6 +34,14 @@ public abstract class Upgrade
     public float[] shotgunRange = new float[3];
     public float[] shotgunFiringCooldown = new float[3];
     public float[] shotgunRangeRadius = new float[3];
+    // rocket launcher
+    public float[] rocketLauncherStartingAmmo = new float[3];
+    public float[] rocketLauncherMaxAmmo = new float[3];
+    public float[] rocketLauncherDamage = new float[3];
+    public float[] rocketLauncherFiringCooldown = new float[3];
+    public float[] rocketLauncherProjectileSpeed = new float[3];
+    public float[] rocketLauncherBlastDamage = new float[3];
+    public float[] rocketLauncherBlastRadius = new float[3];
 
     // upgrade screen info
     public string[] upgradeName = new string[3];
@@ -53,5 +62,12 @@ public abstract class Upgrade
         if (shotgunRange[upgradeNo] != 0) Constants.shotgunRange = shotgunRange[upgradeNo];
         if (shotgunFiringCooldown[upgradeNo] != 0) Constants.shotgunFiringCooldown = shotgunFiringCooldown[upgradeNo];
         if (shotgunRangeRadius[upgradeNo] != 0) Constants.shotgunRangeRadius = shotgunRangeRadius[upgradeNo];
+        if (rocketLauncherStartingAmmo[upgradeNo] != 0) Constants.rocketLauncherStartingAmmo = rocketLauncherStartingAmmo[upgradeNo];
+        if (rocketLauncherMaxAmmo[upgradeNo] != 0) Constants.rocketLauncherMaxAmmo = rocketLauncherMaxAmmo[upgradeNo];
+        if (rocketLauncherDamage[upgradeNo] != 0) Constants.rocketLauncherDamage = rocketLauncherDamage[upgradeNo];
+        if (rocketLauncherFiringCooldown[upgradeNo] != 0) Constants.rocketLauncherFiringCooldown = rocketLauncherFiringCooldown[upgradeNo];
+        if (rocketLauncherProjectileSpeed[upgradeNo] != 0) Constants.rocketLauncherProjectileSpeed = rocketLauncherProjectileSpeed[upgradeNo];
+        if (rocketLauncherBlastDamage[upgradeNo] != 0) Constants.rocketLauncherBlastDamage = rocketLauncherBlastDamage[upgradeNo];
+        if (rocketLauncherBlastRadius[upgradeNo] != 0) Constants.rocketLauncherBlastRadius = rocketLauncherBlastRadius[upgradeNo];
     }
 }

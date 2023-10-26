@@ -21,7 +21,7 @@ public class Explosion : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             other.GetComponent<Enemy>().TakeDamage(blastDamage);
         else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-            other.GetComponent<Player>().TakeDamage(blastDamage);
+            other.GetComponentInParent<Player>().TakeDamage(blastDamage);
     }
 
     private void Update()
