@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Segment : MonoBehaviour
 {
     public EventHandler<EnterEventArgs> Enter;
     SegmentManager segmentManager;
+
+    PickupCatalogue pickupCatalogue;
 
     public bool hasLeftExit;
     public bool hasRightExit;
@@ -23,8 +26,11 @@ public class Segment : MonoBehaviour
 
     private void Start()
     {
+        pickupCatalogue = Singleton.Instance.GetComponentInChildren<PickupCatalogue>();
         segmentManager = FindObjectOfType<SegmentManager>();
         Enter += segmentManager.OnEnter;
+
+        SpawnPickup();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,8 +55,21 @@ public class Segment : MonoBehaviour
 
     public void SpawnEnemy(GameObject enemy)
     {
+        var rand = new System.Random();
+
         GameObject spawnedEnemy = Instantiate(enemy, transform);
-        spawnedEnemy.transform.position += new Vector3(0, 2, 0);
+        spawnedEnemy.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 2, (float)rand.NextDouble() * 5 - 2.5f);
+    }
+
+    void SpawnPickup()
+    {
+        var rand = new System.Random();
+
+        if (segmentManager.currentSegmentIndex % 10 == 0 && segmentManager.currentSegmentIndex > 0 && !isHallway)
+        {
+            GameObject gunPickup = Instantiate(pickupCatalogue.GetRandomGun(), transform);
+            gunPickup.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 1.5f, (float)rand.NextDouble() * 5 - 2.5f);
+        }
     }
 }
 public class EnterEventArgs : EventArgs

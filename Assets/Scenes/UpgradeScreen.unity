@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 404943707}
   - component: {fileID: 404943706}
   m_Layer: 5
-  m_Name: Gun3Img
+  m_Name: RocketLauncherImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,14 +1261,14 @@ RectTransform:
   m_GameObject: {fileID: 404943704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7681324, y: 0.7681324, z: 0.7681324}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1312480907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63, y: 103.5}
+  m_AnchoredPosition: {x: 73, y: 86.5}
   m_SizeDelta: {x: 75, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &404943706
@@ -1291,7 +1291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 612827826, guid: cbb6d67739d99b94f817de8d229d513f, type: 3}
+  m_Sprite: {fileID: 466811896, guid: 014522a21af565748bb0ab09ef9708e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4894,7 +4894,7 @@ GameObject:
   - component: {fileID: 1808585797}
   - component: {fileID: 1808585796}
   m_Layer: 5
-  m_Name: Gun3Txt
+  m_Name: RocketLauncherTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4939,7 +4939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gun3
+  m_text: Rocket Launcher
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}
   m_sharedMaterial: {fileID: 4244770791412083386, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}
@@ -5002,7 +5002,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -20.672821, z: 90.4436, w: -6.4602356}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

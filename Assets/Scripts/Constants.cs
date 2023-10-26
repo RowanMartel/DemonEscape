@@ -31,12 +31,12 @@ public class Constants : MonoBehaviour
     public static float rocketLauncherMaxAmmo = 12;
     public static float rocketLauncherDamage = 10;
     public static float rocketLauncherFiringCooldown = 3;
-    public static string rocketLauncherName = "Rocket Launcher";
+    public static string rocketLauncherName = "RocketLauncher";
     public static Gun.FiringType rocketLauncherFiringType = Gun.FiringType.projectile;
-    public static float rocketLauncherProjectileSpeed = 2;
+    public static float rocketLauncherProjectileSpeed = 20;
     public static bool rocketLauncherExplodes = true;
     public static float rocketLauncherBlastDamage = 40;
-    public static float rocketLauncherBlastRadius = 1;
+    public static float rocketLauncherBlastRadius = 3;
 
     // enemy stats
     // slime gunner
@@ -88,10 +88,10 @@ public class Constants : MonoBehaviour
         rocketLauncherMaxAmmo = 12;
         rocketLauncherDamage = 10;
         rocketLauncherFiringCooldown = 3;
-        rocketLauncherProjectileSpeed = 2;
+        rocketLauncherProjectileSpeed = 20;
         rocketLauncherExplodes = true;
         rocketLauncherBlastDamage = 40;
-        rocketLauncherBlastRadius = 1;
+        rocketLauncherBlastRadius = 3;
 
         // enemy stats
         // slime gunner

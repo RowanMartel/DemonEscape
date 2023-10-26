@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] GameObject explosion;
 
-    Sprite rocketSprite;
+    [SerializeField] Sprite rocketSprite;
     [SerializeField] Image image;
 
     float speed;
@@ -38,19 +38,22 @@ public class Projectile : MonoBehaviour
 
     public void Update()
     {
-        transform.Translate(speed * Time.deltaTime * transform.forward, Space.Self);
+        transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.Self);
+        transform.Rotate(0, 0, Time.deltaTime * 15);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             collision.gameObject.GetComponent<Enemy>().TakeDamage(directDamage);
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+            collision.gameObject.GetComponentInParent<Player>().TakeDamage(directDamage);
 
         if (explodes)
         {
-            GameObject explosionObj =  Instantiate(explosion);
+            GameObject explosionObj = Instantiate(explosion);
             explosionObj.GetComponent<Explosion>().Init(blastDamage, blastRadius);
-            explosion.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            explosionObj.transform.SetPositionAndRotation(transform.position, transform.rotation);
         }
 
         Destroy(gameObject);

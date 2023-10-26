@@ -7,11 +7,13 @@ public class Explosion : MonoBehaviour
     float blastDamage;
     float blastRadius;
 
+    float timer = 0;
+
     public void Init(float blastDamage, float blastRadius)
     {
         this.blastDamage = blastDamage;
         this.blastRadius = blastRadius;
-        transform.localScale = Vector3.one * this.blastRadius / 2;
+        transform.localScale = Vector3.one * this.blastRadius;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,5 +22,11 @@ public class Explosion : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(blastDamage);
         else if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             other.GetComponent<Player>().TakeDamage(blastDamage);
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= .25f) Destroy(gameObject);
     }
 }
