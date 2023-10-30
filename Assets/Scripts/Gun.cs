@@ -23,6 +23,8 @@ public abstract class Gun
     public bool explodes;
     public float blastDamage;
     public float blastRadius;
+
+    public float currentAmmo;
 }
 public class Pistol : Gun
 {

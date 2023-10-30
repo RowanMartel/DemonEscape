@@ -55,7 +55,10 @@ public class Player : MonoBehaviour
     bool canAttack;
     float attackCooldownTimer;
 
-    Gun gun;
+    Gun gun1;
+    Gun gun2;
+    Gun gun3;
+    Gun currentGun;
     [SerializeField] GameObject[] guns;
     Animator gunAnim;
     [SerializeField] Animator pistolAnim;
@@ -78,6 +81,7 @@ public class Player : MonoBehaviour
         canAttack = true;
         attackCooldownTimer = 0;
         ResetStats();
+        currentGun = gun1;
         EquipGun(new Pistol());
     }
 
@@ -85,6 +89,7 @@ public class Player : MonoBehaviour
     {
         if (gameManager.Paused) return;
         ResetPortrait();
+        TrySwitchGun();
         TryAttack();
     }
 
@@ -127,11 +132,11 @@ public class Player : MonoBehaviour
         ChangePortrait(attackingSprite);
         gunAnim.SetTrigger("Fired");
 
-        Ammo--;
+        UseAmmo();
         canAttack = false;
-        attackCooldownTimer = gun.firingCooldown;
+        attackCooldownTimer = currentGun.firingCooldown;
 
-        switch (gun.firingType)
+        switch (currentGun.firingType)
         {
             case Gun.FiringType.rayCast:
                 RaycastAttack();
@@ -147,25 +152,25 @@ public class Player : MonoBehaviour
     void RaycastAttack()
     {
         RaycastHit hit;
-        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, gun.range, LayerMask.GetMask("Enemy"));
+        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, currentGun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
         {
-            hit.collider.GetComponent<Enemy>().TakeDamage(gun.damage);
+            hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
         }
     }
     void SpherecastAttack()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, gun.rangeRadius, Camera.main.transform.forward, gun.range, LayerMask.GetMask("Enemy"));
+        hits = Physics.SphereCastAll(transform.position, currentGun.rangeRadius, Camera.main.transform.forward, currentGun.range, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < hits.Length; i++)
         {
-            hits[i].collider.GetComponent<Enemy>().TakeDamage(gun.damage);
+            hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
         }
     }
     void ProjectileAttack()
     {
         GameObject proj = Instantiate(projectile, transform);
-        proj.GetComponent<Projectile>().Init(gun);
+        proj.GetComponent<Projectile>().Init(currentGun);
         proj.transform.Translate(0, 1, 2, Space.Self);
     }
     void TryAttack()
@@ -174,7 +179,7 @@ public class Player : MonoBehaviour
         CooldownAttack();
         if (!Input.GetMouseButtonDown(0)) return;
         if (!canAttack) return;
-        if (Ammo <= 0)
+        if (currentGun.currentAmmo <= 0)
         {
             // click SFX
             return;
@@ -192,35 +197,51 @@ public class Player : MonoBehaviour
 
     public void EquipGun(Gun newGun)
     {
-        if (gun == null)
+        if (gun1 == newGun)
+        {
+            currentGun = gun1;
+        }
+        else if (gun2 == newGun || gun2 == null)
+        {
+            currentGun = gun2;
+        }
+        else if (gun3 == newGun || gun3 == null)
+        {
+            currentGun = gun3;
+        }
+
+        if (currentGun == null)
         {
             // don't check else-if
         }
-        else if (gun.GetType() == newGun.GetType())
+        else if (currentGun.GetType() == newGun.GetType())
         {
-            Ammo += newGun.startingAmmo;
+            Debug.Log(currentGun.currentAmmo);
+            currentGun.currentAmmo += newGun.startingAmmo;
+            Ammo = currentGun.currentAmmo;
             return;
         }
         else ChangePortrait(attackingSprite);
 
-        gun = newGun;
-        Ammo = gun.startingAmmo;
+        currentGun = newGun;
+        currentGun.currentAmmo = currentGun.startingAmmo;
+        Ammo = currentGun.currentAmmo;
 
         for (int i = 0; i < guns.Length; i++)
         {
             guns[i].SetActive(false);
-            if (guns[i].name == gun.gunName)
+            if (guns[i].name == currentGun.gunName)
                 guns[i].SetActive(true);
         }
-        switch (gun.gunName)
+        switch (currentGun.gunName)
         {
-            case var _ when gun.gunName == Constants.pistolName:
+            case var _ when currentGun.gunName == Constants.pistolName:
                 gunAnim = pistolAnim;
                 break;
-            case var _ when gun.gunName == Constants.shotgunName:
+            case var _ when currentGun.gunName == Constants.shotgunName:
                 gunAnim = shotgunAnim;
                 break;
-            case var _ when gun.gunName == Constants.rocketLauncherName:
+            case var _ when currentGun.gunName == Constants.rocketLauncherName:
                 gunAnim = rocketLauncherAnim;
                 break;
         }
@@ -241,6 +262,41 @@ public class Player : MonoBehaviour
 
     public void AddMoney(int money)
     {
-        this.Money += money;
+        Money += money;
+    }
+
+    void UseAmmo()
+    {
+        Ammo--;
+    }
+    void TrySwitchGun()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchGun(gun1);
+        else if (gun2 != null && Input.GetKeyDown(KeyCode.Alpha2)) SwitchGun(gun2);
+        else if (gun3 != null && Input.GetKeyDown(KeyCode.Alpha3)) SwitchGun(gun3);
+    }
+    void SwitchGun(Gun newGun)
+    {
+        currentGun = newGun;
+        Ammo = currentGun.currentAmmo;
+
+        for (int i = 0; i < guns.Length; i++)
+        {
+            guns[i].SetActive(false);
+            if (guns[i].name == currentGun.gunName)
+                guns[i].SetActive(true);
+        }
+        switch (currentGun.gunName)
+        {
+            case var _ when currentGun.gunName == Constants.pistolName:
+                gunAnim = pistolAnim;
+                break;
+            case var _ when currentGun.gunName == Constants.shotgunName:
+                gunAnim = shotgunAnim;
+                break;
+            case var _ when currentGun.gunName == Constants.rocketLauncherName:
+                gunAnim = rocketLauncherAnim;
+                break;
+        }
     }
 }

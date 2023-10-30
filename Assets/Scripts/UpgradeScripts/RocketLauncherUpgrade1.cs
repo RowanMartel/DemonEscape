@@ -10,16 +10,23 @@ public class RocketLauncherUpgrade1 : Upgrade
         upgradeType = Upgrades.rocketLauncher1;
         upgradeNo = level;
 
-        cost[0] = 50;
-        cost[1] = 100;
-        cost[2] = 225;
+        cost[0] = 60;
+        cost[1] = 130;
+        cost[2] = 300;
 
+        rocketLauncherBlastDamage[0] = 60;
+        rocketLauncherBlastDamage[1] = 100;
+        rocketLauncherBlastDamage[2] = 180;
+        rocketLauncherBlastRadius[0] = 5;
+        rocketLauncherBlastRadius[1] = 8;
+        rocketLauncherBlastRadius[2] = 15;
+        rocketLauncherProjectileSpeed[2] = 25;
 
         upgradeName[0] = "TNT Launcher";
         upgradeName[1] = "Big Bertha";
         upgradeName[2] = "Fat Man";
         description[0] = "Bigger and stronger explosion";
         description[1] = "Even bigger and stronger";
-        description[2] = "Leave your enemies looking like Hiroshima";
+        description[2] = "Nuclear devestation";
     }
 }

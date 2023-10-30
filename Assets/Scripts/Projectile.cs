@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
 
     public void Init(Gun gun)
     {
+        transform.SetParent(null);
         speed = gun.projectileSpeed;
         explodes = gun.explodes;
         directDamage = gun.damage;
