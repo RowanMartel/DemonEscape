@@ -200,6 +200,36 @@ public class Player : MonoBehaviour
         if (gun1 == newGun)
         {
             currentGun = gun1;
+            gun1.currentAmmo += newGun.startingAmmo;
+        }
+        else if (gun2 == newGun)
+        {
+            currentGun = gun2;
+            gun2.currentAmmo += newGun.startingAmmo;
+        }
+        if (gun1 == null)
+        {
+            gun1 = newGun;
+            currentGun = gun1;
+        }
+        else if (gun2 == null)
+        {
+            gun2 = newGun;
+            currentGun = gun2;
+        }
+        else if (gun3  == null)
+        {
+            gun3 = newGun;
+            currentGun = gun3;
+        }
+
+
+
+
+        //---------------------------
+        if (gun1 == newGun)
+        {
+            currentGun = gun1;
         }
         else if (gun2 == newGun || gun2 == null)
         {
