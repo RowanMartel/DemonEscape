@@ -3574,6 +3574,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 755338302448960167, guid: 49ca1837c29728440b3600d5a6815866, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632040222587722384, guid: 49ca1837c29728440b3600d5a6815866, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2801138989911939885, guid: 49ca1837c29728440b3600d5a6815866, type: 3}
       propertyPath: tmpAmmo
       value: 

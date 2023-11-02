@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static Upgrade;
-
 public class RocketLauncherUpgrade1 : Upgrade
 {
     public RocketLauncherUpgrade1(int level)

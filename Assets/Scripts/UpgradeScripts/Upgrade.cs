@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
-
 public abstract class Upgrade
 {
     public enum Upgrades

@@ -1,6 +1,3 @@
-using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +6,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Options options;
     public Results results;
     [SerializeField] UpgradeManager upgradeManager;
+    [SerializeField] SaveLoad saveLoad;
+    [SerializeField] Screenshot screenshot;
 
     public float money;
 
@@ -62,6 +61,7 @@ public class GameManager : MonoBehaviour
                 player.results = results;
                 break;
             case Constants.upgradeScreenSceneIndex:
+                screenshot.CaptureScreenshot(saveLoad.saveFileNum);
                 break;
         }
     }

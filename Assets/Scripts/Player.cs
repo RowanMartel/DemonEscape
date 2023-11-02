@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -128,6 +125,7 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
+        gunAudio.Stop();
         gunAudio.PlayOneShot(clipGun);
         ChangePortrait(attackingSprite);
         gunAnim.SetTrigger("Fired");
@@ -197,64 +195,42 @@ public class Player : MonoBehaviour
 
     public void EquipGun(Gun newGun)
     {
-        if (gun1 == newGun)
+        if (gun1 != null && gun1.gunName == newGun.gunName)
         {
-            currentGun = gun1;
-            gun1.currentAmmo += newGun.startingAmmo;
+            SwitchGun(gun1, true);
+            return;
         }
-        else if (gun2 == newGun)
+        else if (gun2 != null && gun2.gunName == newGun.gunName)
         {
-            currentGun = gun2;
-            gun2.currentAmmo += newGun.startingAmmo;
+            SwitchGun(gun2, true);
+            return;
         }
-        if (gun1 == null)
+        else if (gun3 != null && gun3.gunName == newGun.gunName)
+        {
+            SwitchGun(gun3, true);
+            return;
+        }
+        else if (gun1 == null)
         {
             gun1 = newGun;
             currentGun = gun1;
+            currentGun.currentAmmo = newGun.startingAmmo;
+            ChangePortrait(attackingSprite);
         }
         else if (gun2 == null)
         {
             gun2 = newGun;
             currentGun = gun2;
+            currentGun.currentAmmo = newGun.startingAmmo;
+            ChangePortrait(attackingSprite);
         }
         else if (gun3  == null)
         {
             gun3 = newGun;
             currentGun = gun3;
+            currentGun.currentAmmo = newGun.startingAmmo;
+            ChangePortrait(attackingSprite);
         }
-
-
-
-
-        //---------------------------
-        if (gun1 == newGun)
-        {
-            currentGun = gun1;
-        }
-        else if (gun2 == newGun || gun2 == null)
-        {
-            currentGun = gun2;
-        }
-        else if (gun3 == newGun || gun3 == null)
-        {
-            currentGun = gun3;
-        }
-
-        if (currentGun == null)
-        {
-            // don't check else-if
-        }
-        else if (currentGun.GetType() == newGun.GetType())
-        {
-            Debug.Log(currentGun.currentAmmo);
-            currentGun.currentAmmo += newGun.startingAmmo;
-            Ammo = currentGun.currentAmmo;
-            return;
-        }
-        else ChangePortrait(attackingSprite);
-
-        currentGun = newGun;
-        currentGun.currentAmmo = currentGun.startingAmmo;
         Ammo = currentGun.currentAmmo;
 
         for (int i = 0; i < guns.Length; i++)
@@ -297,6 +273,7 @@ public class Player : MonoBehaviour
 
     void UseAmmo()
     {
+        currentGun.currentAmmo--;
         Ammo--;
     }
     void TrySwitchGun()
@@ -305,9 +282,11 @@ public class Player : MonoBehaviour
         else if (gun2 != null && Input.GetKeyDown(KeyCode.Alpha2)) SwitchGun(gun2);
         else if (gun3 != null && Input.GetKeyDown(KeyCode.Alpha3)) SwitchGun(gun3);
     }
-    void SwitchGun(Gun newGun)
+    void SwitchGun(Gun newGun, bool addAmmo = false)
     {
         currentGun = newGun;
+        if (addAmmo) currentGun.currentAmmo = currentGun.startingAmmo;
+        if (currentGun.currentAmmo > currentGun.maxAmmo) currentGun.currentAmmo = currentGun.maxAmmo;
         Ammo = currentGun.currentAmmo;
 
         for (int i = 0; i < guns.Length; i++)
