@@ -109,6 +109,9 @@ public class UpgradeScreen : MonoBehaviour
         money.text = "Money:\n" + gameManager.money;
         upgradeManager.upgrades.Add(selectedUpgrade);
         selectedBtn.Buy();
+
+        FindObjectOfType<Screenshot>().CaptureScreenshot();
+        FindObjectOfType<SaveLoad>().Save();
     }
     public void SellBtn()
     {

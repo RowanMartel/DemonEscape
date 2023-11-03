@@ -43,9 +43,8 @@ public class SaveLoad : MonoBehaviour
     public void Load(int saveFileNumPar)
     {
         saveFileNum = saveFileNumPar;
-        Debug.Log(saveFileNum);
 
-        if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
+        if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
         {
             BinaryFormatter bf = new();
             FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
@@ -61,6 +60,13 @@ public class SaveLoad : MonoBehaviour
         {
             gameManager.NewGame();
             gameManager.LoadScene(Constants.gameplaySceneIndex);
+        }
+    }
+    public void DeleteSave(int saveFileNum)
+    {
+        if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
+        {
+            File.Delete("/saveFile" + saveFileNum + ".dat");
         }
     }
 

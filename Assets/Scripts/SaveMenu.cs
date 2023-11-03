@@ -21,7 +21,6 @@ public class SaveMenu : MonoBehaviour
 
     void InitSaveImages()
     {
-        Debug.Log("areharhaeh");
         save1.sprite = save1Img;
         save2.sprite = save2Img;
         save3.sprite = save3Img;
@@ -30,5 +29,10 @@ public class SaveMenu : MonoBehaviour
     public void Load(int saveNo)
     {
         saveLoad.Load(saveNo);
+    }
+
+    public void DeleteSave(int saveNo)
+    {
+        saveLoad.DeleteSave(saveNo);
     }
 }

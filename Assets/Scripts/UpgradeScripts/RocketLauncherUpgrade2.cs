@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public class RocketLauncherUpgrade2 : Upgrade
 {
     public RocketLauncherUpgrade2(int level)

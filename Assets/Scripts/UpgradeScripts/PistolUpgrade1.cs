@@ -1,4 +1,7 @@
-﻿public class PistolUpgrade1 : Upgrade
+﻿using System;
+
+[Serializable]
+public class PistolUpgrade1 : Upgrade
 {
     public PistolUpgrade1(int level)
     {
