@@ -29,11 +29,11 @@ public class UpgradeButton : MonoBehaviour
 
         if (locked) lockImg.enabled = true;
 
-        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        for (int i = 0; i < UpgradeManager.upgrades.Count; i++)
         {
-            if (upgradeManager.upgrades[i].upgradeType == upgrade)
+            if (UpgradeManager.upgrades[i].upgradeType == upgrade)
             {
-                if (upgradeManager.upgrades[i].upgradeNo >= level - 1)
+                if (UpgradeManager.upgrades[i].upgradeNo >= level - 1)
                     Buy();
             }
         }

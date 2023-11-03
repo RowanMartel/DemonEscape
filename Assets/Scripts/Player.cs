@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
         ChangePortrait(deadSprite);
         dead = true;
         Health = 0;
-        gameManager.money += Money;
+        GameManager.money += Money;
         gameManager.Paused = true;
         results.Open();
     }

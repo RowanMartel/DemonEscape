@@ -7,7 +7,6 @@ public class Screenshot : MonoBehaviour
 
     public void CaptureScreenshot()
     {
-        Debug.Log("saving screenshot to file " +  SaveLoad.saveFileNum.ToString());
         switch (SaveLoad.saveFileNum)
         {
             case 1:

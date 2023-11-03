@@ -84,30 +84,30 @@ public class UpgradeScreen : MonoBehaviour
         upgradeName.text = selectedUpgrade.upgradeName[level];
         upgradeDescription.text = selectedUpgrade.description[level];
         upgradeCost.text = selectedUpgrade.cost[level].ToString() + '$';
-        money.text = "Money:\n" + gameManager.money;
+        money.text = "Money:\n" + GameManager.money;
         upgradeIcon.sprite = icon;
     }
 
     public void BuyBtn()
     {
-        if (selectedUpgrade == null || gameManager.money < selectedUpgrade.cost[selectedUpgrade.upgradeNo]) return;
+        if (selectedUpgrade == null || GameManager.money < selectedUpgrade.cost[selectedUpgrade.upgradeNo]) return;
 
-        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        for (int i = 0; i < UpgradeManager.upgrades.Count; i++)
         {
-            if (upgradeManager.upgrades[i] == selectedUpgrade)
+            if (UpgradeManager.upgrades[i] == selectedUpgrade)
             {
-                if (upgradeManager.upgrades[i].upgradeNo >= selectedUpgrade.upgradeNo) return;
+                if (UpgradeManager.upgrades[i].upgradeNo >= selectedUpgrade.upgradeNo) return;
                 else
                 {
-                    upgradeManager.upgrades[i] = selectedUpgrade;
+                    UpgradeManager.upgrades[i] = selectedUpgrade;
                     break;
                 }
             }
         }
 
-        gameManager.money -= selectedUpgrade.cost[selectedUpgrade.upgradeNo];
-        money.text = "Money:\n" + gameManager.money;
-        upgradeManager.upgrades.Add(selectedUpgrade);
+        GameManager.money -= selectedUpgrade.cost[selectedUpgrade.upgradeNo];
+        money.text = "Money:\n" + GameManager.money;
+        UpgradeManager.upgrades.Add(selectedUpgrade);
         selectedBtn.Buy();
 
         FindObjectOfType<Screenshot>().CaptureScreenshot();
@@ -118,30 +118,30 @@ public class UpgradeScreen : MonoBehaviour
         if (selectedUpgrade == null) return;
         Upgrade thisUpgrade = null;
         int thisIndex = 0;
-        for (int i = 0; i < upgradeManager.upgrades.Count; i++)
+        for (int i = 0; i < UpgradeManager.upgrades.Count; i++)
         {
-            if (upgradeManager.upgrades[i].upgradeName[0] == selectedUpgrade.upgradeName[0])
+            if (UpgradeManager.upgrades[i].upgradeName[0] == selectedUpgrade.upgradeName[0])
             {
                 thisUpgrade = selectedUpgrade;
                 thisIndex = i;
             }
         }
         if (thisUpgrade == null) return;
-        else upgradeManager.upgrades.RemoveAt(thisIndex);
+        else UpgradeManager.upgrades.RemoveAt(thisIndex);
 
         Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo] + " moneys");
-        gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo];
+        GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo];
         if (selectedBtn.unlockThis != null && selectedBtn.unlockThis.bought)
         {
-            gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1];
+            GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1];
             Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1] + " moneys");
             if (selectedBtn.unlockThis.unlockThis != null && selectedBtn.unlockThis.unlockThis.bought)
             {
-                gameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2];
+                GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2];
                 Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2] + " moneys");
             }
         }
-        money.text = "Money:\n" + gameManager.money;
+        money.text = "Money:\n" + GameManager.money;
         selectedBtn.Sell();
     }
 }

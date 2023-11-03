@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    public List<Upgrade> upgrades = new();
+    public static List<Upgrade> upgrades = new();
 
     public void ApplyUpgrades()
     {

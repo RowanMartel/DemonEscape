@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] SaveLoad saveLoad;
     [SerializeField] Screenshot screenshot;
 
-    public float money;
+    public static float money;
 
     private bool paused = false;
     public bool Paused
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public void NewGame()
     {
         money = 0;
-        upgradeManager.upgrades.Clear();
+        UpgradeManager.upgrades.Clear();
     }
 
     public void LoadScene(int buildIndex)

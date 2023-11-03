@@ -35,7 +35,7 @@ public class SaveLoad : MonoBehaviour
         BinaryFormatter bf = new();
         FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
-        SaveData data = new(/*preview, */upgradeManager.upgrades, gameManager.money);
+        SaveData data = new(/*preview, */UpgradeManager.upgrades, GameManager.money);
         bf.Serialize(file, data);
         file.Close();
     }
@@ -53,8 +53,8 @@ public class SaveLoad : MonoBehaviour
             file.Close();
 
             gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
-            gameManager.money = data.money;
-            upgradeManager.upgrades = data.upgrades;
+            GameManager.money = data.money;
+            UpgradeManager.upgrades = data.upgrades;
         }
         else
         {
@@ -66,7 +66,7 @@ public class SaveLoad : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
         {
-            File.Delete("/saveFile" + saveFileNum + ".dat");
+            File.Delete(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
         }
     }
 
