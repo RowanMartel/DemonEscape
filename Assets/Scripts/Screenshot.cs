@@ -3,10 +3,12 @@ using UnityEngine.UI;
 
 public class Screenshot : MonoBehaviour
 {
-    public void CaptureScreenshot(int saveNo)
+    [SerializeField] SaveLoad saveLoad;
+
+    public void CaptureScreenshot()
     {
-        Debug.Log("saving to file " +  saveNo.ToString());
-        switch (saveNo)
+        Debug.Log("saving screenshot to file " +  SaveLoad.saveFileNum.ToString());
+        switch (SaveLoad.saveFileNum)
         {
             case 1:
                 ScreenCapture.CaptureScreenshot("Assets/SaveImages/Save1Img.png");

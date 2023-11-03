@@ -31,7 +31,7 @@ public class Segment : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isHallway) return;
+        if (!isHallway || other.CompareTag("Projectile")) return;
         if (other.CompareTag("PlayerCapsule"))
         {
             entered = true;
@@ -40,6 +40,7 @@ public class Segment : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        if (!other.CompareTag("PlayerCapsule")) return;
         exited = true;
     }
 

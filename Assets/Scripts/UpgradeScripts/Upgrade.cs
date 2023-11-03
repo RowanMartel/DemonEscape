@@ -1,3 +1,6 @@
+using System;
+
+[Serializable]
 public abstract class Upgrade
 {
     public enum Upgrades

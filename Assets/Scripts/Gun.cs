@@ -53,7 +53,7 @@ public class RocketLauncher : Gun
 {
     public RocketLauncher()
     {
-        startingAmmo= Constants.rocketLauncherStartingAmmo;
+        startingAmmo = Constants.rocketLauncherStartingAmmo;
         maxAmmo = Constants.rocketLauncherMaxAmmo;
         damage = Constants.rocketLauncherDamage;
         firingCooldown = Constants.rocketLauncherFiringCooldown;

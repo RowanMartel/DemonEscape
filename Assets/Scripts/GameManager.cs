@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
                 player.results = results;
                 break;
             case Constants.upgradeScreenSceneIndex:
-                screenshot.CaptureScreenshot(saveLoad.saveFileNum);
+                screenshot.CaptureScreenshot();
+                saveLoad.Save();
                 break;
         }
     }

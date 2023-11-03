@@ -6,25 +6,44 @@ using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
 {
-    public int saveFileNum;
+    public static int saveFileNum;
+
+    /*[SerializeField] Sprite save1Img;
+    [SerializeField] Sprite save2Img;
+    [SerializeField] Sprite save3Img;*/
 
     [SerializeField] Sprite emptySave;
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] GameManager gameManager;
 
-    public void Save(Sprite preview)
+    public void Save()
     {
+        /*Sprite preview = emptySave;
+        switch (saveFileNum)
+        {
+            case 1:
+                preview = save1Img;
+                break;
+            case 2:
+                preview = save2Img;
+                break;
+            case 3:
+                preview = save3Img;
+                break;
+        }*/
+        
         BinaryFormatter bf = new();
         FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
-        SaveData data = new(preview, upgradeManager.upgrades, gameManager.money);
+        SaveData data = new(/*preview, */upgradeManager.upgrades, gameManager.money);
         bf.Serialize(file, data);
         file.Close();
     }
 
-    public void Load(int saveFileNum)
+    public void Load(int saveFileNumPar)
     {
-        this.saveFileNum = saveFileNum;
+        saveFileNum = saveFileNumPar;
+        Debug.Log(saveFileNum);
 
         if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
         {
@@ -45,7 +64,7 @@ public class SaveLoad : MonoBehaviour
         }
     }
 
-    public Sprite GetPreview(int saveFileNum)
+    /*public Sprite GetPreview(int saveFileNum)
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
         {
@@ -58,19 +77,19 @@ public class SaveLoad : MonoBehaviour
             return data.preview;
         }
         else return emptySave;
-    }
+    }*/
 }
 
 [Serializable]
 class SaveData
 {
-    public Sprite preview;
+    //public Sprite preview;
     public List<Upgrade> upgrades;
     public float money;
 
-    public SaveData(Sprite preview, List<Upgrade> upgrades, float money)
+    public SaveData(/*Sprite preview, */List<Upgrade> upgrades, float money)
     {
-        this.preview = preview;
+        //this.preview = preview;
         this.upgrades = upgrades;
         this.money = money;
     }

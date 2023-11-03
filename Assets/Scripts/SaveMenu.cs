@@ -9,6 +9,10 @@ public class SaveMenu : MonoBehaviour
     [SerializeField] Image save2;
     [SerializeField] Image save3;
 
+    [SerializeField] Sprite save1Img;
+    [SerializeField] Sprite save2Img;
+    [SerializeField] Sprite save3Img;
+
     void Start()
     {
         saveLoad = FindObjectOfType<SaveLoad>();
@@ -17,9 +21,10 @@ public class SaveMenu : MonoBehaviour
 
     void InitSaveImages()
     {
-        save1.sprite = saveLoad.GetPreview(1);
-        save2.sprite = saveLoad.GetPreview(2);
-        save3.sprite = saveLoad.GetPreview(3);
+        Debug.Log("areharhaeh");
+        save1.sprite = save1Img;
+        save2.sprite = save2Img;
+        save3.sprite = save3Img;
     }
 
     public void Load(int saveNo)

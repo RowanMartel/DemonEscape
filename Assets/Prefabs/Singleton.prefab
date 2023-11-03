@@ -3543,7 +3543,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a4364cc38e7b54aaac55dd91612ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFileNum: 0
+  save1Img: {fileID: 7482667652216324306, guid: 87c26eefc31132c4884625b8c8b103f9, type: 3}
+  save2Img: {fileID: 7482667652216324306, guid: 25cd32668a65ca34cb97e889cf3e00dc, type: 3}
+  save3Img: {fileID: 7482667652216324306, guid: d19f01a2fb5442147b2584ac2d30f60a, type: 3}
   emptySave: {fileID: 21300000, guid: 89aff1816dffb36498b6612a1fd968c8, type: 3}
   upgradeManager: {fileID: 49404700466461068}
   gameManager: {fileID: 4742075703452695691}
@@ -4202,3 +4204,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e44c6aac4600d24481f7946ecf44141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveLoad: {fileID: 1132050208544457216}
