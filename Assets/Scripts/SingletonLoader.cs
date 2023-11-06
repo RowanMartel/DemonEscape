@@ -7,6 +7,6 @@ public class SingletonLoader : MonoBehaviour
 
     void Awake()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Additive);
+        SceneManager.LoadScene(Constants.singletonSceneIndex, LoadSceneMode.Additive);
     }
 }

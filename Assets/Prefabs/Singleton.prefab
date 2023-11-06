@@ -762,7 +762,6 @@ MonoBehaviour:
   upgradeManager: {fileID: 49404700466461068}
   saveLoad: {fileID: 1132050208544457216}
   screenshot: {fileID: 6304535877621221211}
-  money: 0
 --- !u!1 &1535354098989311107
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,7 +3545,7 @@ MonoBehaviour:
   save1Img: {fileID: 7482667652216324306, guid: 87c26eefc31132c4884625b8c8b103f9, type: 3}
   save2Img: {fileID: 7482667652216324306, guid: 25cd32668a65ca34cb97e889cf3e00dc, type: 3}
   save3Img: {fileID: 7482667652216324306, guid: d19f01a2fb5442147b2584ac2d30f60a, type: 3}
-  emptySave: {fileID: 21300000, guid: 89aff1816dffb36498b6612a1fd968c8, type: 3}
+  emptySave: {fileID: 21300000, guid: a745b4cbaf71fb149b4adcb955cb73c4, type: 3}
   upgradeManager: {fileID: 49404700466461068}
   gameManager: {fileID: 4742075703452695691}
 --- !u!1 &7266000976650438672

@@ -26,6 +26,5 @@ public class DistanceManager : MonoBehaviour
         {
 
         }
-        Debug.Log(tracker.transform.position);
     }
 }

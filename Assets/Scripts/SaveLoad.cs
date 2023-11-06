@@ -2,17 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
 {
     public static int saveFileNum;
 
-    /*[SerializeField] Sprite save1Img;
+    [SerializeField] Sprite save1Img;
     [SerializeField] Sprite save2Img;
-    [SerializeField] Sprite save3Img;*/
+    [SerializeField] Sprite save3Img;
 
     [SerializeField] Sprite emptySave;
+
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] GameManager gameManager;
 
@@ -67,6 +69,10 @@ public class SaveLoad : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
         {
             File.Delete(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
+            File.WriteAllBytes("Assets/SaveImages/Save" + saveFileNum + "Img.png", File.ReadAllBytes("Assets/SaveImages/NewSaveImg.png"));
+            Debug.Log("File deleted");
+            Resources.Load("Assets/SaveImages/Save" + saveFileNum + "Img.png");
+            save1Img = emptySave;
         }
     }
 

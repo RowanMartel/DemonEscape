@@ -730,7 +730,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Save Files
+  m_text: Play Game
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}
   m_sharedMaterial: {fileID: 4244770791412083386, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}

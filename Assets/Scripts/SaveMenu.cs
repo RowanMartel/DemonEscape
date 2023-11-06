@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class SaveMenu : MonoBehaviour
 
     void Start()
     {
-        saveLoad = FindObjectOfType<SaveLoad>();
+        saveLoad = Singleton.Instance.GetComponentInChildren<SaveLoad>();
     }
 
     public void Load(int saveNo)
