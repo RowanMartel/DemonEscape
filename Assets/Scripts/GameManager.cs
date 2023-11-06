@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(buildIndex);
     }
 
+    // method called on activeSceneChanged event
     void OnSceneChanged(Scene replacedScene, Scene newScene)
     {
         options.Close();

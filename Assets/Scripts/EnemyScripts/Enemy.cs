@@ -26,6 +26,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected Sprite hurtSprite;
     [SerializeField] protected Sprite deadSprite;
 
+    [SerializeField] protected GameObject projectile;
+
     protected float attackCooldown;
     protected float speed;
     protected float allowedProximity;
@@ -34,6 +36,8 @@ public abstract class Enemy : MonoBehaviour
     protected float firingDistance;
     protected float attackRange;
     protected int money;
+    protected Gun.FiringType firingType;
+    protected float rangeRadius;
 
     void Start()
     {
@@ -87,15 +91,48 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void Attack()
+    void Attack()
     {
+        gunAudio.Stop();
         gunAudio.PlayOneShot(clipGun);
         ChangeSprite(attackingSprite);
 
+        switch (firingType)
+        {
+            case Gun.FiringType.rayCast:
+                RaycastAttack();
+                break;
+            case Gun.FiringType.sphereCastAll:
+                SpherecastAttack();
+                break;
+            case Gun.FiringType.projectile:
+                ProjectileAttack();
+                break;
+        }
+    }
+    void RaycastAttack()
+    {
         RaycastHit hit;
-        transform.LookAt(player.transform);
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, attackRange, LayerMask.GetMask("Player")))
-            player.GetComponent<Player>().TakeDamage(damage);
+        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, attackRange, LayerMask.GetMask("Player"));
+        if (didHit)
+        {
+            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
+    void SpherecastAttack()
+    {
+        RaycastHit[] hits;
+        hits = Physics.SphereCastAll(transform.position, rangeRadius, Camera.main.transform.forward, attackRange, LayerMask.GetMask("Enemy"));
+        for (int i = 0; i < hits.Length; i++)
+        {
+            hits[i].collider.GetComponent<Enemy>().TakeDamage(damage);
+        }
+    }
+    void ProjectileAttack()
+    {
+        GameObject proj = Instantiate(projectile, transform);
+        proj.GetComponent<Projectile>().Init(currentGun);
+        proj.transform.Translate(0, 1, 2, Space.Self);
     }
 
     void ChangeSprite(Sprite newSprite)

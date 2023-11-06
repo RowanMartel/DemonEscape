@@ -46,6 +46,17 @@ public class Constants : MonoBehaviour
     public static float slimeGunnerFiringDistance = 20;
     public static float slimeGunnerAttackRange = 20;
     public static int slimeGunnerMoney = 5;
+    // plasma imp
+    public static float plasmaImpHP = 20;
+    public static float plasmaImpDamage = 15;
+    public static float plasmaImpSpeed = 5;
+    public static float plasmaImpAllowedProximity = 20;
+    public static float plasmaImpAttackCooldown = 2;
+    public static float plasmaImpFiringDistance = 20;
+    public static float plasmaImpAttackRange = 20;
+    public static int plasmaImpMoney = 10;
+    public static string plasmaImpGunName = "PlasmaImp";
+    public static float plasmaImpProjectileSpeed = 35;
 
     // segment generation
     public const int segmentsAhead = 2;

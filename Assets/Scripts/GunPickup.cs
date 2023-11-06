@@ -53,4 +53,9 @@ public class GunPickup : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    private void Update()
+    {
+        transform.LookAt(player.transform.position);
+    }
 }

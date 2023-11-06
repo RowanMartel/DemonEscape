@@ -37,6 +37,8 @@ public class Options : MonoBehaviour
     {
         gameManager.Paused = true;
         canvas.enabled = true;
+
+        // only enable end round button if in gameplay
         if (SceneManager.GetActiveScene().buildIndex == Constants.gameplaySceneIndex)
             upgradesBtn.SetActive(true);
         else upgradesBtn.SetActive(false);
