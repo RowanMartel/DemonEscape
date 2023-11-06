@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
 {
-    public static int saveFileNum;
+    public static int saveFileNum;// number out of 3 that points to the save file currently being played
 
     [SerializeField] Sprite save1Img;
     [SerializeField] Sprite save2Img;
@@ -40,7 +40,7 @@ public class SaveLoad : MonoBehaviour
         SaveData data = new(/*preview, */UpgradeManager.upgrades, GameManager.money);
         bf.Serialize(file, data);
         file.Close();
-    }
+    }// serialize and save relevant data into a .dat file
 
     public void Load(int saveFileNumPar)
     {
@@ -57,12 +57,12 @@ public class SaveLoad : MonoBehaviour
             gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
             GameManager.money = data.money;
             UpgradeManager.upgrades = data.upgrades;
-        }
+        }// load the selected save file into the upgrade screen
         else
         {
             gameManager.NewGame();
             gameManager.LoadScene(Constants.gameplaySceneIndex);
-        }
+        }// if the save doesn't exist, load into gameplay with a new game instead
     }
     public void DeleteSave(int saveFileNum)
     {
@@ -74,7 +74,7 @@ public class SaveLoad : MonoBehaviour
             Resources.Load("Assets/SaveImages/Save" + saveFileNum + "Img.png");
             save1Img = emptySave;
         }
-    }
+    }// delete the save file and reset the save preview to the new game image
 
     /*public Sprite GetPreview(int saveFileNum)
     {
@@ -96,7 +96,7 @@ public class SaveLoad : MonoBehaviour
 class SaveData
 {
     //public Sprite preview;
-    public List<Upgrade> upgrades;
+    public List<Upgrade> upgrades;// list of upgrades unlocked in the save file
     public float money;
 
     public SaveData(/*Sprite preview, */List<Upgrade> upgrades, float money)

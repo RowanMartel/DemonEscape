@@ -35,9 +35,12 @@ public abstract class Enemy : MonoBehaviour
     protected float damage;
     protected float firingDistance;
     protected float attackRange;
-    protected int money;
-    protected Gun.FiringType firingType;
     protected float rangeRadius;
+    protected int money;
+
+    protected Gun.FiringType firingType;
+    protected Gun projectileGun;
+    // gun variables for projectile initialization
 
     void Start()
     {
@@ -56,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
         if (dead)
         {
             if (agent.isOnNavMesh)
-                agent.SetDestination(transform.position);
+                agent.SetDestination(transform.position); // stay still
             KillThis();
             return;
         }
@@ -67,7 +70,7 @@ public abstract class Enemy : MonoBehaviour
 
     void Move()
     {
-        // try to stay 15 units away from the player
+        // try to stay [allowed proximity] units away from the player
         if (Vector3.Distance(transform.position, player.transform.position) > allowedProximity)
         {
             agent.SetDestination(player.transform.position);
@@ -76,19 +79,20 @@ public abstract class Enemy : MonoBehaviour
         {
             transform.LookAt(player.transform.position);
             agent.SetDestination(transform.position - transform.forward);
-        }
+        }// move away from the player if too close
     }
 
     void TryAttack()
     {
         if (Vector3.Distance(transform.position, player.transform.position) > firingDistance)
-            return;
+            return;// return if too far away
+
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer <= 0)
         {
             Attack();
             cooldownTimer = attackCooldown;
-        }
+        }// attack after a cooldown timer that ticks down every update
     }
 
     void Attack()
@@ -118,7 +122,7 @@ public abstract class Enemy : MonoBehaviour
         {
             hit.collider.GetComponent<Enemy>().TakeDamage(damage);
         }
-    }
+    }// attack first collider in line of sight
     void SpherecastAttack()
     {
         RaycastHit[] hits;
@@ -127,13 +131,13 @@ public abstract class Enemy : MonoBehaviour
         {
             hits[i].collider.GetComponent<Enemy>().TakeDamage(damage);
         }
-    }
+    }// for shotgun spray types of attacks
     void ProjectileAttack()
     {
         GameObject proj = Instantiate(projectile, transform);
-        proj.GetComponent<Projectile>().Init(currentGun);
+        proj.GetComponent<Projectile>().Init(projectileGun);
         proj.transform.Translate(0, 1, 2, Space.Self);
-    }
+    }// create a projectile object
 
     void ChangeSprite(Sprite newSprite)
     {
@@ -146,8 +150,8 @@ public abstract class Enemy : MonoBehaviour
         animTimer -= Time.deltaTime;
         if (animTimer > 0) return;
         sprite.sprite = idleSprite;
-        if (dead) canvas.enabled = false;
-    }
+        if (dead) canvas.enabled = false;// dissapear if dead
+    }// gets called every update. when the timer is finished swaps to the idle sprite
 
     public void TakeDamage(float damage)
     {
@@ -174,7 +178,7 @@ public abstract class Enemy : MonoBehaviour
         dead = true;
         ChangeSprite(deadSprite);
         voiceAudio.PlayOneShot(clipDie);
-    }
+    }// kills the enemy and sets their sprite to their dead sprite
 
     void KillThis()
     {

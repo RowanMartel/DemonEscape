@@ -22,5 +22,5 @@ public class Screenshot : MonoBehaviour
                 Resources.Load("Assets/SaveImages/Save3Img.png");
                 break;
         }
-    }
+    }// create a screenshot image for use as a save file preview
 }

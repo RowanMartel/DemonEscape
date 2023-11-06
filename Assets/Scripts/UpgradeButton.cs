@@ -25,7 +25,7 @@ public class UpgradeButton : MonoBehaviour
         button = GetComponent<Button>();
         icon = GetComponent<Image>().sprite;
 
-        button.onClick.AddListener(delegate () { OnClick(); });
+        button.onClick.AddListener(delegate () { OnClick(); });// adds an onclick event without the inspector
 
         if (locked) lockImg.enabled = true;
 
@@ -36,7 +36,7 @@ public class UpgradeButton : MonoBehaviour
                 if (UpgradeManager.upgrades[i].upgradeNo >= level - 1)
                     Buy();
             }
-        }
+        }// marks upgrade as already bought if in the upgradeManager bought list
     }
 
     void OnClick()
@@ -51,7 +51,7 @@ public class UpgradeButton : MonoBehaviour
         locked = true;
         lockImg.enabled = true;
         if (unlockThis != null) unlockThis.Lock();
-    }
+    }// lock this button and all buttons after it
     public void Unlock()
     {
         locked = false;
@@ -64,7 +64,7 @@ public class UpgradeButton : MonoBehaviour
         if (lockThis != null) lockThis.Lock();
         if (unlockThis != null) unlockThis.Unlock();
         boughtImg.enabled = true;
-    }
+    }// buys this upgrade, then locks the gun's other upgrade and unlocks the next one after this
     public void Sell()
     {
         bought = false;
@@ -72,5 +72,5 @@ public class UpgradeButton : MonoBehaviour
         if (unlockThis != null) unlockThis.Lock();
         if (unlockThis != null && unlockThis.bought) unlockThis.Sell();
         boughtImg.enabled = false;
-    }
+    }// returns the full value of this upgrade, and any bought upgrades after it
 }

@@ -10,8 +10,9 @@ public class PlasmaImp : Enemy
         health = Constants.plasmaImpHP;
         allowedProximity = Constants.plasmaImpAllowedProximity;
         money = Constants.plasmaImpMoney;
+        projectileGun = new PlasmaImpGunData();
     }
-}
+}// set stats to the plasma imp stat constants
 
 public class PlasmaImpGunData : Gun
 {
@@ -21,4 +22,4 @@ public class PlasmaImpGunData : Gun
         gunName = Constants.plasmaImpGunName;
         projectileSpeed = Constants.plasmaImpProjectileSpeed;
     }
-}
+}// gun data for the plasma imp's projectiles

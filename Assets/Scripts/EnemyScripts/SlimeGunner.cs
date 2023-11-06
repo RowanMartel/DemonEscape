@@ -11,4 +11,4 @@ public class SlimeGunner : Enemy
         allowedProximity = Constants.slimeGunnerAllowedProximity;
         money = Constants.slimeGunnerMoney;
     }
-}
+}// set stats to the slime gunner stat constants

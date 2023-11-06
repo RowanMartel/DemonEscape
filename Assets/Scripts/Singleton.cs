@@ -16,4 +16,4 @@ public class Singleton : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}
+}// ensures only one of each persistent object exists in the scene at once

@@ -116,5 +116,5 @@ public class Constants : MonoBehaviour
         slimeGunnerAttackCooldown = 3;
         slimeGunnerFiringDistance = 20;
         slimeGunnerAttackRange = 20;
-    }
+    }// resets non const variables
 }

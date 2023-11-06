@@ -15,7 +15,7 @@ public class DistanceManager : MonoBehaviour
     private void Awake()
     {
         trackerMeterStep = (trackerEnd.position.x - trackerStart.position.x) / Constants.maxDistance;
-    }
+    }// set the amount the tracker icon should move whenever distance increases
 
     public void MoveTracker(float distance)
     {
@@ -25,6 +25,6 @@ public class DistanceManager : MonoBehaviour
         if (distance >= Constants.maxDistance)
         {
 
-        }
+        }// win game once target distance reached
     }
 }

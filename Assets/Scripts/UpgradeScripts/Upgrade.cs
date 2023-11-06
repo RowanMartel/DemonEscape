@@ -67,5 +67,5 @@ public abstract class Upgrade
         if (rocketLauncherProjectileSpeed[upgradeNo] != 0) Constants.rocketLauncherProjectileSpeed = rocketLauncherProjectileSpeed[upgradeNo];
         if (rocketLauncherBlastDamage[upgradeNo] != 0) Constants.rocketLauncherBlastDamage = rocketLauncherBlastDamage[upgradeNo];
         if (rocketLauncherBlastRadius[upgradeNo] != 0) Constants.rocketLauncherBlastRadius = rocketLauncherBlastRadius[upgradeNo];
-    }
+    }// if a value is not 0, apply it to the constants
 }

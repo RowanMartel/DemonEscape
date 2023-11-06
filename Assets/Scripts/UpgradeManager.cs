@@ -9,5 +9,5 @@ public class UpgradeManager : MonoBehaviour
     {
         foreach (Upgrade upgrade in upgrades)
             upgrade.Apply();
-    }
+    }// apply upgrade values to constants
 }

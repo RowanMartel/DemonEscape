@@ -24,7 +24,7 @@ public class Segment : MonoBehaviour
     {
         pickupCatalogue = Singleton.Instance.GetComponentInChildren<PickupCatalogue>();
         segmentManager = FindObjectOfType<SegmentManager>();
-        Enter += segmentManager.OnEnter;
+        Enter += segmentManager.OnEnter;// subscribe segmentManager to the on-segment-enter event
 
         SpawnPickup();
     }
@@ -36,7 +36,7 @@ public class Segment : MonoBehaviour
         {
             entered = true;
             OnEnter();
-        }
+        }// if not a hallway segment, call OnEnter
     }
     private void OnTriggerExit(Collider other)
     {
@@ -51,7 +51,7 @@ public class Segment : MonoBehaviour
             Enter(this, new EnterEventArgs(gameObject));
             FindObjectOfType<Player>().Distance += Constants.distanceStep;
         }
-    }
+    }// broadcasts that this segment has been entered to segmentManager
 
     public void SpawnEnemy(GameObject enemy)
     {
@@ -59,7 +59,7 @@ public class Segment : MonoBehaviour
 
         GameObject spawnedEnemy = Instantiate(enemy, transform);
         spawnedEnemy.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 2, (float)rand.NextDouble() * 5 - 2.5f);
-    }
+    }// creates the passed-in enemy at a random position on the segment
 
     void SpawnPickup()
     {
@@ -70,7 +70,7 @@ public class Segment : MonoBehaviour
             GameObject gunPickup = Instantiate(pickupCatalogue.GetRandomGun(), transform);
             gunPickup.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 1.5f, (float)rand.NextDouble() * 5 - 2.5f);
         }
-    }
+    }// creates a random pickup on every 3rd non-hallway segment
 }
 public class EnterEventArgs : EventArgs
 {

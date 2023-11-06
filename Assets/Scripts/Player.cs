@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
         {
             health = value;
             tmpHealth.text = "Health: " + value;
-        }
+        }// update UI on set
     }
     private float ammo;
     float Ammo
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         {
             ammo = value;
             tmpAmmo.text = "Ammo: " + value;
-        }
+        }// update UI on set
     }
     private float money;
     public float Money
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         {
             money = value;
             tmpMoney.text = "Money:\n" + value;
-        }
+        }// update UI on set
     }
     private float distance;
     public float Distance
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
             if (value > Constants.maxDistance) value = Constants.maxDistance;
             distance = value;
             distanceManager.MoveTracker(distance);
-        }
+        }// update UI and distanceManager on set
     }
 
     [SerializeField] TMP_Text tmpHealth;
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         attackCooldownTimer = 0;
         ResetStats();
         currentGun = gun1;
-        EquipGun(new Pistol());
+        EquipGun(new Pistol());// starting gun
     }
 
     void Update()
@@ -115,9 +115,7 @@ public class Player : MonoBehaviour
         if (dead) return;
         Health -= damage;
         if (Health <= 0)
-        {
             Die();
-        }
         else
         {
             ChangePortrait(hurtSprite);
@@ -136,7 +134,7 @@ public class Player : MonoBehaviour
         GameManager.money += Money;
         gameManager.Paused = true;
         results.Open();
-    }
+    }// update portrait and money on death, then open results screen
 
     public void ResetStats()
     {
@@ -148,11 +146,11 @@ public class Player : MonoBehaviour
         gunAudio.Stop();
         gunAudio.PlayOneShot(clipGun);
         ChangePortrait(attackingSprite);
-        gunAnim.SetTrigger("Fired");
+        gunAnim.SetTrigger("Fired");// set animator state to firing
 
         UseAmmo();
         canAttack = false;
-        attackCooldownTimer = currentGun.firingCooldown;
+        attackCooldownTimer = currentGun.firingCooldown;// set the cooldown timer based on the current gun
 
         switch (currentGun.firingType)
         {
@@ -169,13 +167,10 @@ public class Player : MonoBehaviour
     }
     void RaycastAttack()
     {
-        RaycastHit hit;
-        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, currentGun.range, LayerMask.GetMask("Enemy"));
+        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
-        {
             hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
-        }
-    }
+    }// attack the first collider in a straight line
     void SpherecastAttack()
     {
         RaycastHit[] hits;
@@ -184,13 +179,13 @@ public class Player : MonoBehaviour
         {
             hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
         }
-    }
+    }// for shotgun spray like attacks
     void ProjectileAttack()
     {
         GameObject proj = Instantiate(projectile, transform);
         proj.GetComponent<Projectile>().Init(currentGun);
         proj.transform.Translate(0, 1, 2, Space.Self);
-    }
+    }// initializes a projectile object
     void TryAttack()
     {
         if (dead) return;
@@ -204,14 +199,14 @@ public class Player : MonoBehaviour
         }
 
         Attack();
-    }
+    }// ticks down the attack timer, then checks if the player is attempting to fire. Is called every frame
     void CooldownAttack()
     {
         if (canAttack) return;
         attackCooldownTimer -= Time.deltaTime;
         if (attackCooldownTimer <= 0)
             canAttack = true;
-    }
+    }// ticks down the attack timer
 
     public void EquipGun(Gun newGun)
     {
@@ -230,7 +225,7 @@ public class Player : MonoBehaviour
         {
             SwitchGun(gun3, true);
             return;
-        }
+        }// first if-else chain for if the player already has this gun
         else if (gun1 == null)
         {
             gun1 = newGun;
@@ -254,7 +249,19 @@ public class Player : MonoBehaviour
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
             gunImg = gun3Img;
-        }
+        }// second if-else chain for if the player has an empty gun slot
+        else
+        {
+            if (currentGun == gun1)
+                gun1 = newGun;
+            else if (currentGun == gun2)
+                gun2 = newGun;
+            else if (currentGun == gun3)
+                gun3 = newGun;
+            currentGun.currentAmmo = newGun.startingAmmo;
+            ChangePortrait(attackingSprite);
+        }// if there are no empty slots, replace the current gun
+
         Ammo = currentGun.currentAmmo;
 
         for (int i = 0; i < guns.Length; i++)
@@ -262,7 +269,7 @@ public class Player : MonoBehaviour
             guns[i].SetActive(false);
             if (guns[i].name == currentGun.gunName)
                 guns[i].SetActive(true);
-        }
+        }// enable the right gun image
         switch (currentGun.gunName)
         {
             case var _ when currentGun.gunName == Constants.pistolName:
@@ -277,7 +284,7 @@ public class Player : MonoBehaviour
                 gunAnim = rocketLauncherAnim;
                 gunImg.sprite = rocketLauncherSprite;
                 break;
-        }
+        }// enable the right gun animation
     }
 
     void ChangePortrait(Sprite newPortrait)
@@ -291,7 +298,7 @@ public class Player : MonoBehaviour
         portraitTimer -= Time.deltaTime;
         if (portraitTimer > 0) return;
         portrait.sprite = idleSprite;
-    }
+    }// ticks down and then resets the portrait to the idle sprite. Calls every frame
 
     public void AddMoney(int money)
     {
@@ -308,7 +315,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchGun(gun1);
         else if (gun2 != null && Input.GetKeyDown(KeyCode.Alpha2)) SwitchGun(gun2);
         else if (gun3 != null && Input.GetKeyDown(KeyCode.Alpha3)) SwitchGun(gun3);
-    }
+    }// tries to swap the gun if the player is inputting to do so
     void SwitchGun(Gun newGun, bool addAmmo = false)
     {
         currentGun = newGun;
@@ -334,5 +341,5 @@ public class Player : MonoBehaviour
                 gunAnim = rocketLauncherAnim;
                 break;
         }
-    }
+    }// switches the current gun. Follows much of the same logic as EquipGun
 }

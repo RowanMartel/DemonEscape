@@ -9,7 +9,7 @@ public class VolumeChanger : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        volumeManager = FindObjectOfType<VolumeManager>();
+        volumeManager = Singleton.Instance.GetComponentInChildren<VolumeManager>();
         if (isBGM)
         {
             volumeManager.BGMVolChanged += ChangeVolume;
@@ -26,4 +26,4 @@ public class VolumeChanger : MonoBehaviour
     {
         audioSource.volume = volume.value;
     }
-}
+}// I don't think this class actually does anything

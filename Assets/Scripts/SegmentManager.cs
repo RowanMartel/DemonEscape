@@ -33,6 +33,7 @@ public class SegmentManager : MonoBehaviour
         newSegment.transform.parent = segmentParent;
         newSegment.transform.eulerAngles = currentSegment.transform.eulerAngles;
         newSegment.transform.position = currentSegment.transform.position;
+        // create a new hallway segment and position it
 
         switch (direction)
         {
@@ -47,7 +48,7 @@ public class SegmentManager : MonoBehaviour
             case Direction.fwd:
                 newSegment.transform.position += currentSegment.transform.forward * 10;
                 break;
-        }
+        }// position segment based on where it branches off from
         newSegment.GetComponent<Segment>().isHallway = true;
         segments.Add(newSegment);
         return newSegment;
@@ -55,12 +56,13 @@ public class SegmentManager : MonoBehaviour
 
     void GenerateSegment(Direction direction)
     {
-        GameObject hallway = AddHallway(direction);
+        GameObject hallway = AddHallway(direction);// add a hallway to the segment
         GameObject newSegment = Instantiate(GetRandomSegment());
         hallway.GetComponent<Segment>().hallEndSegment = newSegment;
         newSegment.transform.parent = segmentParent;
         newSegment.transform.eulerAngles = currentSegment.transform.eulerAngles;
         newSegment.transform.position = currentSegment.transform.position;
+        //create a new hallway segment and position it
 
         switch (direction)
         {
@@ -75,7 +77,7 @@ public class SegmentManager : MonoBehaviour
             case Direction.fwd:
                 newSegment.transform.position += currentSegment.transform.forward * 20;
                 break;
-        }
+        }// position segment based on where it branches off from
         newSegment.GetComponent<Segment>().SpawnEnemy(enemies[0]);
         segments.Add(newSegment);
     }
@@ -87,13 +89,12 @@ public class SegmentManager : MonoBehaviour
 
     public void OnEnter(object source, EnterEventArgs e)
     {
-        if (e.thisSegment.GetComponent<Segment>().exited) return;
+        if (e.thisSegment.GetComponent<Segment>().exited) return;// return if this segment has already been walked through
 
         currentSegment = e.thisSegment.GetComponent<Segment>().hallEndSegment;
         currentSegmentHall = e.thisSegment;
 
         List<GameObject> segmentsToDestroy = new();
-
         currentSegmentIndex++;
         foreach (GameObject segment in segments)
         {
@@ -106,7 +107,7 @@ public class SegmentManager : MonoBehaviour
         {
             segments.Remove(segment);
             Destroy(segment);
-        }
+        }// destroy old segments
 
         if (currentSegment.GetComponent<Segment>().hasLeftExit)
             GenerateSegment(Direction.left);
@@ -114,5 +115,6 @@ public class SegmentManager : MonoBehaviour
             GenerateSegment(Direction.right);
         if (currentSegment.GetComponent<Segment>().hasFwdExit)
             GenerateSegment(Direction.fwd);
+        // generate segments off of current segment exits
     }
 }

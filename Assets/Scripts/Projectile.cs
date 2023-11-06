@@ -20,8 +20,6 @@ public class Projectile : MonoBehaviour
         speed = gun.projectileSpeed;
         explodes = gun.explodes;
         directDamage = gun.damage;
-        blastDamage = gun.blastDamage;
-        blastRadius = gun.blastRadius;
         if (explodes)
         {
             blastDamage = gun.blastDamage;
@@ -32,7 +30,7 @@ public class Projectile : MonoBehaviour
             case var _ when gun.gunName == Constants.rocketLauncherName:
                 image.sprite = rocketSprite;
                 break;
-        }
+        }// determine which projectile sprite to use
     }
 
     public void Update()
@@ -53,7 +51,7 @@ public class Projectile : MonoBehaviour
             GameObject explosionObj = Instantiate(explosion);
             explosionObj.GetComponent<Explosion>().Init(blastDamage, blastRadius);
             explosionObj.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        }
+        }// create an explosion object if the projectile is explosive
 
         Destroy(gameObject);
     }

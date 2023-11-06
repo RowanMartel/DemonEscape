@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour
     {
         this.blastDamage = blastDamage;
         this.blastRadius = blastRadius;
-        transform.localScale = Vector3.one * this.blastRadius;
+        transform.localScale = Vector3.one * this.blastRadius;// set explosion size
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,5 +26,5 @@ public class Explosion : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (timer >= .33f) Destroy(gameObject);
-    }
+    }// dissapear after 0.33 seconds
 }

@@ -86,7 +86,7 @@ public class UpgradeScreen : MonoBehaviour
         upgradeCost.text = selectedUpgrade.cost[level].ToString() + '$';
         money.text = "Money:\n" + GameManager.money;
         upgradeIcon.sprite = icon;
-    }
+    }// set up the upgrade details UI
 
     public void BuyBtn()
     {
@@ -112,7 +112,7 @@ public class UpgradeScreen : MonoBehaviour
 
         FindObjectOfType<Screenshot>().CaptureScreenshot();
         FindObjectOfType<SaveLoad>().Save();
-    }
+    }// logic for buying upgrades
     public void SellBtn()
     {
         if (selectedUpgrade == null) return;
@@ -143,5 +143,5 @@ public class UpgradeScreen : MonoBehaviour
         }
         money.text = "Money:\n" + GameManager.money;
         selectedBtn.Sell();
-    }
+    }// logic for selling upgrades and the ones after them
 }

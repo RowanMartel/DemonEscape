@@ -22,13 +22,9 @@ public class CreditsScroll : MonoBehaviour
     {
         credits.transform.position += new Vector3(0, creditsSpeed * Time.deltaTime);
         if (credits.transform.position.y >= 1700)
-        {
             continueText.alpha += alphaSpeed * Time.deltaTime;
-        }
 
         if (Input.anyKeyDown)
-        {
             gameManager.LoadScene(Constants.titleScreenSceneIndex);
-        }
     }
 }

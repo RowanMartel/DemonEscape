@@ -31,7 +31,7 @@ public class VolumeManager : MonoBehaviour
         BGMVol = BGMSlider.value;
         BGMVolChanged?.Invoke(this, new SetVolEventArgs(BGMVol));
     }
-}
+}// class for changing global volume through sliders
 
 public class SetVolEventArgs : EventArgs
 {

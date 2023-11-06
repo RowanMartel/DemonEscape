@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
-    }
+    }// subscribe OnSceneChanged to the scene change event
 
     public void NewGame()
     {
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         {
             case Constants.gameplaySceneIndex:
                 upgradeManager.ApplyUpgrades();
-                break;
+                break;// apply upgrades if entering gameplay
         }
 
         SceneManager.LoadScene(buildIndex);
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
                 Player player = FindObjectOfType<Player>();
                 player.gameManager = this;
                 player.results = results;
-                break;
+                break;// give player necessary variables
             case Constants.upgradeScreenSceneIndex:
                 screenshot.CaptureScreenshot();
                 saveLoad.Save();

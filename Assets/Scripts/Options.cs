@@ -51,7 +51,7 @@ public class Options : MonoBehaviour
     public void EndRound()
     {
         Player player = FindObjectOfType<Player>();
-        GameManager.money += player.Money;
+        GameManager.money += player.Money;// ad the round's spoils to the overall money
         gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
     }
     public void QuitToTitle()

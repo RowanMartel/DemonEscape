@@ -11,4 +11,4 @@ public class PickupCatalogue : MonoBehaviour
         var random = new System.Random();
         return gunPickups[random.Next(gunPickups.Count)];
     }
-}// class for getting random pickups in segments
+}// class for getting random pickups
