@@ -34,6 +34,17 @@ public class Player : MonoBehaviour
             tmpMoney.text = "Money:\n" + value;
         }
     }
+    private float distance;
+    public float Distance
+    {
+        get { return distance; }
+        set
+        {
+            if (value > Constants.maxDistance) value = Constants.maxDistance;
+            distance = value;
+            distanceManager.MoveTracker(distance);
+        }
+    }
 
     [SerializeField] TMP_Text tmpHealth;
     [SerializeField] TMP_Text tmpAmmo;
@@ -69,8 +80,17 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite deadSprite;
     float portraitTimer;
 
+    [SerializeField] Image gun1Img;
+    [SerializeField] Image gun2Img;
+    [SerializeField] Image gun3Img;
+    [SerializeField] Sprite pistolSprite;
+    [SerializeField] Sprite shotgunSprite;
+    [SerializeField] Sprite rocketLauncherSprite;
+
     public GameManager gameManager;
     public Results results;
+
+    [SerializeField] DistanceManager distanceManager;
 
     void Start()
     {
@@ -195,6 +215,7 @@ public class Player : MonoBehaviour
 
     public void EquipGun(Gun newGun)
     {
+        Image gunImg = gun1Img;
         if (gun1 != null && gun1.gunName == newGun.gunName)
         {
             SwitchGun(gun1, true);
@@ -216,6 +237,7 @@ public class Player : MonoBehaviour
             currentGun = gun1;
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
+            gunImg = gun1Img;
         }
         else if (gun2 == null)
         {
@@ -223,6 +245,7 @@ public class Player : MonoBehaviour
             currentGun = gun2;
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
+            gunImg = gun2Img;
         }
         else if (gun3  == null)
         {
@@ -230,6 +253,7 @@ public class Player : MonoBehaviour
             currentGun = gun3;
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
+            gunImg = gun3Img;
         }
         Ammo = currentGun.currentAmmo;
 
@@ -243,12 +267,15 @@ public class Player : MonoBehaviour
         {
             case var _ when currentGun.gunName == Constants.pistolName:
                 gunAnim = pistolAnim;
+                gunImg.sprite = pistolSprite;
                 break;
             case var _ when currentGun.gunName == Constants.shotgunName:
                 gunAnim = shotgunAnim;
+                gunImg.sprite = shotgunSprite;
                 break;
             case var _ when currentGun.gunName == Constants.rocketLauncherName:
                 gunAnim = rocketLauncherAnim;
+                gunImg.sprite = rocketLauncherSprite;
                 break;
         }
     }

@@ -51,15 +51,20 @@ public class Constants : MonoBehaviour
     public const int segmentsAhead = 2;
 
     // scene build indexes
-    public const int singletonSceneIndex = 0;
+    public const int titleScreenSceneIndex = 0;
     public const int gameplaySceneIndex = 1;
     public const int savesMenuSceneIndex = 2;
-    public const int titleScreenSceneIndex = 3;
-    public const int upgradeScreenSceneIndex = 4;
+    public const int upgradeScreenSceneIndex = 3;
+    public const int endingScreenSceneIndex = 4;
+    public const int singletonSceneIndex = 5;
 
     // volume
     public const float startingBGMVol = .5f;
     public const float startingSFXVol = .5f;
+
+    // distance stats
+    public const float maxDistance = 1000;
+    public const float distanceStep = 5;
 
     public static void Reset()
     {

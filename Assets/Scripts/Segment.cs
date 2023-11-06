@@ -47,7 +47,10 @@ public class Segment : MonoBehaviour
     void OnEnter()
     {
         if (Enter != null)
+        {
             Enter(this, new EnterEventArgs(gameObject));
+            FindObjectOfType<Player>().Distance += Constants.distanceStep;
+        }
     }
 
     public void SpawnEnemy(GameObject enemy)

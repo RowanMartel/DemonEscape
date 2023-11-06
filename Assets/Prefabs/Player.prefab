@@ -1454,6 +1454,7 @@ MonoBehaviour:
   tmpHealth: {fileID: 0}
   tmpAmmo: {fileID: 0}
   tmpMoney: {fileID: 0}
+  tmpDistance: {fileID: 0}
   voiceAudio: {fileID: 755338302448960167}
   gunAudio: {fileID: 2632040222587722384}
   clipHurt: {fileID: 8300000, guid: b02b9be498548354cb738e0b70f4176c, type: 3}
@@ -1473,6 +1474,12 @@ MonoBehaviour:
   attackingSprite: {fileID: 21300000, guid: 7d0621e1db43cd049b31c589785524a5, type: 3}
   hurtSprite: {fileID: 21300000, guid: a0944a1888a02e046926e32d4cb948f2, type: 3}
   deadSprite: {fileID: 21300000, guid: 58db0dfb8a7dde24680277071bd1edab, type: 3}
+  gun1Img: {fileID: 0}
+  gun2Img: {fileID: 0}
+  gun3Img: {fileID: 0}
+  pistolSprite: {fileID: 1300033457, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
+  shotgunSprite: {fileID: -403753677, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
+  rocketLauncherSprite: {fileID: -590502317, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   gameManager: {fileID: 0}
   results: {fileID: 0}
 --- !u!1 &7411681974792155534

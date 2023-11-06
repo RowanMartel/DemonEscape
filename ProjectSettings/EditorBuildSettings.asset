@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SingletonScene.unity
-    guid: edeea8dfdb0f23d479d83977b10d2399
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 31a4c22f39648b14b8415a928753348c
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SaveMenu.unity
     guid: d254a84a06a151c4f93baa69ecf4be4a
   - enabled: 1
-    path: Assets/Scenes/TitleScreen.unity
-    guid: 31a4c22f39648b14b8415a928753348c
-  - enabled: 1
     path: Assets/Scenes/UpgradeScreen.unity
     guid: 431d349173935e046a1a2f26043b5418
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: f706a82f506ad7e4eb56ad141088e2da
+  - enabled: 1
+    path: Assets/Scenes/SingletonScene.unity
+    guid: edeea8dfdb0f23d479d83977b10d2399
   m_configObjects: {}
