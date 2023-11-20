@@ -53,13 +53,17 @@ public class Segment : MonoBehaviour
         }
     }// broadcasts that this segment has been entered to segmentManager
 
-    public void SpawnEnemy(GameObject enemy)
+    public void SpawnEnemy()
     {
+        EnemySpawnDecider spawnDecider = FindObjectOfType<EnemySpawnDecider>();
+        // called before Start I think so we need this here
+
         var rand = new System.Random();
+        GameObject enemy = spawnDecider.enemies[UnityEngine.Random.Range(0, spawnDecider.enemies.Count)];
 
         GameObject spawnedEnemy = Instantiate(enemy, transform);
         spawnedEnemy.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 2, (float)rand.NextDouble() * 5 - 2.5f);
-    }// creates the passed-in enemy at a random position on the segment
+    }// creates an enemy at a random position on the segment
 
     void SpawnPickup()
     {

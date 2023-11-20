@@ -10,5 +10,6 @@ public class SlimeGunner : Enemy
         health = Constants.slimeGunnerHP;
         allowedProximity = Constants.slimeGunnerAllowedProximity;
         money = Constants.slimeGunnerMoney;
+        firingType = Gun.FiringType.rayCast;
     }
 }// set stats to the slime gunner stat constants

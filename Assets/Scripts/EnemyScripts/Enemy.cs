@@ -116,11 +116,10 @@ public abstract class Enemy : MonoBehaviour
     }
     void RaycastAttack()
     {
-        RaycastHit hit;
-        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, attackRange, LayerMask.GetMask("Player"));
+        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit, attackRange, LayerMask.GetMask("Player"));
         if (didHit)
         {
-            hit.collider.GetComponent<Enemy>().TakeDamage(damage);
+            hit.collider.GetComponent<Player>().TakeDamage(damage);
         }
     }// attack first collider in line of sight
     void SpherecastAttack()

@@ -13,7 +13,7 @@ public class Constants : MonoBehaviour
     public static float pistolDamage = 10;
     public static float pistolRange = 20;
     public static float pistolFiringCooldown = .5f;
-    public static string pistolName = "Pistol";
+    public const string pistolName = "Pistol";
     public static Gun.FiringType pistolFiringType = Gun.FiringType.rayCast;
     // shotgun
     public static float shotgunStartingAmmo = 15;
@@ -21,7 +21,7 @@ public class Constants : MonoBehaviour
     public static float shotgunDamage = 20;
     public static float shotgunRange = 15;
     public static float shotgunFiringCooldown = 1;
-    public static string shotgunName = "Shotgun";
+    public const string shotgunName = "Shotgun";
     public static Gun.FiringType shotgunFiringType = Gun.FiringType.sphereCastAll;
     public static float shotgunRangeRadius = 1;
     // rocket launcher
@@ -29,7 +29,7 @@ public class Constants : MonoBehaviour
     public static float rocketLauncherMaxAmmo = 12;
     public static float rocketLauncherDamage = 10;
     public static float rocketLauncherFiringCooldown = 3;
-    public static string rocketLauncherName = "RocketLauncher";
+    public const string rocketLauncherName = "RocketLauncher";
     public static Gun.FiringType rocketLauncherFiringType = Gun.FiringType.projectile;
     public static float rocketLauncherProjectileSpeed = 20;
     public static bool rocketLauncherExplodes = true;
@@ -55,7 +55,7 @@ public class Constants : MonoBehaviour
     public static float plasmaImpFiringDistance = 20;
     public static float plasmaImpAttackRange = 20;
     public static int plasmaImpMoney = 10;
-    public static string plasmaImpGunName = "PlasmaImp";
+    public const string plasmaImpGunName = "PlasmaImp";
     public static float plasmaImpProjectileSpeed = 35;
 
     // segment generation

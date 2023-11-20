@@ -11,6 +11,7 @@ public class PlasmaImp : Enemy
         allowedProximity = Constants.plasmaImpAllowedProximity;
         money = Constants.plasmaImpMoney;
         projectileGun = new PlasmaImpGunData();
+        firingType = Gun.FiringType.projectile;
     }
 }// set stats to the plasma imp stat constants
 

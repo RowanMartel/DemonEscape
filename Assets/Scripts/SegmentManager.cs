@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class SegmentManager : MonoBehaviour
 {
-    public List<GameObject> enemies;
-
     public List<GameObject> segmentPrefabs;
     public GameObject hallwayPrefab;
     public Transform segmentParent;
@@ -78,7 +76,7 @@ public class SegmentManager : MonoBehaviour
                 newSegment.transform.position += currentSegment.transform.forward * 20;
                 break;
         }// position segment based on where it branches off from
-        newSegment.GetComponent<Segment>().SpawnEnemy(enemies[0]);
+        newSegment.GetComponent<Segment>().SpawnEnemy();
         segments.Add(newSegment);
     }
 

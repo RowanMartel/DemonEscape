@@ -27,7 +27,10 @@ public class Projectile : MonoBehaviour
         }
         switch (gun.gunName)
         {
-            case var _ when gun.gunName == Constants.rocketLauncherName:
+            case Constants.rocketLauncherName:
+                image.sprite = rocketSprite;
+                break;
+            case Constants.plasmaImpGunName:
                 image.sprite = rocketSprite;
                 break;
         }// determine which projectile sprite to use

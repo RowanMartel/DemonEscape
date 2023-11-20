@@ -377,7 +377,6 @@ GameObject:
   - component: {fileID: 8383237929551872067}
   - component: {fileID: 2176334962487159505}
   - component: {fileID: 4313076068287659308}
-  - component: {fileID: 5567560676591553974}
   - component: {fileID: 8309774738030080350}
   - component: {fileID: 5383788928261760836}
   m_Layer: 8
@@ -476,27 +475,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5567560676591553974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244395286304198047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea1e187cd8cdfa469f01084fa74c0f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceAudio: {fileID: 8118197922346233330}
-  gunAudio: {fileID: 2895335094980933782}
-  clipHurt: {fileID: 8300000, guid: a6d50629595e55f4a83316123ab12dab, type: 3}
-  clipDie: {fileID: 8300000, guid: 8a4e4b7d2bba40444ae53f4249e440cd, type: 3}
-  clipGun: {fileID: 8300000, guid: d7f6c780ba3028c478910d6718ef4ffc, type: 3}
-  idleSprite: {fileID: 21300000, guid: a9c60d6b0118c2a469d309e220d45257, type: 3}
-  attackingSprite: {fileID: 21300000, guid: c5793c5e7884ee24ea25486105b4f21d, type: 3}
-  hurtSprite: {fileID: 21300000, guid: 76a224b3bcd8e4c429baee2e4a38e36d, type: 3}
-  deadSprite: {fileID: 21300000, guid: 70c571349220fb24fa71d40bce139038, type: 3}
 --- !u!114 &8309774738030080350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +496,7 @@ MonoBehaviour:
   attackingSprite: {fileID: 21300000, guid: f273a871ee738ee4e89d63bd032e6df3, type: 3}
   hurtSprite: {fileID: 21300000, guid: 9a17481e1914fed4ab0a378f0c385240, type: 3}
   deadSprite: {fileID: 21300000, guid: b238cc81b749cef44a80af86379a26fa, type: 3}
+  projectile: {fileID: 4020716901050502551, guid: bceb3cefdb59f1247b8fa6bb215f5441, type: 3}
 --- !u!136 &5383788928261760836
 CapsuleCollider:
   m_ObjectHideFlags: 0
