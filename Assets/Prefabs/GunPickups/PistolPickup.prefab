@@ -71,6 +71,7 @@ MonoBehaviour:
   pistolSprite: {fileID: 1300033457, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   shotgunSprite: {fileID: -403753677, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   rocketLauncherSprite: {fileID: -590502317, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
+  machineGunSprite: {fileID: 0}
   gunImage: {fileID: 7909726990341258830}
 --- !u!1 &6862484267903916112
 GameObject:
@@ -106,7 +107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.52, y: 0}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4520669027374036760

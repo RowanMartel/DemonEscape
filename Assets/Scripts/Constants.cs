@@ -35,6 +35,15 @@ public class Constants : MonoBehaviour
     public static bool rocketLauncherExplodes = true;
     public static float rocketLauncherBlastDamage = 40;
     public static float rocketLauncherBlastRadius = 3;
+    // machine gun
+    public static float machineGunStartingAmmo = 30;
+    public static float machineGunMaxAmmo = 60;
+    public static float machineGunDamage = 7;
+    public static float machineGunRange = 20;
+    public static float machineGunFiringCooldown = .35f;
+    public const string machineGunName = "MachineGun";
+    public static bool machineGunAutomatic = true;
+    public static Gun.FiringType machineGunFiringType = Gun.FiringType.rayCast;
 
     // enemy stats
     // slime gunner
@@ -47,7 +56,7 @@ public class Constants : MonoBehaviour
     public static float slimeGunnerAttackRange = 20;
     public static int slimeGunnerMoney = 5;
     // plasma imp
-    public static float plasmaImpHP = 20;
+    public static float plasmaImpHP = 25;
     public static float plasmaImpDamage = 15;
     public static float plasmaImpSpeed = 5;
     public static float plasmaImpAllowedProximity = 20;
@@ -57,6 +66,16 @@ public class Constants : MonoBehaviour
     public static int plasmaImpMoney = 10;
     public const string plasmaImpGunName = "PlasmaImp";
     public static float plasmaImpProjectileSpeed = 35;
+    // slime slasher
+    public static float slimeSlasherHP = 80;
+    public static float slimeSlasherDamage = 50;
+    public static float slimeSlasherSpeed = 5;
+    public static float slimeSlasherAllowedProximity = 2;
+    public static float slimeSlasherAttackCooldown = 5;
+    public static float slimeSlasherFiringDistance = 1;
+    public static float slimeSlasherAttackRange = 2;
+    public static float slimeSlasherRangeRadius = 2;
+    public static int slimeSlasherMoney = 50;
 
     // segment generation
     public const int segmentsAhead = 2;
@@ -106,15 +125,5 @@ public class Constants : MonoBehaviour
         rocketLauncherExplodes = true;
         rocketLauncherBlastDamage = 40;
         rocketLauncherBlastRadius = 3;
-
-        // enemy stats
-        // slime gunner
-        slimeGunnerHP = 20;
-        slimeGunnerDamage = 10;
-        slimeGunnerSpeed = 2;
-        slimeGunnerAllowedProximity = 15;
-        slimeGunnerAttackCooldown = 3;
-        slimeGunnerFiringDistance = 20;
-        slimeGunnerAttackRange = 20;
     }// resets non const variables
 }

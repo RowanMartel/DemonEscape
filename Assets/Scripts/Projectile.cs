@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     float directDamage;
     float blastDamage;
     float blastRadius;
+    bool collided = false;
 
     public void Init(Gun gun)
     {
@@ -44,6 +45,9 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collided) return;
+        collided = true;
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             collision.gameObject.GetComponent<Enemy>().TakeDamage(directDamage);
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))

@@ -7,7 +7,8 @@ public abstract class Upgrade
     {
         pistol1, pistol2,
         shotgun1, shotgun2,
-        rocketLauncher1, rocketLauncher2
+        rocketLauncher1, rocketLauncher2,
+        machineGun1, machineGun2
     }
     public Upgrades upgradeType;
 
@@ -40,6 +41,12 @@ public abstract class Upgrade
     public float[] rocketLauncherProjectileSpeed = new float[3];
     public float[] rocketLauncherBlastDamage = new float[3];
     public float[] rocketLauncherBlastRadius = new float[3];
+    // machine gun
+    public float[] machineGunStartingAmmo = new float[3];
+    public float[] machineGunMaxAmmo = new float[3];
+    public float[] machineGunDamage = new float[3];
+    public float[] machineGunRange = new float[3];
+    public float[] machineGunFiringCooldown = new float[3];
 
     // upgrade screen info
     public string[] upgradeName = new string[3];
@@ -67,5 +74,10 @@ public abstract class Upgrade
         if (rocketLauncherProjectileSpeed[upgradeNo] != 0) Constants.rocketLauncherProjectileSpeed = rocketLauncherProjectileSpeed[upgradeNo];
         if (rocketLauncherBlastDamage[upgradeNo] != 0) Constants.rocketLauncherBlastDamage = rocketLauncherBlastDamage[upgradeNo];
         if (rocketLauncherBlastRadius[upgradeNo] != 0) Constants.rocketLauncherBlastRadius = rocketLauncherBlastRadius[upgradeNo];
+        if (machineGunStartingAmmo[upgradeNo] != 0) Constants.machineGunStartingAmmo = machineGunStartingAmmo[upgradeNo];
+        if (machineGunMaxAmmo[upgradeNo] != 0) Constants.machineGunMaxAmmo = machineGunMaxAmmo[upgradeNo];
+        if (machineGunDamage[upgradeNo] != 0) Constants.machineGunDamage = machineGunDamage[upgradeNo];
+        if (machineGunRange[upgradeNo] != 0) Constants.machineGunRange = machineGunRange[upgradeNo];
+        if (machineGunFiringCooldown[upgradeNo] != 0) Constants.machineGunFiringCooldown = machineGunFiringCooldown[upgradeNo];
     }// if a value is not 0, apply it to the constants
 }

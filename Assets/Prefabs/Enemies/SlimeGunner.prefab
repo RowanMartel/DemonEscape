@@ -374,8 +374,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4842227652944601045}
-  - component: {fileID: 8383237929551872067}
-  - component: {fileID: 2176334962487159505}
   - component: {fileID: 4313076068287659308}
   - component: {fileID: 5567560676591553974}
   - component: {fileID: 5383788928261760836}
@@ -403,56 +401,6 @@ Transform:
   - {fileID: 2258694448598481856}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8383237929551872067
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244395286304198047}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2176334962487159505
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7244395286304198047}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!195 &4313076068287659308
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -496,6 +444,7 @@ MonoBehaviour:
   attackingSprite: {fileID: 21300000, guid: c5793c5e7884ee24ea25486105b4f21d, type: 3}
   hurtSprite: {fileID: 21300000, guid: 76a224b3bcd8e4c429baee2e4a38e36d, type: 3}
   deadSprite: {fileID: 21300000, guid: 70c571349220fb24fa71d40bce139038, type: 3}
+  projectile: {fileID: 0}
 --- !u!136 &5383788928261760836
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -78,6 +78,12 @@ public class UpgradeScreen : MonoBehaviour
             case Upgrade.Upgrades.rocketLauncher2:
                 selectedUpgrade = new RocketLauncherUpgrade2(level);
                 break;
+            case Upgrade.Upgrades.machineGun1:
+                selectedUpgrade = new MachineGunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.machineGun2:
+                selectedUpgrade = new MachineGunUpgrade2(level);
+                break;
         }
 
         selectedUpgrade.upgradeNo = level;

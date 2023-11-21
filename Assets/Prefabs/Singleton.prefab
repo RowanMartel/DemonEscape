@@ -1723,8 +1723,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPickups:
   - {fileID: 4352328102139011914, guid: 7943eb753ac3f8b4ea64162243e14646, type: 3}
-  - {fileID: 4352328102139011914, guid: abade368a29dce14199c50c026e6f05e, type: 3}
   - {fileID: 4352328102139011914, guid: 332cd24f9d45ddc42bef22ef4c779f83, type: 3}
+  - {fileID: 4352328102139011914, guid: abade368a29dce14199c50c026e6f05e, type: 3}
+  - {fileID: 4352328102139011914, guid: ef221f4165ac43c4cba8c902367bcde5, type: 3}
   powerUps: []
 --- !u!1 &3710654440350934445
 GameObject:

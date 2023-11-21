@@ -16,8 +16,8 @@ public class RocketLauncherUpgrade1 : Upgrade
         rocketLauncherBlastDamage[1] = 100;
         rocketLauncherBlastDamage[2] = 180;
         rocketLauncherBlastRadius[0] = 5;
-        rocketLauncherBlastRadius[1] = 8;
-        rocketLauncherBlastRadius[2] = 15;
+        rocketLauncherBlastRadius[1] = 7;
+        rocketLauncherBlastRadius[2] = 10;
         rocketLauncherProjectileSpeed[2] = 25;
 
         upgradeName[0] = "TNT Launcher";

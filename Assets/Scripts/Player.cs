@@ -72,6 +72,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator pistolAnim;
     [SerializeField] Animator shotgunAnim;
     [SerializeField] Animator rocketLauncherAnim;
+    [SerializeField] Animator machineGunAnim;
 
     [SerializeField] Image portrait;
     [SerializeField] Sprite idleSprite;
@@ -86,6 +87,7 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite pistolSprite;
     [SerializeField] Sprite shotgunSprite;
     [SerializeField] Sprite rocketLauncherSprite;
+    [SerializeField] Sprite machineGunSprite;
 
     public GameManager gameManager;
     public Results results;
@@ -167,14 +169,15 @@ public class Player : MonoBehaviour
     }
     void RaycastAttack()
     {
-        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
+        Debug.Log(currentGun.range);
+        bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
             hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
     }// attack the first collider in a straight line
     void SpherecastAttack()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, currentGun.rangeRadius, Camera.main.transform.forward, currentGun.range, LayerMask.GetMask("Enemy"));
+        hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward, currentGun.range, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < hits.Length; i++)
         {
             hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
@@ -190,7 +193,7 @@ public class Player : MonoBehaviour
     {
         if (dead) return;
         CooldownAttack();
-        if (!Input.GetMouseButtonDown(0)) return;
+        if (!Input.GetMouseButtonDown(0) && !(currentGun.automatic && Input.GetMouseButton(0))) return;
         if (!canAttack) return;
         if (currentGun.currentAmmo <= 0)
         {
@@ -226,6 +229,29 @@ public class Player : MonoBehaviour
             SwitchGun(gun3, true);
             return;
         }// first if-else chain for if the player already has this gun
+        else if (gun1 != null && gun2 != null && gun3 != null)
+        {
+            if (currentGun == gun1)
+            {
+                gun1 = newGun;
+                gunImg = gun1Img;
+                SwitchGun(gun1);
+            }
+            else if (currentGun == gun2)
+            {
+                gun2 = newGun;
+                gunImg = gun2Img;
+                SwitchGun(gun2);
+            }
+            else if (currentGun == gun3)
+            {
+                gun3 = newGun;
+                gunImg = gun3Img;
+                SwitchGun(gun3);
+            }
+            currentGun.currentAmmo = newGun.startingAmmo;
+            ChangePortrait(attackingSprite);
+        }// if there are no empty slots, replace the current gun
         else if (gun1 == null)
         {
             gun1 = newGun;
@@ -250,17 +276,6 @@ public class Player : MonoBehaviour
             ChangePortrait(attackingSprite);
             gunImg = gun3Img;
         }// second if-else chain for if the player has an empty gun slot
-        else
-        {
-            if (currentGun == gun1)
-                gun1 = newGun;
-            else if (currentGun == gun2)
-                gun2 = newGun;
-            else if (currentGun == gun3)
-                gun3 = newGun;
-            currentGun.currentAmmo = newGun.startingAmmo;
-            ChangePortrait(attackingSprite);
-        }// if there are no empty slots, replace the current gun
 
         Ammo = currentGun.currentAmmo;
 
@@ -272,17 +287,21 @@ public class Player : MonoBehaviour
         }// enable the right gun image
         switch (currentGun.gunName)
         {
-            case var _ when currentGun.gunName == Constants.pistolName:
+            case Constants.pistolName:
                 gunAnim = pistolAnim;
                 gunImg.sprite = pistolSprite;
                 break;
-            case var _ when currentGun.gunName == Constants.shotgunName:
+            case Constants.shotgunName:
                 gunAnim = shotgunAnim;
                 gunImg.sprite = shotgunSprite;
                 break;
-            case var _ when currentGun.gunName == Constants.rocketLauncherName:
+            case Constants.rocketLauncherName:
                 gunAnim = rocketLauncherAnim;
                 gunImg.sprite = rocketLauncherSprite;
+                break;
+            case Constants.machineGunName:
+                gunAnim = machineGunAnim;
+                gunImg.sprite = machineGunSprite;
                 break;
         }// enable the right gun animation
     }
@@ -331,14 +350,17 @@ public class Player : MonoBehaviour
         }
         switch (currentGun.gunName)
         {
-            case var _ when currentGun.gunName == Constants.pistolName:
+            case Constants.pistolName:
                 gunAnim = pistolAnim;
                 break;
-            case var _ when currentGun.gunName == Constants.shotgunName:
+            case Constants.shotgunName:
                 gunAnim = shotgunAnim;
                 break;
-            case var _ when currentGun.gunName == Constants.rocketLauncherName:
+            case Constants.rocketLauncherName:
                 gunAnim = rocketLauncherAnim;
+                break;
+            case Constants.machineGunName:
+                gunAnim = machineGunAnim;
                 break;
         }
     }// switches the current gun. Follows much of the same logic as EquipGun

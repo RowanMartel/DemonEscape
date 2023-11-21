@@ -737,6 +737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeGunner: {fileID: 7244395286304198047, guid: d15c9eb5c27cb5640bd7d08a5247d89b, type: 3}
   plasmaImp: {fileID: 7244395286304198047, guid: bbd0dd1f0e28d8a4d989bdd52eaaddb2, type: 3}
+  slimeSlasher: {fileID: 7244395286304198047, guid: 7d8d446b06ab3414ebfe43638ab10bd7, type: 3}
   enemies: []
 --- !u!4 &311631588
 Transform:

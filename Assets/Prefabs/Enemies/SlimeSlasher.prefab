@@ -202,14 +202,14 @@ RectTransform:
   m_GameObject: {fileID: 5320851983120965304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2059786173875244413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.343}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 2, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &783496158238046247
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2945855b7df583e4197cc9275487967d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8e38500166754b408c236b35adca97d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -375,10 +375,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4842227652944601045}
   - component: {fileID: 4313076068287659308}
-  - component: {fileID: 8309774738030080350}
-  - component: {fileID: 5383788928261760836}
+  - component: {fileID: 7855059010074004741}
+  - component: {fileID: 2832970774051719344}
   m_Layer: 8
-  m_Name: PlasmaImp
+  m_Name: SlimeSlasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,7 +423,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8309774738030080350
+--- !u!114 &7855059010074004741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7244395286304198047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ac4a1700e29ff478072f70e9420a84, type: 3}
+  m_Script: {fileID: 11500000, guid: a8c0edece16b40d4c9241b986b7ba59a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   voiceAudio: {fileID: 8118197922346233330}
@@ -440,13 +440,13 @@ MonoBehaviour:
   clipHurt: {fileID: 8300000, guid: a6d50629595e55f4a83316123ab12dab, type: 3}
   clipDie: {fileID: 8300000, guid: 8a4e4b7d2bba40444ae53f4249e440cd, type: 3}
   clipGun: {fileID: 8300000, guid: d7f6c780ba3028c478910d6718ef4ffc, type: 3}
-  idleSprite: {fileID: 21300000, guid: 2945855b7df583e4197cc9275487967d, type: 3}
-  attackingSprite: {fileID: 21300000, guid: f273a871ee738ee4e89d63bd032e6df3, type: 3}
-  hurtSprite: {fileID: 21300000, guid: 9a17481e1914fed4ab0a378f0c385240, type: 3}
-  deadSprite: {fileID: 21300000, guid: b238cc81b749cef44a80af86379a26fa, type: 3}
-  projectile: {fileID: 4020716901050502551, guid: bceb3cefdb59f1247b8fa6bb215f5441, type: 3}
---- !u!136 &5383788928261760836
-CapsuleCollider:
+  idleSprite: {fileID: 21300000, guid: c8e38500166754b408c236b35adca97d, type: 3}
+  attackingSprite: {fileID: 21300000, guid: 07fa82a503e806748861ce8c101ad060, type: 3}
+  hurtSprite: {fileID: 21300000, guid: 4cc039abf4a51aa4e98334b9526da6e1, type: 3}
+  deadSprite: {fileID: 21300000, guid: e381679356859e244aa0f8b645777305, type: 3}
+  projectile: {fileID: 0}
+--- !u!65 &2832970774051719344
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -463,11 +463,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.72
-  m_Height: 1.4
-  m_Direction: 1
-  m_Center: {x: -0.010079384, y: -0.29, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 3.160615, y: 2, z: 1}
+  m_Center: {x: -0.14753103, y: 0, z: 0}
 --- !u!1 &8954578611245372617
 GameObject:
   m_ObjectHideFlags: 0

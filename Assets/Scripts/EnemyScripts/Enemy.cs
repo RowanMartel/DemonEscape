@@ -116,20 +116,16 @@ public abstract class Enemy : MonoBehaviour
     }
     void RaycastAttack()
     {
-        bool didHit = Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit, attackRange, LayerMask.GetMask("Player"));
+        bool didHit = Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, attackRange, LayerMask.GetMask("Player"));
         if (didHit)
-        {
-            hit.collider.GetComponent<Player>().TakeDamage(damage);
-        }
+            hit.collider.GetComponentInParent<Player>().TakeDamage(damage);
     }// attack first collider in line of sight
     void SpherecastAttack()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(transform.position, rangeRadius, Camera.main.transform.forward, attackRange, LayerMask.GetMask("Enemy"));
+        hits = Physics.SphereCastAll(transform.position, rangeRadius, transform.forward, attackRange, LayerMask.GetMask("Player"));
         for (int i = 0; i < hits.Length; i++)
-        {
-            hits[i].collider.GetComponent<Enemy>().TakeDamage(damage);
-        }
+            hits[i].collider.GetComponentInParent<Player>().TakeDamage(damage);
     }// for shotgun spray types of attacks
     void ProjectileAttack()
     {

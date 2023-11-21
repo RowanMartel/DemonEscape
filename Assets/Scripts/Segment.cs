@@ -69,7 +69,7 @@ public class Segment : MonoBehaviour
     {
         var rand = new System.Random();
 
-        if (segmentManager.currentSegmentIndex % 3 == 0 && segmentManager.currentSegmentIndex > 0 && !isHallway)
+        if (segmentManager.currentSegmentIndex % 1 == 0 && segmentManager.currentSegmentIndex > 0 && !isHallway)
         {
             GameObject gunPickup = Instantiate(pickupCatalogue.GetRandomGun(), transform);
             gunPickup.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 1.5f, (float)rand.NextDouble() * 5 - 2.5f);

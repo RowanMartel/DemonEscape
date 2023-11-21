@@ -6,6 +6,7 @@ public class EnemySpawnDecider : MonoBehaviour
 {
     [SerializeField] GameObject slimeGunner;
     [SerializeField] GameObject plasmaImp;
+    [SerializeField] GameObject slimeSlasher;
     public List<GameObject> enemies = new();
     // weighted list for less random enemy picking
 
@@ -22,5 +23,6 @@ public class EnemySpawnDecider : MonoBehaviour
         enemies.Add(slimeGunner);
         enemies.Add(plasmaImp);
         enemies.Add(plasmaImp);
+        enemies.Add(slimeSlasher);
     }// resets spawn bias
 }
