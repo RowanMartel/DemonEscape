@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     [SerializeField] Animator shotgunAnim;
     [SerializeField] Animator rocketLauncherAnim;
     [SerializeField] Animator machineGunAnim;
+    [SerializeField] Animator railGunAnim;
 
     [SerializeField] Image portrait;
     [SerializeField] Sprite idleSprite;
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour
     [SerializeField] Sprite shotgunSprite;
     [SerializeField] Sprite rocketLauncherSprite;
     [SerializeField] Sprite machineGunSprite;
+    [SerializeField] Sprite railGunSprite;
 
     public GameManager gameManager;
     public Results results;
@@ -124,7 +126,19 @@ public class Player : MonoBehaviour
             if (!voiceAudio.isPlaying)
                 voiceAudio.PlayOneShot(clipHurt);
         }
+        if (health <= Constants.playerStartingHP / 4 && currentGun.EDS)
+            EDS(); // if health is low call EDS
     }
+
+    void EDS()
+    {
+        for (int i = 0; i < currentGun.EDSAmount; i++)
+        {
+            Attack();
+            currentGun.currentAmmo++;
+            Ammo++;
+        }
+    } // Emergency Defense System sends out attacks without consuming ammo
 
     public void Die()
     {
@@ -169,15 +183,15 @@ public class Player : MonoBehaviour
     }
     void RaycastAttack()
     {
-        Debug.Log(currentGun.range);
-        bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
+        bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
             hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
+        Debug.DrawRay(Camera.main.transform.position, (Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0))) * currentGun.range, Color.red, 500);
     }// attack the first collider in a straight line
     void SpherecastAttack()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward, currentGun.range, LayerMask.GetMask("Enemy"));
+        hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), currentGun.range, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < hits.Length; i++)
         {
             hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
@@ -303,6 +317,10 @@ public class Player : MonoBehaviour
                 gunAnim = machineGunAnim;
                 gunImg.sprite = machineGunSprite;
                 break;
+            case Constants.railGunName:
+                gunAnim = railGunAnim;
+                gunImg.sprite = railGunSprite;
+                break;
         }// enable the right gun animation
     }
 
@@ -361,6 +379,9 @@ public class Player : MonoBehaviour
                 break;
             case Constants.machineGunName:
                 gunAnim = machineGunAnim;
+                break;
+            case Constants.railGunName:
+                gunAnim = railGunAnim;
                 break;
         }
     }// switches the current gun. Follows much of the same logic as EquipGun

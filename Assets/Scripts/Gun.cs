@@ -20,6 +20,9 @@ public abstract class Gun
     public float blastDamage;
     public float blastRadius;
     public bool automatic;
+    public bool homing;
+    public bool EDS;
+    public int EDSAmount;
 
     public float currentAmmo;
 }
@@ -78,5 +81,18 @@ public class MachineGun : Gun
         gunName = Constants.machineGunName;
         firingType = Constants.machineGunFiringType;
         automatic = Constants.machineGunAutomatic;
+    }
+}
+public class RailGun : Gun
+{
+    public RailGun()
+    {
+        startingAmmo = Constants.railGunStartingAmmo;
+        maxAmmo = Constants.railGunMaxAmmo;
+        damage = Constants.railGunDamage;
+        firingCooldown = Constants.railGunFiringCooldown;
+        gunName = Constants.railGunName;
+        firingType = Constants.railGunFiringType;
+        projectileSpeed = Constants.railGunProjectileSpeed;
     }
 }

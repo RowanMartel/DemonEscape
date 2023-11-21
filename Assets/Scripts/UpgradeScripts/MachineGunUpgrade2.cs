@@ -5,7 +5,7 @@ public class MachineGunUpgrade2 : Upgrade
 {
     public MachineGunUpgrade2(int level)
     {
-        upgradeType = Upgrades.shotgun2;
+        upgradeType = Upgrades.machineGun2;
         upgradeNo = level;
 
         cost[0] = 60;

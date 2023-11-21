@@ -2544,7 +2544,7 @@ GameObject:
   - component: {fileID: 665909032}
   - component: {fileID: 665909031}
   m_Layer: 5
-  m_Name: Gun5Img
+  m_Name: RailGunImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2559,15 +2559,15 @@ RectTransform:
   m_GameObject: {fileID: 665909029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7.2822337, y: 7.2822337, z: 7.2822337}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1312480907}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 457, y: 103.5}
-  m_SizeDelta: {x: 75, y: 150}
+  m_AnchoredPosition: {x: 421, y: 69}
+  m_SizeDelta: {x: 16, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665909031
 MonoBehaviour:
@@ -2589,7 +2589,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 612827826, guid: cbb6d67739d99b94f817de8d229d513f, type: 3}
+  m_Sprite: {fileID: 382265603, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6234,7 +6234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -159.7, y: 61.3}
+  m_AnchoredPosition: {x: -161, y: 61.3}
   m_SizeDelta: {x: 16, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589310659
@@ -8731,7 +8731,7 @@ GameObject:
   - component: {fileID: 2061442689}
   - component: {fileID: 2061442688}
   m_Layer: 5
-  m_Name: Gun5Txt
+  m_Name: RailGunTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8753,7 +8753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 419, y: 62.5}
+  m_AnchoredPosition: {x: 419, y: 82}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061442688
@@ -8776,7 +8776,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gun5
+  m_text: 'Rail
+
+    Gun'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}
   m_sharedMaterial: {fileID: 4244770791412083386, guid: 7751d9130f8f3c248ae4fb2d889b0ccc, type: 2}

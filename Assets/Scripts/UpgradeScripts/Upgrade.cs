@@ -8,7 +8,8 @@ public abstract class Upgrade
         pistol1, pistol2,
         shotgun1, shotgun2,
         rocketLauncher1, rocketLauncher2,
-        machineGun1, machineGun2
+        machineGun1, machineGun2,
+        railGun1, railGun2
     }
     public Upgrades upgradeType;
 
@@ -47,6 +48,15 @@ public abstract class Upgrade
     public float[] machineGunDamage = new float[3];
     public float[] machineGunRange = new float[3];
     public float[] machineGunFiringCooldown = new float[3];
+    // rail gun
+    public float[] railGunStartingAmmo = new float[3];
+    public float[] railGunMaxAmmo = new float[3];
+    public float[] railGunDamage = new float[3];
+    public float[] railGunFiringCooldown = new float[3];
+    public float[] railGunProjectileSpeed = new float[3];
+    public bool[] railGunEDS = new bool[3];
+    public int[] railGunEDSAmount = new int[3];
+    public bool[] railGunHoming = new bool[3];
 
     // upgrade screen info
     public string[] upgradeName = new string[3];
@@ -79,5 +89,13 @@ public abstract class Upgrade
         if (machineGunDamage[upgradeNo] != 0) Constants.machineGunDamage = machineGunDamage[upgradeNo];
         if (machineGunRange[upgradeNo] != 0) Constants.machineGunRange = machineGunRange[upgradeNo];
         if (machineGunFiringCooldown[upgradeNo] != 0) Constants.machineGunFiringCooldown = machineGunFiringCooldown[upgradeNo];
-    }// if a value is not 0, apply it to the constants
+        if (railGunStartingAmmo[upgradeNo] != 0) Constants.railGunStartingAmmo = railGunStartingAmmo[upgradeNo];
+        if (railGunMaxAmmo[upgradeNo] != 0) Constants.railGunMaxAmmo = railGunMaxAmmo[upgradeNo];
+        if (railGunDamage[upgradeNo] != 0) Constants.railGunDamage = railGunDamage[upgradeNo];
+        if (railGunFiringCooldown[upgradeNo] != 0) Constants.railGunFiringCooldown = railGunFiringCooldown[upgradeNo];
+        if (railGunProjectileSpeed[upgradeNo] != 0) Constants.railGunProjectileSpeed = railGunProjectileSpeed[upgradeNo];
+        if (railGunEDS[upgradeNo]) Constants.railGunEDS = railGunEDS[upgradeNo];
+        if (railGunEDSAmount[upgradeNo] != 0) Constants.railGunEDSAmount = railGunEDSAmount[upgradeNo];
+        if (railGunHoming[upgradeNo]) Constants.railGunHoming = railGunHoming[upgradeNo];
+    }// if a value is not 0 or false, apply it to the constants
 }

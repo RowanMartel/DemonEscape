@@ -44,6 +44,17 @@ public class Constants : MonoBehaviour
     public const string machineGunName = "MachineGun";
     public static bool machineGunAutomatic = true;
     public static Gun.FiringType machineGunFiringType = Gun.FiringType.rayCast;
+    // rail gun
+    public static float railGunStartingAmmo = 12;
+    public static float railGunMaxAmmo = 18;
+    public static float railGunDamage = 25;
+    public static float railGunFiringCooldown = 1.5f;
+    public const string railGunName = "RailGun";
+    public static Gun.FiringType railGunFiringType = Gun.FiringType.projectile;
+    public static float railGunProjectileSpeed = 50;
+    public static bool railGunEDS = false;
+    public static int railGunEDSAmount = 0;
+    public static bool railGunHoming = false;
 
     // enemy stats
     // slime gunner
@@ -125,5 +136,20 @@ public class Constants : MonoBehaviour
         rocketLauncherExplodes = true;
         rocketLauncherBlastDamage = 40;
         rocketLauncherBlastRadius = 3;
+        // machine gun
+        machineGunStartingAmmo = 30;
+        machineGunMaxAmmo = 60;
+        machineGunDamage = 7;
+        machineGunRange = 20;
+        machineGunFiringCooldown = .35f;
+        // rail gun
+        railGunStartingAmmo = 12;
+        railGunMaxAmmo = 18;
+        railGunDamage = 25;
+        railGunFiringCooldown = 1.5f;
+        railGunProjectileSpeed = 50;
+        railGunEDS = false;
+        railGunEDSAmount = 0;
+        railGunHoming = false;
     }// resets non const variables
 }

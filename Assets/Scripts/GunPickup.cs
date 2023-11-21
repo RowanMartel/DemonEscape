@@ -8,7 +8,8 @@ public class GunPickup : MonoBehaviour
         pistol,
         shotgun,
         rocketLauncher,
-        machineGun
+        machineGun,
+        railGun
     }
     [SerializeField] GunType gunType;
     
@@ -18,6 +19,7 @@ public class GunPickup : MonoBehaviour
     [SerializeField] Sprite shotgunSprite;
     [SerializeField] Sprite rocketLauncherSprite;
     [SerializeField] Sprite machineGunSprite;
+    [SerializeField] Sprite railGunSprite;
     [SerializeField] Image gunImage;
 
     void Start()
@@ -38,6 +40,9 @@ public class GunPickup : MonoBehaviour
             case GunType.machineGun:
                 gunImage.sprite = machineGunSprite;
                 break;
+            case GunType.railGun:
+                gunImage.sprite = railGunSprite;
+                break;
         }
     }
 
@@ -57,6 +62,9 @@ public class GunPickup : MonoBehaviour
                 break;
             case GunType.machineGun:
                 player.EquipGun(new MachineGun());
+                break;
+            case GunType.railGun:
+                player.EquipGun(new RailGun());
                 break;
         }
         Destroy(gameObject);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6759703116351587976}
   - component: {fileID: 8025456208772360339}
   m_Layer: 0
-  m_Name: GunPickup
+  m_Name: RailGunPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d588fcff6f8102e49a395780cbbd9a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 0
+  gunType: 4
   pistolSprite: {fileID: 1300033457, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   shotgunSprite: {fileID: -403753677, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   rocketLauncherSprite: {fileID: -590502317, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
@@ -101,7 +101,7 @@ RectTransform:
   m_GameObject: {fileID: 6862484267903916112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4773, y: 1.4773, z: 1.4773}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4808000520249149567}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1300033457, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
+  m_Sprite: {fileID: 382265603, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
