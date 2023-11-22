@@ -84,9 +84,20 @@ public class Constants : MonoBehaviour
     public static float slimeSlasherAllowedProximity = 2;
     public static float slimeSlasherAttackCooldown = 5;
     public static float slimeSlasherFiringDistance = 1;
-    public static float slimeSlasherAttackRange = 2;
+    public static float slimeSlasherAttackRange = 3;
     public static float slimeSlasherRangeRadius = 2;
-    public static int slimeSlasherMoney = 50;
+    public static int slimeSlasherMoney = 20;
+    // brain can
+    public static float brainCanHP = 300;
+    public static float brainCanDamage = 35;
+    public static float brainCanSpeed = .5f;
+    public static float brainCanAllowedProximity = 2;
+    public static float brainCanAttackCooldown = .5f;
+    public static float brainCanFiringDistance = 15;
+    public static float brainCanAttackRange = 15;
+    public static int brainCanMoney = 100;
+    public const string brainCanGunName = "BrainCan";
+    public static float brainCanProjectileSpeed = 5;
 
     // segment generation
     public const int segmentsAhead = 2;

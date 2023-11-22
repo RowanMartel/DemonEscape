@@ -113,7 +113,6 @@ GameObject:
   - component: {fileID: 3750235989805980271}
   - component: {fileID: 5977954970603927045}
   - component: {fileID: 7481707990368919114}
-  - component: {fileID: 6428068574759844954}
   - component: {fileID: 2692670576933379904}
   - component: {fileID: 7392751986894190212}
   m_Layer: 0
@@ -168,48 +167,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4020716901050502551}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6428068574759844954
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4020716901050502551}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2692670576933379904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 4252692413001370850, guid: 1c0f2b124a1b9dd49be9c63ba524e443, type: 3}
   rocketSprite: {fileID: 21300000, guid: 38015226b18ba9647969e56963fc0f46, type: 3}
+  plasmaSprite: {fileID: 21300000, guid: 79f5348ce8d9e304c966c5cf0f03bb4e, type: 3}
+  railSprite: {fileID: 21300000, guid: 88124c854d25568489c14eb65185b043, type: 3}
   image: {fileID: 8721774420673925816}
 --- !u!54 &7392751986894190212
 Rigidbody:

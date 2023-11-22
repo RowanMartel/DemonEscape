@@ -6,6 +6,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] GameObject explosion;
 
     [SerializeField] Sprite rocketSprite;
+    [SerializeField] Sprite plasmaSprite;
+    [SerializeField] Sprite railSprite;
     [SerializeField] Image image;
 
     float speed;
@@ -35,10 +37,11 @@ public class Projectile : MonoBehaviour
                 image.sprite = rocketSprite;
                 break;
             case Constants.plasmaImpGunName:
-                image.sprite = rocketSprite;
+            case Constants.brainCanGunName:
+                image.sprite = plasmaSprite;
                 break;
             case Constants.railGunName:
-                image.sprite = rocketSprite;
+                image.sprite = railSprite;
                 dontCollide = true;
                 break;
         }// determine which projectile sprite to use

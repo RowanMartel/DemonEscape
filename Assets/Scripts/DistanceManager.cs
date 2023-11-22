@@ -11,11 +11,17 @@ public class DistanceManager : MonoBehaviour
     [SerializeField] GameObject tracker;
     float trackerMeterStep;
     public float distance;
+    EnemySpawnDecider enemySpawnDecider;
 
     private void Awake()
     {
         trackerMeterStep = (trackerEnd.position.x - trackerStart.position.x) / Constants.maxDistance;
     }// set the amount the tracker icon should move whenever distance increases
+
+    private void Start()
+    {
+        enemySpawnDecider = FindObjectOfType<EnemySpawnDecider>();
+    }
 
     public void MoveTracker(float distance)
     {
@@ -26,5 +32,7 @@ public class DistanceManager : MonoBehaviour
         {
 
         }// win game once target distance reached
+
+        enemySpawnDecider.UpdateBias(distance);
     }
 }
