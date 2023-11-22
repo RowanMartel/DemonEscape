@@ -84,6 +84,12 @@ public class UpgradeScreen : MonoBehaviour
             case Upgrade.Upgrades.machineGun2:
                 selectedUpgrade = new MachineGunUpgrade2(level);
                 break;
+            case Upgrade.Upgrades.railGun1:
+                selectedUpgrade = new RailGunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.railGun2:
+                selectedUpgrade = new RailGunUpgrade2(level);
+                break;
         }
 
         selectedUpgrade.upgradeNo = level;

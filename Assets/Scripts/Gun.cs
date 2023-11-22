@@ -94,5 +94,8 @@ public class RailGun : Gun
         gunName = Constants.railGunName;
         firingType = Constants.railGunFiringType;
         projectileSpeed = Constants.railGunProjectileSpeed;
+        EDS = Constants.railGunEDS;
+        EDSAmount = Constants.railGunEDSAmount;
+        homing = Constants.railGunHoming;
     }
 }

@@ -13,7 +13,9 @@ public class Projectile : MonoBehaviour
     float directDamage;
     float blastDamage;
     float blastRadius;
+    bool homing;
     bool collided = false;
+    bool dontCollide = false;// for EDS
 
     public void Init(Gun gun)
     {
@@ -26,6 +28,7 @@ public class Projectile : MonoBehaviour
             blastDamage = gun.blastDamage;
             blastRadius = gun.blastRadius;
         }
+        homing = gun.homing;
         switch (gun.gunName)
         {
             case Constants.rocketLauncherName:
@@ -34,6 +37,10 @@ public class Projectile : MonoBehaviour
             case Constants.plasmaImpGunName:
                 image.sprite = rocketSprite;
                 break;
+            case Constants.railGunName:
+                image.sprite = rocketSprite;
+                dontCollide = true;
+                break;
         }// determine which projectile sprite to use
     }
 
@@ -41,11 +48,36 @@ public class Projectile : MonoBehaviour
     {
         transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.Self);
         transform.Rotate(0, 0, Time.deltaTime * 15);
+
+        if (homing) Home();
     }
+
+    void Home()
+    {
+        Debug.Log("homing in");
+        Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * 2, 2, LayerMask.GetMask("Enemy"));
+        float shortestDistance = float.MaxValue;
+        Transform closestTarget = null;
+        foreach (Collider c in hits)
+        {
+            float distance = Vector3.Distance(transform.position, c.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                closestTarget = c.transform;
+            }
+        }// determine the closest enemy
+        if (closestTarget != null) transform.LookAt(closestTarget);
+    }// point towards the closest enemy
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collided) return;
+
+        // code to make EDS projectiles not collide with each other
+        Projectile otherProj = collision.gameObject.GetComponent<Projectile>();
+        if (otherProj != null && otherProj.dontCollide && dontCollide) return;
+
         collided = true;
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
