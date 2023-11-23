@@ -48,6 +48,7 @@ public class Segment : MonoBehaviour
     {
         if (Enter != null)
         {
+            backWallSolid = transform.GetChild(0).GetComponent<MeshCollider>();// for some reason it needs to be called here too
             backWallSolid.enabled = true;
             Enter(this, new EnterEventArgs(gameObject));
             FindObjectOfType<Player>().Distance += Constants.distanceStep;
