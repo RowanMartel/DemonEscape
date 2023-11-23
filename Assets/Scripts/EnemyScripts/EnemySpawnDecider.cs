@@ -29,6 +29,11 @@ public class EnemySpawnDecider : MonoBehaviour
         enemies.Add(slimeGunner);
         enemies.Add(slimeGunner);
         enemies.Add(plasmaImp);
+        enemies.Add(slimeSlasher);
+        enemies.Add(slimeSlasher);
+        enemies.Add(slimeSlasher);
+        enemies.Add(slimeSlasher);
+        enemies.Add(slimeSlasher);
     }// resets spawn bias
 
     public void UpdateBias(float distance)

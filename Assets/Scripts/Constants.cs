@@ -81,10 +81,10 @@ public class Constants : MonoBehaviour
     public static float slimeSlasherHP = 80;
     public static float slimeSlasherDamage = 50;
     public static float slimeSlasherSpeed = 5;
-    public static float slimeSlasherAllowedProximity = 2;
-    public static float slimeSlasherAttackCooldown = 5;
-    public static float slimeSlasherFiringDistance = 1;
-    public static float slimeSlasherAttackRange = 3;
+    public static float slimeSlasherAllowedProximity = 5;
+    public static float slimeSlasherAttackCooldown = 2;
+    public static float slimeSlasherFiringDistance = 5;
+    public static float slimeSlasherAttackRange = 5;
     public static float slimeSlasherRangeRadius = 2;
     public static int slimeSlasherMoney = 20;
     // brain can

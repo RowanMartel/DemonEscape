@@ -126,6 +126,7 @@ public abstract class Enemy : MonoBehaviour
         hits = Physics.SphereCastAll(transform.position, rangeRadius, transform.forward, attackRange, LayerMask.GetMask("Player"));
         for (int i = 0; i < hits.Length; i++)
             hits[i].collider.GetComponentInParent<Player>().TakeDamage(damage);
+        Debug.DrawRay(transform.position, transform.forward * attackRange, Color.red, 500);
     }// for shotgun spray types of attacks
     void ProjectileAttack()
     {

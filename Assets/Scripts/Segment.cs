@@ -20,6 +20,9 @@ public class Segment : MonoBehaviour
 
     public int segmentIndex;
 
+    [SerializeField] MeshCollider backWallSolid;
+    [SerializeField] SegmentBackWall backWallTrigger;
+
     private void Start()
     {
         pickupCatalogue = Singleton.Instance.GetComponentInChildren<PickupCatalogue>();
@@ -29,15 +32,12 @@ public class Segment : MonoBehaviour
         SpawnPickup();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (!isHallway || other.CompareTag("Projectile")) return;
-        if (other.CompareTag("PlayerCapsule"))
-        {
-            entered = true;
-            OnEnter();
-        }// if not a hallway segment, call OnEnter
-    }
+        if (!isHallway || !other.CompareTag("PlayerCapsule") || entered) return;
+        entered = true;
+        OnEnter();
+    }// if not a hallway segment, call OnEnter
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("PlayerCapsule")) return;
@@ -48,6 +48,7 @@ public class Segment : MonoBehaviour
     {
         if (Enter != null)
         {
+            backWallSolid.enabled = true;
             Enter(this, new EnterEventArgs(gameObject));
             FindObjectOfType<Player>().Distance += Constants.distanceStep;
         }

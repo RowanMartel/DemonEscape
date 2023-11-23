@@ -186,7 +186,6 @@ public class Player : MonoBehaviour
         bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
         if (didHit)
             hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
-        Debug.DrawRay(Camera.main.transform.position, (Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0))) * currentGun.range, Color.red, 500);
     }// attack the first collider in a straight line
     void SpherecastAttack()
     {
