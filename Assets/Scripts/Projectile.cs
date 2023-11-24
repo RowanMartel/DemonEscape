@@ -19,15 +19,17 @@ public class Projectile : MonoBehaviour
     bool collided = false;
     bool dontCollide = false;// for EDS
 
-    public void Init(Gun gun)
+    public void Init(Gun gun, bool doubleDamage = false)
     {
         transform.SetParent(null);
         speed = gun.projectileSpeed;
         explodes = gun.explodes;
         directDamage = gun.damage;
+        if (doubleDamage) directDamage *= 2;
         if (explodes)
         {
             blastDamage = gun.blastDamage;
+            if (doubleDamage) blastDamage *= 2;
             blastRadius = gun.blastRadius;
         }
         homing = gun.homing;

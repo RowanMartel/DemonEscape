@@ -96,6 +96,15 @@ public class Player : MonoBehaviour
 
     [SerializeField] DistanceManager distanceManager;
 
+    public bool invincible;
+    public bool infiniteAmmo;
+    public bool doubleDamage;
+    float invincibleTimer;
+    float infiniteAmmoTimer;
+    float doubleDamagetimer;
+
+    [SerializeField] ScreenVFX screenVFX;
+
     void Start()
     {
         dead = false;
@@ -112,11 +121,12 @@ public class Player : MonoBehaviour
         ResetPortrait();
         TrySwitchGun();
         TryAttack();
+        PowerupTimer();
     }
 
     public void TakeDamage(float damage)
     {
-        if (dead) return;
+        if (dead || invincible) return;
         Health -= damage;
         if (Health <= 0)
             Die();
@@ -184,8 +194,10 @@ public class Player : MonoBehaviour
     void RaycastAttack()
     {
         bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
-        if (didHit)
+        if (didHit && !doubleDamage)
             hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
+        else if (didHit && doubleDamage)
+            hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage * 2);
     }// attack the first collider in a straight line
     void SpherecastAttack()
     {
@@ -193,13 +205,16 @@ public class Player : MonoBehaviour
         hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), currentGun.range, LayerMask.GetMask("Enemy"));
         for (int i = 0; i < hits.Length; i++)
         {
-            hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
+            if (!doubleDamage)
+                hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
+            else
+                hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage * 2);
         }
     }// for shotgun spray like attacks
     void ProjectileAttack()
     {
         GameObject proj = Instantiate(projectile, transform);
-        proj.GetComponent<Projectile>().Init(currentGun);
+        proj.GetComponent<Projectile>().Init(currentGun, doubleDamage);
         proj.transform.Translate(0, 1, 2, Space.Self);
     }// initializes a projectile object
     void TryAttack()
@@ -208,7 +223,7 @@ public class Player : MonoBehaviour
         CooldownAttack();
         if (!Input.GetMouseButtonDown(0) && !(currentGun.automatic && Input.GetMouseButton(0))) return;
         if (!canAttack) return;
-        if (currentGun.currentAmmo <= 0)
+        if (currentGun.currentAmmo <= 0 && !infiniteAmmo)
         {
             // click SFX
             return;
@@ -343,6 +358,7 @@ public class Player : MonoBehaviour
 
     void UseAmmo()
     {
+        if (infiniteAmmo) return;
         currentGun.currentAmmo--;
         Ammo--;
     }
@@ -384,4 +400,53 @@ public class Player : MonoBehaviour
                 break;
         }
     }// switches the current gun. Follows much of the same logic as EquipGun
+
+    public void ActivatePowerup(Powerup.Powerups powerup)
+    {
+        switch (powerup)
+        {
+            case Powerup.Powerups.invincible:
+                invincible = true;
+                screenVFX.SetVFX(ScreenVFX.VFX.invincible);
+                break;
+            case Powerup.Powerups.infiniteAmmo:
+                infiniteAmmo = true;
+                screenVFX.SetVFX(ScreenVFX.VFX.infiniteAmmo);
+                break;
+            case Powerup.Powerups.doubleDamage:
+                doubleDamage = true;
+                screenVFX.SetVFX(ScreenVFX.VFX.doubleDamage);
+                break;
+        }
+    }
+    public void PowerupTimer()
+    {
+        if (invincible)
+        {
+            invincibleTimer += Time.deltaTime;
+            if (invincibleTimer >= Constants.invincibleTime)
+            {
+                invincible = false;
+                screenVFX.DisableVFX(ScreenVFX.VFX.invincible);
+            }
+        }
+        if (infiniteAmmo)
+        {
+            infiniteAmmoTimer += Time.deltaTime;
+            if (infiniteAmmoTimer >= Constants.infiniteAmmoTime)
+            {
+                infiniteAmmo = false;
+                screenVFX.DisableVFX(ScreenVFX.VFX.infiniteAmmo);
+            }
+        }
+        if (doubleDamage)
+        {
+            doubleDamagetimer += Time.deltaTime;
+            if (doubleDamagetimer >= Constants.doubleDamageTime)
+            {
+                doubleDamage = false;
+                screenVFX.DisableVFX(ScreenVFX.VFX.doubleDamage);
+            }
+        }
+    }
 }

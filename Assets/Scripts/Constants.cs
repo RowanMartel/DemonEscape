@@ -118,6 +118,11 @@ public class Constants : MonoBehaviour
     public const float maxDistance = 1000;
     public const float distanceStep = 5;
 
+    // powerup stats
+    public static float invincibleTime = 15;
+    public static float infiniteAmmoTime = 15;
+    public static float doubleDamageTime = 15;
+
     public static void Reset()
     {
         // player stats
