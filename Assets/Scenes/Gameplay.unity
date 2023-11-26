@@ -5944,6 +5944,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2024492959756174357, guid: 49ca1837c29728440b3600d5a6815866, type: 3}
+      propertyPath: MoveSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2632040222587722384, guid: 49ca1837c29728440b3600d5a6815866, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

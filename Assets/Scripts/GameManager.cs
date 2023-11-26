@@ -67,4 +67,9 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void WinGame()
+    {
+        LoadScene(Constants.endingScreenSceneIndex);
+    }
 }

@@ -115,13 +115,13 @@ public class Constants : MonoBehaviour
     public const float startingSFXVol = .5f;
 
     // distance stats
-    public const float maxDistance = 1000;
+    public const float maxDistance = 500;
     public const float distanceStep = 5;
 
     // powerup stats
-    public static float invincibleTime = 15;
-    public static float infiniteAmmoTime = 15;
-    public static float doubleDamageTime = 15;
+    public static float invincibleTime = 10;
+    public static float infiniteAmmoTime = 10;
+    public static float doubleDamageTime = 10;
 
     public static void Reset()
     {

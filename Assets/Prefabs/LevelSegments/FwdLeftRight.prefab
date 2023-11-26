@@ -654,7 +654,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 6cca5fab4e195b045b9ea79e6176f52a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1144,6 +1144,13 @@ MonoBehaviour:
   segmentIndex: 0
   backWallSolid: {fileID: 3577432457908984406}
   backWallTrigger: {fileID: 1853222254032757319}
+  brickWallMat: {fileID: 2100000, guid: b2ff60ad64b957746a0fdfc51fa8717f, type: 2}
+  skullWallMat: {fileID: 2100000, guid: b9f8136325077ce478d3ea0c1297dfa8, type: 2}
+  wallRenderers:
+  - {fileID: 3082087459118133909}
+  - {fileID: 6516203207464918517}
+  - {fileID: 9078506020723275639}
+  - {fileID: 2385161910219443139}
 --- !u!114 &9211606142382569616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1476,7 +1483,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 6cca5fab4e195b045b9ea79e6176f52a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

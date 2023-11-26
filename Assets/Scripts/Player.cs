@@ -136,8 +136,13 @@ public class Player : MonoBehaviour
             if (!voiceAudio.isPlaying)
                 voiceAudio.PlayOneShot(clipHurt);
         }
-        if (health <= Constants.playerStartingHP / 4 && currentGun.EDS)
-            EDS(); // if health is low call EDS
+        if (health <= Constants.playerStartingHP / 4)
+        {
+            screenVFX.SetVFX(ScreenVFX.VFX.lowHealth);
+
+            if (currentGun.EDS)
+                EDS(); // if health is low call EDS
+        }
     }
 
     void EDS()
@@ -406,14 +411,17 @@ public class Player : MonoBehaviour
         switch (powerup)
         {
             case Powerup.Powerups.invincible:
+                invincibleTimer = 0;
                 invincible = true;
                 screenVFX.SetVFX(ScreenVFX.VFX.invincible);
                 break;
             case Powerup.Powerups.infiniteAmmo:
+                infiniteAmmoTimer = 0;
                 infiniteAmmo = true;
                 screenVFX.SetVFX(ScreenVFX.VFX.infiniteAmmo);
                 break;
             case Powerup.Powerups.doubleDamage:
+                doubleDamagetimer = 0;
                 doubleDamage = true;
                 screenVFX.SetVFX(ScreenVFX.VFX.doubleDamage);
                 break;
