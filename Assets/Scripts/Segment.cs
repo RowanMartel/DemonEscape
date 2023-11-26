@@ -80,12 +80,12 @@ public class Segment : MonoBehaviour
     {
         var rand = new System.Random();
 
-        if (segmentManager.currentSegmentIndex % 10 == 0 && segmentManager.currentSegmentIndex > 0 && !isHallway)
+        if (segmentManager.currentSegmentIndex % 5 == 0 && segmentManager.currentSegmentIndex > 0 && !isHallway)
         {
             GameObject gunPickup = Instantiate(pickupCatalogue.GetRandomGun(), transform);
             gunPickup.transform.position += new Vector3((float)rand.NextDouble() * 5 - 2.5f, 1.5f, (float)rand.NextDouble() * 5 - 2.5f);
         }
-    }// creates a random pickup on every 10th non-hallway segment
+    }// creates a random pickup on every 5th non-hallway segment
 
     void DetermineWallTexture()
     {

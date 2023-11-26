@@ -74,6 +74,7 @@ MonoBehaviour:
   machineGunSprite: {fileID: -852388339, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   railGunSprite: {fileID: 382265603, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   gunImage: {fileID: 7909726990341258830}
+  pickupSFX: {fileID: 8300000, guid: 60cd71965ac4ff34da0d5329012b19bb, type: 3}
 --- !u!1 &6862484267903916112
 GameObject:
   m_ObjectHideFlags: 0

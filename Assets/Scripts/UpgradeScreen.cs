@@ -145,10 +145,28 @@ public class UpgradeScreen : MonoBehaviour
         GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo];
         if (selectedBtn.unlockThis != null && selectedBtn.unlockThis.bought)
         {
+            for (int i = 0; i < UpgradeManager.upgrades.Count; i++)
+            {
+                if (UpgradeManager.upgrades[i].upgradeName[0] == selectedUpgrade.upgradeName[0])
+                {
+                    thisUpgrade = selectedUpgrade;
+                    thisIndex = i;
+                }
+            }
+            UpgradeManager.upgrades.RemoveAt(thisIndex);
             GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1];
             Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo + 1] + " moneys");
             if (selectedBtn.unlockThis.unlockThis != null && selectedBtn.unlockThis.unlockThis.bought)
             {
+                for (int i = 0; i < UpgradeManager.upgrades.Count; i++)
+                {
+                    if (UpgradeManager.upgrades[i].upgradeName[0] == selectedUpgrade.upgradeName[0])
+                    {
+                        thisUpgrade = selectedUpgrade;
+                        thisIndex = i;
+                    }
+                }
+                UpgradeManager.upgrades.RemoveAt(thisIndex);
                 GameManager.money += selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2];
                 Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2] + " moneys");
             }

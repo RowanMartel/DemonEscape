@@ -52,9 +52,12 @@ public class Player : MonoBehaviour
 
     [SerializeField] AudioSource voiceAudio;
     [SerializeField] AudioSource gunAudio;
+    [SerializeField] AudioSource pickupAudio;
     [SerializeField] AudioClip clipHurt;
     [SerializeField] AudioClip clipDie;
     [SerializeField] AudioClip clipGun;
+    [SerializeField] AudioClip clipClick;
+    [SerializeField] AudioClip clipWilhelm;
 
     [SerializeField] GameObject projectile;
 
@@ -134,7 +137,12 @@ public class Player : MonoBehaviour
         {
             ChangePortrait(hurtSprite);
             if (!voiceAudio.isPlaying)
-                voiceAudio.PlayOneShot(clipHurt);
+            {
+                int randInt = Random.Range(1, 101);
+                if (randInt < 100)
+                    voiceAudio.PlayOneShot(clipHurt);
+                else voiceAudio.PlayOneShot(clipWilhelm);
+            }
         }
         if (health <= Constants.playerStartingHP / 4)
         {
@@ -230,7 +238,7 @@ public class Player : MonoBehaviour
         if (!canAttack) return;
         if (currentGun.currentAmmo <= 0 && !infiniteAmmo)
         {
-            // click SFX
+            gunAudio.PlayOneShot(clipClick);
             return;
         }
 
@@ -456,5 +464,10 @@ public class Player : MonoBehaviour
                 screenVFX.DisableVFX(ScreenVFX.VFX.doubleDamage);
             }
         }
+    }
+
+    public void PlayPickupSFX(AudioClip audioClip)
+    {
+        pickupAudio.PlayOneShot(audioClip);
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] SaveLoad saveLoad;
     [SerializeField] Screenshot screenshot;
+    [SerializeField] AudioManager audioManager;
 
     public static float money;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneManager.activeSceneChanged += OnSceneChanged;
+        SetBGM();
     }// subscribe OnSceneChanged to the scene change event
 
     public void NewGame()
@@ -66,10 +68,33 @@ public class GameManager : MonoBehaviour
                 saveLoad.Save();
                 break;
         }
+        SetBGM();
     }
 
     public void WinGame()
     {
         LoadScene(Constants.endingScreenSceneIndex);
+    }
+
+    void SetBGM()
+    {
+        AudioManager.BGMEnum BGM = AudioManager.BGMEnum.title;
+        switch(SceneManager.GetActiveScene().buildIndex)
+        {
+            case Constants.gameplaySceneIndex:
+                BGM = AudioManager.BGMEnum.gameplay1;
+                break;
+            case Constants.endingScreenSceneIndex:
+                BGM = AudioManager.BGMEnum.credits;
+                break;
+            case Constants.savesMenuSceneIndex:
+            case Constants.upgradeScreenSceneIndex:
+                BGM = AudioManager.BGMEnum.menus;
+                break;
+            case Constants.titleScreenSceneIndex:
+                BGM = AudioManager.BGMEnum.title;
+                break;
+        }
+        audioManager.SetBGM(BGM);
     }
 }

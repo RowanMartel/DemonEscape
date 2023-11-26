@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1101270299229597667}
   - component: {fileID: 8118197922346233330}
-  - component: {fileID: 5130078255674464196}
+  - component: {fileID: 4914723780383894820}
   m_Layer: 8
   m_Name: Voice
   m_TagString: Untagged
@@ -129,7 +129,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5130078255674464196
+--- !u!114 &4914723780383894820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 456188295358300405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 291e9b1f5f3af3b4198c17796627bcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBGM: 0
 --- !u!1 &3262032046257400290
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +438,7 @@ MonoBehaviour:
   gunAudio: {fileID: 2895335094980933782}
   clipHurt: {fileID: 8300000, guid: a6d50629595e55f4a83316123ab12dab, type: 3}
   clipDie: {fileID: 8300000, guid: 8a4e4b7d2bba40444ae53f4249e440cd, type: 3}
-  clipGun: {fileID: 8300000, guid: d7f6c780ba3028c478910d6718ef4ffc, type: 3}
+  clipGun: {fileID: 8300000, guid: dcf2be24c7451a44083c5dee20eaea8e, type: 3}
   idleSprite: {fileID: 21300000, guid: c8e38500166754b408c236b35adca97d, type: 3}
   attackingSprite: {fileID: 21300000, guid: 07fa82a503e806748861ce8c101ad060, type: 3}
   hurtSprite: {fileID: 21300000, guid: 4cc039abf4a51aa4e98334b9526da6e1, type: 3}
@@ -476,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8975742747169472372}
   - component: {fileID: 2895335094980933782}
-  - component: {fileID: 5476040799961925785}
+  - component: {fileID: 3719734554224021641}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -595,7 +594,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5476040799961925785
+--- !u!114 &3719734554224021641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,7 +603,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8954578611245372617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de76cccf173a2d4db296427233fb5e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 291e9b1f5f3af3b4198c17796627bcf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBGM: 0

@@ -21,6 +21,7 @@ public class GunPickup : MonoBehaviour
     [SerializeField] Sprite machineGunSprite;
     [SerializeField] Sprite railGunSprite;
     [SerializeField] Image gunImage;
+    [SerializeField] AudioClip pickupSFX;
 
     void Start()
     {
@@ -67,6 +68,7 @@ public class GunPickup : MonoBehaviour
                 player.EquipGun(new RailGun());
                 break;
         }
+        player.PlayPickupSFX(pickupSFX);
         Destroy(gameObject);
     }
 

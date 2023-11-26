@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Powerup : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class Powerup : MonoBehaviour
     }
     [SerializeField] Powerups type;
     Player player;
+    [SerializeField] AudioClip pickupSFX;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +31,7 @@ public class Powerup : MonoBehaviour
                 player.ActivatePowerup(Powerups.doubleDamage);
                 break;
         }
+        player.PlayPickupSFX(pickupSFX);
         Destroy(gameObject);
     }
 

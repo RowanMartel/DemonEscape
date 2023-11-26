@@ -13,6 +13,8 @@ public class DistanceManager : MonoBehaviour
     public float distance;
     EnemySpawnDecider enemySpawnDecider;
     GameManager gameManager;
+    AudioManager audioManager;
+    bool halfwayReached;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class DistanceManager : MonoBehaviour
 
     private void Start()
     {
+        audioManager = Singleton.Instance.GetComponentInChildren<AudioManager>();
         enemySpawnDecider = FindObjectOfType<EnemySpawnDecider>();
         gameManager = Singleton.Instance.GetComponentInChildren<GameManager>();
     }
@@ -34,6 +37,11 @@ public class DistanceManager : MonoBehaviour
         {
             gameManager.WinGame();
         }// win game once target distance reached
+        else if (this.distance >= Constants.maxDistance / 2 && !halfwayReached)
+        {
+            halfwayReached = true;
+            audioManager.SetBGM(AudioManager.BGMEnum.gameplay2);
+        }
 
         enemySpawnDecider.UpdateBias(distance);
     }
