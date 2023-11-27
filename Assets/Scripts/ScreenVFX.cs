@@ -61,7 +61,7 @@ public class ScreenVFX : MonoBehaviour
                     invincibleTimer = 0;
                     break;
             }
-        }
+        }// if time variable is set, turn off after the given time
         else
         {
             switch (vfx)
@@ -84,8 +84,7 @@ public class ScreenVFX : MonoBehaviour
                     break;
             }
         }
-        
-    }
+    }// enable the passed in VFX
     public void DisableVFX(VFX vfx)
     {
         switch (vfx)
@@ -107,7 +106,7 @@ public class ScreenVFX : MonoBehaviour
                 invincibleHardSet = false;
                 break;
         }
-    }
+    }// disable the passed in VFX
 
     private void Update()
     {
@@ -130,5 +129,5 @@ public class ScreenVFX : MonoBehaviour
             invincibleTimer += Time.deltaTime;
         else if (invincibleImg.enabled && !invincibleHardSet)
             invincibleImg.enabled = false;
-    }
+    }// disable timer-based VFX over time
 }

@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] Slider BGMSlider;
     [SerializeField] Slider SFXSlider;
+    // sliders control the volume
 
     [SerializeField] AudioSource BGMSource;
 
@@ -58,7 +59,7 @@ public class AudioManager : MonoBehaviour
             case BGMEnum.credits:
                 clipToPlay = creditsBGM;
                 break;
-        }
+        }// switch statement determines which BGM to play based on scene
         BGMSource.PlayOneShot(clipToPlay);
     }
 

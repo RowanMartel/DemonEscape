@@ -95,7 +95,7 @@ public class Segment : MonoBehaviour
         else textureToApply = brickWallMat;
         foreach (Renderer renderer in wallRenderers)
             renderer.material = textureToApply;
-    }
+    }// sets the wall textures based on distance through the level
 }
 public class EnterEventArgs : EventArgs
 {

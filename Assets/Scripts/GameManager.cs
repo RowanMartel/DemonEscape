@@ -96,5 +96,5 @@ public class GameManager : MonoBehaviour
                 break;
         }
         audioManager.SetBGM(BGM);
-    }
+    }// sets the BGM for the current scene
 }

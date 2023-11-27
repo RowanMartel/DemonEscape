@@ -16,4 +16,4 @@ public class SegmentBackWall : MonoBehaviour
         if (!other.CompareTag("PlayerCapsule")) return;
         passedThrough = true;
     }
-}
+}// back wall prevents player from going backwards through the level

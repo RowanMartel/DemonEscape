@@ -7,5 +7,5 @@ public class ObjectCanvas : MonoBehaviour
         Camera camera = Camera.main;
         transform.LookAt(transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-    }
+    }// makes the object always face the camera
 }

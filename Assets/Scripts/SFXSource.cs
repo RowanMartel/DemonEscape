@@ -15,5 +15,5 @@ public class SFXSource : MonoBehaviour
     private void Update()
     {
         SFXAudioSource.volume = audioManager.SFXVol;
-    }
+    }// adjust the volume to match the audio manager
 }

@@ -13,7 +13,7 @@ public class BrainCan : Enemy
         projectileGun = new BrainCanGunData();
         firingType = Gun.FiringType.projectile;
     }
-}// set stats to the plasma imp stat constants
+}// set stats to the brain can stat constants
 
 public class BrainCanGunData : Gun
 {
@@ -23,4 +23,4 @@ public class BrainCanGunData : Gun
         gunName = Constants.brainCanGunName;
         projectileSpeed = Constants.brainCanProjectileSpeed;
     }
-}// gun data for the plasma imp's projectiles
+}// gun data for the brain can's projectiles

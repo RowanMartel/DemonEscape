@@ -434,7 +434,7 @@ public class Player : MonoBehaviour
                 screenVFX.SetVFX(ScreenVFX.VFX.doubleDamage);
                 break;
         }
-    }
+    }// activate the passed in powerup
     public void PowerupTimer()
     {
         if (invincible)
@@ -464,7 +464,7 @@ public class Player : MonoBehaviour
                 screenVFX.DisableVFX(ScreenVFX.VFX.doubleDamage);
             }
         }
-    }
+    }// turns off active powerups over time
 
     public void PlayPickupSFX(AudioClip audioClip)
     {

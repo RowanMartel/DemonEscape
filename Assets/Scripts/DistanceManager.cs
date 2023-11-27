@@ -41,7 +41,7 @@ public class DistanceManager : MonoBehaviour
         {
             halfwayReached = true;
             audioManager.SetBGM(AudioManager.BGMEnum.gameplay2);
-        }
+        }// change BGM to level 2 when halfway through
 
         enemySpawnDecider.UpdateBias(distance);
     }
