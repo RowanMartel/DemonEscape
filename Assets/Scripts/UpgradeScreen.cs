@@ -28,6 +28,7 @@ public class UpgradeScreen : MonoBehaviour
 
         ShowGunUpgrades();
         infoPanel.SetActive(false);
+        money.text = "Money:\n$" + GameManager.money;
     }
 
     public void TitleBtnMethod()
@@ -96,7 +97,7 @@ public class UpgradeScreen : MonoBehaviour
         upgradeName.text = selectedUpgrade.upgradeName[level];
         upgradeDescription.text = selectedUpgrade.description[level];
         upgradeCost.text = selectedUpgrade.cost[level].ToString() + '$';
-        money.text = "Money:\n" + GameManager.money;
+        money.text = "Money:\n$" + GameManager.money;
         upgradeIcon.sprite = icon;
     }// set up the upgrade details UI
 
@@ -118,7 +119,7 @@ public class UpgradeScreen : MonoBehaviour
         }
 
         GameManager.money -= selectedUpgrade.cost[selectedUpgrade.upgradeNo];
-        money.text = "Money:\n" + GameManager.money;
+        money.text = "Money:\n$" + GameManager.money;
         UpgradeManager.upgrades.Add(selectedUpgrade);
         selectedBtn.Buy();
 
@@ -171,7 +172,7 @@ public class UpgradeScreen : MonoBehaviour
                 Debug.Log("got " + selectedUpgrade.cost[selectedUpgrade.upgradeNo + 2] + " moneys");
             }
         }
-        money.text = "Money:\n" + GameManager.money;
+        money.text = "Money:\n$" + GameManager.money;
         selectedBtn.Sell();
     }// logic for selling upgrades and the ones after them
 }

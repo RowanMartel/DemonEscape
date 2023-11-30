@@ -1905,16 +1905,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3326774887e6447bcf0cd64a4fa52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPickups:
+  pickups:
+  - {fileID: 4352328102139011914, guid: 7943eb753ac3f8b4ea64162243e14646, type: 3}
   - {fileID: 4352328102139011914, guid: 7943eb753ac3f8b4ea64162243e14646, type: 3}
   - {fileID: 4352328102139011914, guid: 332cd24f9d45ddc42bef22ef4c779f83, type: 3}
+  - {fileID: 4352328102139011914, guid: 332cd24f9d45ddc42bef22ef4c779f83, type: 3}
+  - {fileID: 4352328102139011914, guid: abade368a29dce14199c50c026e6f05e, type: 3}
   - {fileID: 4352328102139011914, guid: abade368a29dce14199c50c026e6f05e, type: 3}
   - {fileID: 4352328102139011914, guid: ef221f4165ac43c4cba8c902367bcde5, type: 3}
+  - {fileID: 4352328102139011914, guid: ef221f4165ac43c4cba8c902367bcde5, type: 3}
+  - {fileID: 4352328102139011914, guid: f9938ad7a86d142429e4f9b34a5c43de, type: 3}
   - {fileID: 4352328102139011914, guid: f9938ad7a86d142429e4f9b34a5c43de, type: 3}
   - {fileID: 5026492500557551212, guid: f41ffdd7f1dc02541ae7660e5450a04f, type: 3}
   - {fileID: 5026492500557551212, guid: 943b8a3548626eb4aba8a0448f6e7b18, type: 3}
   - {fileID: 5026492500557551212, guid: 55f7d8994f2d5b1499f029ea384c8672, type: 3}
-  powerUps: []
 --- !u!1 &3710654440350934445
 GameObject:
   m_ObjectHideFlags: 0

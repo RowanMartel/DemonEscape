@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class PickupCatalogue : MonoBehaviour
 {
-    public List<GameObject> gunPickups;
-    public List<GameObject> powerUps;
+    public List<GameObject> pickups;
 
     public GameObject GetRandomGun()
     {
         var random = new System.Random();
-        return gunPickups[random.Next(gunPickups.Count)];
+        return pickups[random.Next(pickups.Count)];
     }
 }// class for getting random pickups
