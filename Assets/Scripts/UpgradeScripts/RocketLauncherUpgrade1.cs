@@ -24,7 +24,7 @@ public class RocketLauncherUpgrade1 : Upgrade
         upgradeName[1] = "Big Bertha";
         upgradeName[2] = "Fat Man";
         description[0] = "Bigger and stronger explosion";
-        description[1] = "Even bigger and stronger";
+        description[1] = "Even bigger and more damaging";
         description[2] = "Nuclear devestation";
     }
 }

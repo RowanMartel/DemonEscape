@@ -17,8 +17,17 @@ public class UpgradeScreen : MonoBehaviour
     [SerializeField] TMP_Text upgradeCost;
     [SerializeField] TMP_Text money;
     [SerializeField] Image upgradeIcon;
+
     Upgrade selectedUpgrade;
     UpgradeButton selectedBtn;
+    int selectedLevel = 0;
+    Sprite selectedIcon;
+    Upgrade.Upgrades selectedUpgradeEnum;
+
+    Upgrade previewedUpgrade;
+    UpgradeButton previewedBtn;
+
+    UpgradeButton previousBtn;
 
     void Start()
     {
@@ -56,7 +65,20 @@ public class UpgradeScreen : MonoBehaviour
 
     public void ShowUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon, UpgradeButton upgradeButton)
     {
+        selectedUpgradeEnum = upgrade;
+        selectedLevel = level;
+        selectedIcon = icon;
+        // data saved so ShowUpgradeDetails can be shown again after previews dissapear
+
+        previousBtn?.togglehighlight(false);
+        if (!previousBtn || previousBtn != selectedBtn)
+        {
+            previousBtn = selectedBtn;
+        }
+        // hide the highlight for the previously selected upgrade
+
         selectedBtn = upgradeButton;
+        upgradeButton.togglehighlight(true);
         infoPanel.SetActive(true);
         level--;
         switch (upgrade)
@@ -100,6 +122,58 @@ public class UpgradeScreen : MonoBehaviour
         money.text = "Money:\n$" + GameManager.money;
         upgradeIcon.sprite = icon;
     }// set up the upgrade details UI
+    public void PreviewUpgradeDetails(Upgrade.Upgrades upgrade, int level, Sprite icon, UpgradeButton upgradeButton)
+    {
+        previewedBtn = upgradeButton;
+        infoPanel.SetActive(true);
+        level--;
+        switch (upgrade)
+        {
+            case Upgrade.Upgrades.pistol1:
+                previewedUpgrade = new PistolUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.pistol2:
+                previewedUpgrade = new PistolUpgrade2(level);
+                break;
+            case Upgrade.Upgrades.shotgun1:
+                previewedUpgrade = new ShotgunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.shotgun2:
+                previewedUpgrade = new ShotgunUpgrade2(level);
+                break;
+            case Upgrade.Upgrades.rocketLauncher1:
+                previewedUpgrade = new RocketLauncherUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.rocketLauncher2:
+                previewedUpgrade = new RocketLauncherUpgrade2(level);
+                break;
+            case Upgrade.Upgrades.machineGun1:
+                previewedUpgrade = new MachineGunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.machineGun2:
+                previewedUpgrade = new MachineGunUpgrade2(level);
+                break;
+            case Upgrade.Upgrades.railGun1:
+                previewedUpgrade = new RailGunUpgrade1(level);
+                break;
+            case Upgrade.Upgrades.railGun2:
+                previewedUpgrade = new RailGunUpgrade2(level);
+                break;
+        }
+
+        previewedUpgrade.upgradeNo = level;
+        upgradeName.text = previewedUpgrade.upgradeName[level];
+        upgradeDescription.text = previewedUpgrade.description[level];
+        upgradeCost.text = previewedUpgrade.cost[level].ToString() + '$';
+        money.text = "Money:\n$" + GameManager.money;
+        upgradeIcon.sprite = icon;
+    }// set up the upgrade details UI as a preview
+    public void StopPreview()
+    {
+        infoPanel.SetActive(false);
+        if (selectedUpgrade != null)
+            ShowUpgradeDetails(selectedUpgradeEnum, selectedLevel, selectedIcon, selectedBtn);
+    }
 
     public void BuyBtn()
     {

@@ -25,7 +25,7 @@ public class PistolUpgrade1 : Upgrade
         upgradeName[1] = "Supercharge Pistol";
         upgradeName[2] = "Pistol la Vista";
         description[0] = "Increases firing speed and ammo";
-        description[1] = "Try not to run out of bullets";
-        description[2] = "How fast can you click?";
+        description[1] = "Also increases firing speed and ammo";
+        description[2] = "Three guesses what it does";
     }
 }

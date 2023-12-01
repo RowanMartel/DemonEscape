@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UpgradeButton : MonoBehaviour
+public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Upgrade.Upgrades upgrade;
     [Range(1, 3)] public int level;
@@ -10,6 +11,7 @@ public class UpgradeButton : MonoBehaviour
     Sprite icon;
     [SerializeField] Image lockImg;
     [SerializeField] Image boughtImg;
+    [SerializeField] Image highlightImg;
     UpgradeManager upgradeManager;
 
     public bool locked;
@@ -39,11 +41,25 @@ public class UpgradeButton : MonoBehaviour
         }// marks upgrade as already bought if in the upgradeManager bought list
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (locked) return;
+
+        upgradeScreen.PreviewUpgradeDetails(upgrade, level, icon, this);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (locked) return;
+
+        upgradeScreen.StopPreview();
+    }
+
     void OnClick()
     {
         if (locked) return;
 
         upgradeScreen.ShowUpgradeDetails(upgrade, level, icon, this);
+        highlightImg.enabled = true;
     }
 
     public void Lock()
@@ -73,4 +89,9 @@ public class UpgradeButton : MonoBehaviour
         if (unlockThis != null && unlockThis.bought) unlockThis.Sell();
         boughtImg.enabled = false;
     }// returns the full value of this upgrade, and any bought upgrades after it
+
+    public void togglehighlight(bool state)
+    {
+        highlightImg.enabled = state;
+    }
 }
