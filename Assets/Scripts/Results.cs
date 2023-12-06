@@ -1,9 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class Results : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] GameManager gameManager;
+    [SerializeField] TMP_Text text;
 
     private void Start()
     {
@@ -25,6 +27,11 @@ public class Results : MonoBehaviour
     {
         canvas.enabled = true;
         gameManager.Paused = true;
+
+        KillManager killManager = FindObjectOfType<KillManager>();
+        Player player = FindObjectOfType<Player>();
+
+        text.text = $"Money Collected: ${player.Money} \n\nEnemies Killed: {killManager.kills}/{Constants.requiredKills}";
     }
 
     public void ExitGame()

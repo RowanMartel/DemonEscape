@@ -16,9 +16,14 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("PlayerCapsule")) return;
+        Collect(other.gameObject);
+    }
 
-        Player player = other.GetComponentInParent<Player>();
+    public void Collect(GameObject other)
+    {
+        if (!other.CompareTag("PlayerCapsule") && !other.CompareTag("Projectile") && !other.CompareTag("Explosion")) return;
+
+        Player player = FindObjectOfType<Player>();
         switch (type)
         {
             case Powerups.invincible:

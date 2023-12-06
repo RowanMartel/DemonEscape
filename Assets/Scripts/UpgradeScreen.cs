@@ -197,7 +197,6 @@ public class UpgradeScreen : MonoBehaviour
         UpgradeManager.upgrades.Add(selectedUpgrade);
         selectedBtn.Buy();
 
-        FindObjectOfType<Screenshot>().CaptureScreenshot();
         FindObjectOfType<SaveLoad>().Save();
     }// logic for buying upgrades
     public void SellBtn()

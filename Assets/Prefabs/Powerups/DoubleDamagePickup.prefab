@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 7255748995618265713}
   - component: {fileID: 2357144745799745279}
   - component: {fileID: 6260359421319123453}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DoubleDamagePickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}

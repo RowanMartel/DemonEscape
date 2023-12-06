@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class DistanceManager : MonoBehaviour
+public class KillManager : MonoBehaviour
 {
     [SerializeField] Player player;
     [SerializeField] Transform trackerStart;
     [SerializeField] Transform trackerEnd;
     [SerializeField] GameObject tracker;
     float trackerMeterStep;
-    public float distance;
+    public int kills;
     EnemySpawnDecider enemySpawnDecider;
     GameManager gameManager;
     AudioManager audioManager;
@@ -18,8 +18,8 @@ public class DistanceManager : MonoBehaviour
 
     private void Awake()
     {
-        trackerMeterStep = (trackerEnd.position.x - trackerStart.position.x) / Constants.maxDistance;
-    }// set the amount the tracker icon should move whenever distance increases
+        trackerMeterStep = (trackerEnd.position.x - trackerStart.position.x) / Constants.requiredKills;
+    }// set the amount the tracker icon should move whenever kills increase
 
     private void Start()
     {
@@ -28,21 +28,24 @@ public class DistanceManager : MonoBehaviour
         gameManager = Singleton.Instance.GetComponentInChildren<GameManager>();
     }
 
-    public void MoveTracker(float distance)
+    public void MoveTracker(int kills)
     {
-        this.distance = distance;
+        this.kills += kills;
         tracker.transform.position = trackerStart.position;
-        tracker.transform.position += new Vector3(trackerMeterStep * distance / 2, 0, 0);
-        if (this.distance >= Constants.maxDistance)
+        tracker.transform.position += new Vector3(trackerMeterStep * this.kills / 2, 0, 0);
+        if (this.kills >= Constants.requiredKills)
         {
             gameManager.WinGame();
         }// win game once target distance reached
-        else if (this.distance >= Constants.maxDistance / 2 && !halfwayReached)
+        else if (this.kills >= Constants.requiredKills / 2 && !halfwayReached)
         {
             halfwayReached = true;
             audioManager.SetBGM(AudioManager.BGMEnum.gameplay2);
         }// change BGM to level 2 when halfway through
 
-        enemySpawnDecider.UpdateBias(distance);
+        if (this.kills > GameManager.maxKills)
+            GameManager.maxKills = this.kills;
+
+        enemySpawnDecider.UpdateBias(this.kills);
     }
 }

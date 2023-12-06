@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,10 @@ public class ScreenVFX : MonoBehaviour
     [SerializeField] Image doubleDamageImg;
     [SerializeField] Image infiniteAmmoImg;
     [SerializeField] Image invincibleImg;
+
+    [SerializeField] TMP_Text doubleDamageTxt;
+    [SerializeField] TMP_Text infiniteAmmoTxt;
+    [SerializeField] TMP_Text invincibleTxt;
 
     float lowHealthTimer;
     float lowHealthTime;
@@ -47,16 +52,19 @@ public class ScreenVFX : MonoBehaviour
                     break;
                 case VFX.doubleDamage:
                     doubleDamageImg.enabled = true;
+                    doubleDamageTxt.enabled = true;
                     doubleDamageTime = time;
                     doubleDamageTimer = 0;
                     break;
                 case VFX.infiniteAmmo:
                     infiniteAmmoImg.enabled = true;
+                    infiniteAmmoTxt.enabled = true;
                     infiniteAmmoTime = time;
                     infiniteAmmoTimer = 0;
                     break;
                 case VFX.invincible:
                     invincibleImg.enabled = true;
+                    invincibleTxt.enabled = true;
                     invincibleTime = time;
                     invincibleTimer = 0;
                     break;
@@ -72,14 +80,17 @@ public class ScreenVFX : MonoBehaviour
                     break;
                 case VFX.doubleDamage:
                     doubleDamageImg.enabled = true;
+                    doubleDamageTxt.enabled = true;
                     doubleDamageHardSet = true;
                     break;
                 case VFX.infiniteAmmo:
                     infiniteAmmoImg.enabled = true;
+                    infiniteAmmoTxt.enabled = true;
                     infiniteAmmoHardSet = true;
                     break;
                 case VFX.invincible:
                     invincibleImg.enabled = true;
+                    invincibleTxt.enabled = true;
                     invincibleHardSet = true;
                     break;
             }
@@ -95,14 +106,17 @@ public class ScreenVFX : MonoBehaviour
                 break;
             case VFX.doubleDamage:
                 doubleDamageImg.enabled = false;
+                doubleDamageTxt.enabled = false;
                 doubleDamageHardSet = false;
                 break;
             case VFX.infiniteAmmo:
                 infiniteAmmoImg.enabled = false;
+                infiniteAmmoTxt.enabled = false;
                 infiniteAmmoHardSet = false;
                 break;
             case VFX.invincible:
                 invincibleImg.enabled = false;
+                invincibleTxt.enabled = false;
                 invincibleHardSet = false;
                 break;
         }
@@ -118,16 +132,25 @@ public class ScreenVFX : MonoBehaviour
         if (doubleDamageTimer < doubleDamageTime)
             doubleDamageTimer += Time.deltaTime;
         else if (doubleDamageImg.enabled && !doubleDamageHardSet)
+        {
             doubleDamageImg.enabled = false;
+            doubleDamageTxt.enabled = false;
+        }
 
         if (infiniteAmmoTimer < infiniteAmmoTime)
             infiniteAmmoTimer += Time.deltaTime;
         else if (infiniteAmmoImg.enabled && !infiniteAmmoHardSet)
+        {
             infiniteAmmoImg.enabled = false;
+            infiniteAmmoTxt.enabled = false;
+        }
 
         if (invincibleTimer < invincibleTime)
             invincibleTimer += Time.deltaTime;
         else if (invincibleImg.enabled && !invincibleHardSet)
+        {
             invincibleImg.enabled = false;
+            invincibleTxt.enabled = false;
+        }
     }// disable timer-based VFX over time
 }

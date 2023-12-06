@@ -33,30 +33,30 @@ public class EnemySpawnDecider : MonoBehaviour
 
     public void UpdateBias(float distance)
     {
-        if (distance >= (Constants.maxDistance / 4) * 3 && !check5)
+        if (distance >= (Constants.requiredKills / 4) * 3 && !check5)
         {
             enemies.Add(brainCan);
             enemies.Remove(plasmaImp);
             check5 = true;
         }
-        else if (distance >= (Constants.maxDistance / 3) * 2 && !check4)
+        else if (distance >= (Constants.requiredKills / 3) * 2 && !check4)
         {
             enemies.Remove(slimeGunner);
             enemies.Add(slimeSlasher);
             check4 = true;
         }
-        else if (distance >= Constants.maxDistance / 2 && !check3)
+        else if (distance >= Constants.requiredKills / 2 && !check3)
         {
             enemies.Add(brainCan);
             check3 = true;
         }
-        else if (distance >= Constants.maxDistance / 3 && !check2)
+        else if (distance >= Constants.requiredKills / 3 && !check2)
         {
             enemies.Add(slimeSlasher);
             enemies.Remove(slimeGunner);
             check2 = true;
         }
-        else if (distance >= Constants.maxDistance / 4 && !check1)
+        else if (distance >= Constants.requiredKills / 4 && !check1)
         {
             enemies.Add(plasmaImp);
             check1 = true;

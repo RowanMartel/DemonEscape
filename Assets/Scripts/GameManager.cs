@@ -7,10 +7,10 @@ public class GameManager : MonoBehaviour
     public Results results;
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] SaveLoad saveLoad;
-    [SerializeField] Screenshot screenshot;
     [SerializeField] AudioManager audioManager;
 
-    public static float money;
+    public static int money;
+    public static int maxKills;
 
     private bool paused = false;
     public bool Paused
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
                 player.results = results;
                 break;// give player necessary variables
             case Constants.upgradeScreenSceneIndex:
-                screenshot.CaptureScreenshot();
                 saveLoad.Save();
                 break;
         }

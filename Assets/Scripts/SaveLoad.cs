@@ -9,35 +9,15 @@ public class SaveLoad : MonoBehaviour
 {
     public static int saveFileNum;// number out of 3 that points to the save file currently being played
 
-    [SerializeField] Sprite save1Img;
-    [SerializeField] Sprite save2Img;
-    [SerializeField] Sprite save3Img;
-
-    [SerializeField] Sprite emptySave;
-
     [SerializeField] UpgradeManager upgradeManager;
     [SerializeField] GameManager gameManager;
 
     public void Save()
     {
-        /*Sprite preview = emptySave;
-        switch (saveFileNum)
-        {
-            case 1:
-                preview = save1Img;
-                break;
-            case 2:
-                preview = save2Img;
-                break;
-            case 3:
-                preview = save3Img;
-                break;
-        }*/
-        
         BinaryFormatter bf = new();
         FileStream file = File.Create(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
 
-        SaveData data = new(/*preview, */UpgradeManager.upgrades, GameManager.money);
+        SaveData data = new(UpgradeManager.upgrades, GameManager.money, GameManager.maxKills);
         bf.Serialize(file, data);
         file.Close();
     }// serialize and save relevant data into a .dat file
@@ -57,6 +37,7 @@ public class SaveLoad : MonoBehaviour
             gameManager.LoadScene(Constants.upgradeScreenSceneIndex);
             GameManager.money = data.money;
             UpgradeManager.upgrades = data.upgrades;
+            GameManager.maxKills = data.maxKills;
         }// load the selected save file into the upgrade screen
         else
         {
@@ -67,18 +48,12 @@ public class SaveLoad : MonoBehaviour
     public void DeleteSave(int saveFileNum)
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
-        {
             File.Delete(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat");
-            File.WriteAllBytes("Assets/SaveImages/Save" + saveFileNum + "Img.png", File.ReadAllBytes("Assets/SaveImages/NewSaveImg.png"));
-            Debug.Log("File deleted");
-            Resources.Load("Assets/SaveImages/Save" + saveFileNum + "Img.png");
-            save1Img = emptySave;
-        }
-    }// delete the save file and reset the save preview to the new game image
+    }
 
-    /*public Sprite GetPreview(int saveFileNum)
+    public int GetSaveMoney(int saveFileNum)
     {
-        if (File.Exists(Application.persistentDataPath + "/saveFile.dat"))
+        if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
         {
             BinaryFormatter bf = new();
             FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
@@ -86,23 +61,57 @@ public class SaveLoad : MonoBehaviour
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
 
-            return data.preview;
+            return data.money;
         }
-        else return emptySave;
-    }*/
+        else
+            return -1;
+    }
+    public int GetSaveKills(int saveFileNum)
+    {
+        if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
+        {
+            BinaryFormatter bf = new();
+            FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
+
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            return data.maxKills;
+        }
+        else
+            return -1;
+    }
+    public int GetSaveUpgrades(int saveFileNum)
+    {
+        if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
+        {
+            BinaryFormatter bf = new();
+            FileStream file = File.Open(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat", FileMode.Open);
+
+            SaveData data = (SaveData)bf.Deserialize(file);
+            file.Close();
+
+            int upgradeCount = 0;
+            foreach (Upgrade upgrade in data.upgrades)
+                upgradeCount ++;
+            return upgradeCount;
+        }
+        else
+            return -1;
+    }
 }
 
 [Serializable]
 class SaveData
 {
-    //public Sprite preview;
     public List<Upgrade> upgrades;// list of upgrades unlocked in the save file
-    public float money;
+    public int money;
+    public int maxKills;
 
-    public SaveData(/*Sprite preview, */List<Upgrade> upgrades, float money)
+    public SaveData(List<Upgrade> upgrades, int money, int maxkills)
     {
-        //this.preview = preview;
         this.upgrades = upgrades;
         this.money = money;
+        this.maxKills = maxkills;
     }
 }

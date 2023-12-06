@@ -13,7 +13,7 @@ public abstract class Upgrade
     }
     public Upgrades upgradeType;
 
-    public float[] cost = new float[3];
+    public int[] cost = new int[3];
     public int upgradeNo;
 
     // suit upgrades

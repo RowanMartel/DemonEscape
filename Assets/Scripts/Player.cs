@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
         set
         {
             health = value;
-            tmpHealth.text = "Health: " + value;
+            healthBar.fillAmount = health / 100;
         }// update UI on set
     }
     private float ammo;
@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
             tmpAmmo.text = "Ammo: " + value;
         }// update UI on set
     }
-    private float money;
-    public float Money
+    private int money;
+    public int Money
     {
         get { return money; }
         set
@@ -34,21 +34,10 @@ public class Player : MonoBehaviour
             tmpMoney.text = "Money:\n" + value;
         }// update UI on set
     }
-    private float distance;
-    public float Distance
-    {
-        get { return distance; }
-        set
-        {
-            if (value > Constants.maxDistance) value = Constants.maxDistance;
-            distance = value;
-            distanceManager.MoveTracker(distance);
-        }// update UI and distanceManager on set
-    }
 
-    [SerializeField] TMP_Text tmpHealth;
     [SerializeField] TMP_Text tmpAmmo;
     [SerializeField] TMP_Text tmpMoney;
+    [SerializeField] Image healthBar;
 
     [SerializeField] AudioSource voiceAudio;
     [SerializeField] AudioSource gunAudio;
@@ -97,7 +86,7 @@ public class Player : MonoBehaviour
     public GameManager gameManager;
     public Results results;
 
-    [SerializeField] DistanceManager distanceManager;
+    [SerializeField] KillManager distanceManager;
 
     public bool invincible;
     public bool infiniteAmmo;
@@ -206,16 +195,22 @@ public class Player : MonoBehaviour
     }
     void RaycastAttack()
     {
-        bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy"));
-        if (didHit && !doubleDamage)
-            hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
-        else if (didHit && doubleDamage)
-            hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage * 2);
+        bool didHit = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), out RaycastHit hit, currentGun.range, LayerMask.GetMask("Enemy", "Powerup"));
+        if (didHit)
+        {
+            if (hit.collider.GetComponent<Powerup>() != null)
+                hit.collider.GetComponent<Powerup>().Collect(gameObject);
+            else if (!doubleDamage)
+                hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
+            else if (doubleDamage)
+                hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage * 2);
+        }
+        
     }// attack the first collider in a straight line
     void SpherecastAttack()
     {
         RaycastHit[] hits;
-        hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), currentGun.range, LayerMask.GetMask("Enemy"));
+        hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), currentGun.range, LayerMask.GetMask("Enemy", "Powerup"));
         for (int i = 0; i < hits.Length; i++)
         {
             if (!doubleDamage)

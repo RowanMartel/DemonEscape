@@ -6,7 +6,7 @@ public class Segment : MonoBehaviour
 {
     public EventHandler<EnterEventArgs> Enter;
     SegmentManager segmentManager;
-    DistanceManager distanceManager;
+    KillManager distanceManager;
 
     PickupCatalogue pickupCatalogue;
 
@@ -31,7 +31,7 @@ public class Segment : MonoBehaviour
 
     private void Start()
     {
-        distanceManager = FindObjectOfType<DistanceManager>();
+        distanceManager = FindObjectOfType<KillManager>();
         pickupCatalogue = Singleton.Instance.GetComponentInChildren<PickupCatalogue>();
         segmentManager = FindObjectOfType<SegmentManager>();
         Enter += segmentManager.OnEnter;// subscribe segmentManager to the on-segment-enter event
@@ -60,7 +60,6 @@ public class Segment : MonoBehaviour
             backWallSolid = transform.GetChild(0).GetComponent<MeshCollider>();// for some reason it needs to be called here too
             backWallSolid.enabled = true;
             Enter(this, new EnterEventArgs(gameObject));
-            FindObjectOfType<Player>().Distance += Constants.distanceStep;
         }
     }// broadcasts that this segment has been entered to segmentManager
 
@@ -90,7 +89,7 @@ public class Segment : MonoBehaviour
     void DetermineWallTexture()
     {
         Material textureToApply;
-        if (distanceManager.distance > Constants.maxDistance / 2)
+        if (distanceManager.kills > Constants.requiredKills / 2)
             textureToApply = skullWallMat;
         else textureToApply = brickWallMat;
         foreach (Renderer renderer in wallRenderers)

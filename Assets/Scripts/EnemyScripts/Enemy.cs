@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     NavMeshAgent agent;
     Image sprite;
     Canvas canvas;
+    KillManager killManager;
 
     float cooldownTimer;
     float animTimer;
@@ -44,6 +45,7 @@ public abstract class Enemy : MonoBehaviour
 
     void Start()
     {
+        killManager = FindObjectOfType<KillManager>();
         gameManager = FindObjectOfType<GameManager>();
         dead = false;
         sprite = GetComponentInChildren<Image>();
@@ -167,6 +169,7 @@ public abstract class Enemy : MonoBehaviour
     }
     void Die()
     {
+        killManager.MoveTracker(1);
         player.GetComponent<Player>().AddMoney(money);
         voiceAudio.Stop();
         voiceAudio.PlayOneShot(clipDie);
