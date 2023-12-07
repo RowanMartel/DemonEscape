@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
 
 public class SaveLoad : MonoBehaviour
@@ -108,10 +107,10 @@ class SaveData
     public int money;
     public int maxKills;
 
-    public SaveData(List<Upgrade> upgrades, int money, int maxkills)
+    public SaveData(List<Upgrade> upgrades, int money, int maxKills)
     {
         this.upgrades = upgrades;
         this.money = money;
-        this.maxKills = maxkills;
+        this.maxKills = maxKills;
     }
-}
+}// contains and serializes all data that needs to be stored between game sessions

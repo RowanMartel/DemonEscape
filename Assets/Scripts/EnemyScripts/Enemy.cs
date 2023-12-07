@@ -166,7 +166,7 @@ public abstract class Enemy : MonoBehaviour
             if (!voiceAudio.isPlaying)
                 voiceAudio.PlayOneShot(clipHurt);
         }
-    }
+    }// lowers HP, dying if at 0 and playing hurt SFX and animation if not
     void Die()
     {
         killManager.MoveTracker(1);

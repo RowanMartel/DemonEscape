@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
             if (currentGun.EDS)
                 EDS(); // if health is low call EDS
         }
-    }
+    }// dies if HP is 0, otherwise plays hurt sound and animation
 
     void EDS()
     {

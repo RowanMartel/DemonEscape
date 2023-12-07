@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
             blastDamage = gun.blastDamage;
             if (doubleDamage) blastDamage *= 2;
             blastRadius = gun.blastRadius;
-        }
+        }// double damage variable for when the player has the double damage powerup active
         homing = gun.homing;
         switch (gun.gunName)
         {

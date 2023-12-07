@@ -21,7 +21,7 @@ public class Options : MonoBehaviour
             if (gameManager.Paused) Close();
             else Open();
         }
-    }
+    }// open options if in gameplay and the player hits esc
 
     public void TitleBtnMethod()
     {
