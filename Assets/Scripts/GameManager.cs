@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
             if (value) Time.timeScale = 0;
             else Time.timeScale = 1;
         }
-    }
+    }// sets timeScale appropriately when paused is modified
 
     void Start()
     {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     // method called on activeSceneChanged event
     void OnSceneChanged(Scene replacedScene, Scene newScene)
-    {
+    {// subscribed to scene load event
         options.Close();
         results.Close();
 
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
         SetBGM();
-    }
+    }// initializes all values relating to the loaded scene
 
     public void WinGame()
     {

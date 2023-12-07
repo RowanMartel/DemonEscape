@@ -5,6 +5,7 @@ public class Options : MonoBehaviour
 {
     public Canvas canvas;
     [SerializeField] GameObject upgradesBtn;
+    [SerializeField] GameObject titleBtn;
     [SerializeField] GameManager gameManager;
 
     private void Start()
@@ -42,6 +43,11 @@ public class Options : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == Constants.gameplaySceneIndex)
             upgradesBtn.SetActive(true);
         else upgradesBtn.SetActive(false);
+
+        // don't enable quit to title button if on title screen
+        if (SceneManager.GetActiveScene().buildIndex == Constants.titleScreenSceneIndex)
+            titleBtn.SetActive(false);
+        else titleBtn.SetActive(true);
     }
 
     public void ExitGame()

@@ -59,7 +59,6 @@ public class Projectile : MonoBehaviour
 
     void Home()
     {
-        Debug.Log("homing in");
         Collider[] hits = Physics.OverlapSphere(transform.position + transform.forward * 2, 2, LayerMask.GetMask("Enemy"));
         float shortestDistance = float.MaxValue;
         Transform closestTarget = null;

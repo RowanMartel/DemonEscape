@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         set
         {
             ammo = value;
-            tmpAmmo.text = "Ammo: " + value;
+            ammoBar.fillAmount = 1 / currentGun.startingAmmo * currentGun.currentAmmo;
         }// update UI on set
     }
     private int money;
@@ -35,9 +35,9 @@ public class Player : MonoBehaviour
         }// update UI on set
     }
 
-    [SerializeField] TMP_Text tmpAmmo;
     [SerializeField] TMP_Text tmpMoney;
     [SerializeField] Image healthBar;
+    [SerializeField] Image ammoBar;
 
     [SerializeField] AudioSource voiceAudio;
     [SerializeField] AudioSource gunAudio;
@@ -77,6 +77,9 @@ public class Player : MonoBehaviour
     [SerializeField] Image gun1Img;
     [SerializeField] Image gun2Img;
     [SerializeField] Image gun3Img;
+    [SerializeField] TMP_Text gun1Txt;
+    [SerializeField] TMP_Text gun2Txt;
+    [SerializeField] TMP_Text gun3Txt;
     [SerializeField] Sprite pistolSprite;
     [SerializeField] Sprite shotgunSprite;
     [SerializeField] Sprite rocketLauncherSprite;
@@ -131,6 +134,7 @@ public class Player : MonoBehaviour
                 if (randInt < 100)
                     voiceAudio.PlayOneShot(clipHurt);
                 else voiceAudio.PlayOneShot(clipWilhelm);
+                // 1% chance to play the Wilhelm scream instead of the normal hurt noise
             }
         }
         if (health <= Constants.playerStartingHP / 4)
@@ -199,7 +203,7 @@ public class Player : MonoBehaviour
         if (didHit)
         {
             if (hit.collider.GetComponent<Powerup>() != null)
-                hit.collider.GetComponent<Powerup>().Collect(gameObject);
+                hit.collider.GetComponent<Powerup>().Collect(gameObject);// can trigger powerups
             else if (!doubleDamage)
                 hit.collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
             else if (doubleDamage)
@@ -213,9 +217,11 @@ public class Player : MonoBehaviour
         hits = Physics.SphereCastAll(Camera.main.transform.position, currentGun.rangeRadius, Camera.main.transform.forward - transform.TransformDirection(new Vector3(0, .1f, 0)), currentGun.range, LayerMask.GetMask("Enemy", "Powerup"));
         for (int i = 0; i < hits.Length; i++)
         {
-            if (!doubleDamage)
+            if (hits[i].collider.GetComponent<Powerup>() != null)
+                hits[i].collider.GetComponent<Powerup>().Collect(gameObject);// can trigger powerups
+            else if (!doubleDamage)
                 hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage);
-            else
+            else if (doubleDamage)
                 hits[i].collider.GetComponent<Enemy>().TakeDamage(currentGun.damage * 2);
         }
     }// for shotgun spray like attacks
@@ -250,6 +256,7 @@ public class Player : MonoBehaviour
     public void EquipGun(Gun newGun)
     {
         Image gunImg = gun1Img;
+        TMP_Text gunTxt = gun1Txt;
         if (gun1 != null && gun1.gunName == newGun.gunName)
         {
             SwitchGun(gun1, true);
@@ -271,18 +278,21 @@ public class Player : MonoBehaviour
             {
                 gun1 = newGun;
                 gunImg = gun1Img;
+                gunTxt = gun1Txt;
                 SwitchGun(gun1);
             }
             else if (currentGun == gun2)
             {
                 gun2 = newGun;
                 gunImg = gun2Img;
+                gunTxt = gun2Txt;
                 SwitchGun(gun2);
             }
             else if (currentGun == gun3)
             {
                 gun3 = newGun;
                 gunImg = gun3Img;
+                gunTxt = gun3Txt;
                 SwitchGun(gun3);
             }
             currentGun.currentAmmo = newGun.startingAmmo;
@@ -295,6 +305,7 @@ public class Player : MonoBehaviour
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
             gunImg = gun1Img;
+            gunTxt = gun1Txt;
         }
         else if (gun2 == null)
         {
@@ -303,6 +314,7 @@ public class Player : MonoBehaviour
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
             gunImg = gun2Img;
+            gunTxt = gun2Txt;
         }
         else if (gun3  == null)
         {
@@ -311,6 +323,7 @@ public class Player : MonoBehaviour
             currentGun.currentAmmo = newGun.startingAmmo;
             ChangePortrait(attackingSprite);
             gunImg = gun3Img;
+            gunTxt = gun3Txt;
         }// second if-else chain for if the player has an empty gun slot
 
         Ammo = currentGun.currentAmmo;
@@ -326,22 +339,32 @@ public class Player : MonoBehaviour
             case Constants.pistolName:
                 gunAnim = pistolAnim;
                 gunImg.sprite = pistolSprite;
+                gunTxt.fontSize = 48;
+                gunTxt.text = Constants.pistolName;
                 break;
             case Constants.shotgunName:
                 gunAnim = shotgunAnim;
                 gunImg.sprite = shotgunSprite;
+                gunTxt.fontSize = 48;
+                gunTxt.text = Constants.shotgunName;
                 break;
             case Constants.rocketLauncherName:
                 gunAnim = rocketLauncherAnim;
                 gunImg.sprite = rocketLauncherSprite;
+                gunTxt.fontSize = 36;
+                gunTxt.text = Constants.rocketLauncherName;
                 break;
             case Constants.machineGunName:
                 gunAnim = machineGunAnim;
                 gunImg.sprite = machineGunSprite;
+                gunTxt.fontSize = 36;
+                gunTxt.text = Constants.machineGunName;
                 break;
             case Constants.railGunName:
                 gunAnim = railGunAnim;
                 gunImg.sprite = railGunSprite;
+                gunTxt.fontSize = 48;
+                gunTxt.text = Constants.railGunName;
                 break;
         }// enable the right gun animation
     }
@@ -369,12 +392,42 @@ public class Player : MonoBehaviour
         if (infiniteAmmo) return;
         currentGun.currentAmmo--;
         Ammo--;
-    }
+    }// ensures all the correct ammo variables are modified if the player does not have infinite ammo
     void TrySwitchGun()
     {
+        // num key switching
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchGun(gun1);
         else if (gun2 != null && Input.GetKeyDown(KeyCode.Alpha2)) SwitchGun(gun2);
         else if (gun3 != null && Input.GetKeyDown(KeyCode.Alpha3)) SwitchGun(gun3);
+
+        // scroll wheel switching
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            if (currentGun == gun1)
+            {
+                if (gun3 != null) SwitchGun(gun3);
+                else if (gun2 != null) SwitchGun(gun2);
+            }
+            else if (currentGun == gun2)
+                SwitchGun(gun1);
+            else if (currentGun == gun3)
+                SwitchGun(gun2);
+        }
+        else if (Input.mouseScrollDelta.y > 0)
+        {
+            if (currentGun == gun1)
+            {
+                if (gun2 != null) SwitchGun(gun2);
+                else if (gun3 != null) SwitchGun(gun3);
+            }
+            else if (currentGun == gun2)
+            {
+                if (gun3 != null) SwitchGun(gun3);
+                else SwitchGun(gun1);
+            }
+            else if (currentGun == gun3)
+                SwitchGun(gun1);
+        }
     }// tries to swap the gun if the player is inputting to do so
     void SwitchGun(Gun newGun, bool addAmmo = false)
     {

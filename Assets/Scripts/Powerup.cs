@@ -22,6 +22,7 @@ public class Powerup : MonoBehaviour
     public void Collect(GameObject other)
     {
         if (!other.CompareTag("PlayerCapsule") && !other.CompareTag("Projectile") && !other.CompareTag("Explosion")) return;
+        // detects collision from player, projectiles, and explosions, including from enemies
 
         Player player = FindObjectOfType<Player>();
         switch (type)

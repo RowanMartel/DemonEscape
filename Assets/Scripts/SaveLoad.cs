@@ -65,7 +65,7 @@ public class SaveLoad : MonoBehaviour
         }
         else
             return -1;
-    }
+    }// returns the money in the given save
     public int GetSaveKills(int saveFileNum)
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
@@ -80,7 +80,7 @@ public class SaveLoad : MonoBehaviour
         }
         else
             return -1;
-    }
+    }// returns the max kills in the given save
     public int GetSaveUpgrades(int saveFileNum)
     {
         if (File.Exists(Application.persistentDataPath + "/saveFile" + saveFileNum + ".dat"))
@@ -98,7 +98,7 @@ public class SaveLoad : MonoBehaviour
         }
         else
             return -1;
-    }
+    }// returns the amount of upgrades in the given save
 }
 
 [Serializable]

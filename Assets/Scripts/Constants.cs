@@ -29,7 +29,7 @@ public class Constants : MonoBehaviour
     public static float rocketLauncherMaxAmmo = 12;
     public static float rocketLauncherDamage = 10;
     public static float rocketLauncherFiringCooldown = 3;
-    public const string rocketLauncherName = "RocketLauncher";
+    public const string rocketLauncherName = "Rocket Launcher";
     public static Gun.FiringType rocketLauncherFiringType = Gun.FiringType.projectile;
     public static float rocketLauncherProjectileSpeed = 20;
     public static bool rocketLauncherExplodes = true;
@@ -41,7 +41,7 @@ public class Constants : MonoBehaviour
     public static float machineGunDamage = 7;
     public static float machineGunRange = 20;
     public static float machineGunFiringCooldown = .35f;
-    public const string machineGunName = "MachineGun";
+    public const string machineGunName = "Machine Gun";
     public static bool machineGunAutomatic = true;
     public static Gun.FiringType machineGunFiringType = Gun.FiringType.rayCast;
     // rail gun
@@ -49,7 +49,7 @@ public class Constants : MonoBehaviour
     public static float railGunMaxAmmo = 18;
     public static float railGunDamage = 25;
     public static float railGunFiringCooldown = 1.5f;
-    public const string railGunName = "RailGun";
+    public const string railGunName = "Rail Gun";
     public static Gun.FiringType railGunFiringType = Gun.FiringType.projectile;
     public static float railGunProjectileSpeed = 50;
     public static bool railGunEDS = false;
@@ -88,10 +88,10 @@ public class Constants : MonoBehaviour
     public static float slimeSlasherRangeRadius = 2;
     public static int slimeSlasherMoney = 20;
     // brain can
-    public static float brainCanHP = 300;
+    public static float brainCanHP = 250;
     public static float brainCanDamage = 35;
     public static float brainCanSpeed = .5f;
-    public static float brainCanAllowedProximity = 2;
+    public static float brainCanAllowedProximity = 20;
     public static float brainCanAttackCooldown = .5f;
     public static float brainCanFiringDistance = 15;
     public static float brainCanAttackRange = 15;
@@ -114,7 +114,7 @@ public class Constants : MonoBehaviour
     public const float startingBGMVol = .5f;
     public const float startingSFXVol = .5f;
 
-    // distance stats
+    // kill stats
     public const float requiredKills = 100;
     public const float killsStep = 1;
 
@@ -125,10 +125,6 @@ public class Constants : MonoBehaviour
 
     public static void Reset()
     {
-        // player stats
-        playerStartingHP = 100;
-        playerMaxHP = 150;
-
         // gun stats
         // pistol
         pistolStartingAmmo = 30;

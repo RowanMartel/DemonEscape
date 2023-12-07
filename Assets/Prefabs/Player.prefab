@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 9219426264146126784}
   - component: {fileID: 7053716064714321398}
   m_Layer: 0
-  m_Name: MachineGun
+  m_Name: Machine Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 5327261834218676321}
   - component: {fileID: 7692619334713709849}
   m_Layer: 0
-  m_Name: RocketLauncher
+  m_Name: Rocket Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1021,7 +1021,7 @@ GameObject:
   - component: {fileID: 2052485742443971853}
   - component: {fileID: 5003770823770444452}
   m_Layer: 0
-  m_Name: RailGun
+  m_Name: Rail Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1756,9 +1756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91fae677d1346d4e9c149750fe0ec0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpHealth: {fileID: 0}
-  tmpAmmo: {fileID: 0}
   tmpMoney: {fileID: 0}
+  healthBar: {fileID: 0}
+  ammoBar: {fileID: 0}
   voiceAudio: {fileID: 755338302448960167}
   gunAudio: {fileID: 2632040222587722384}
   pickupAudio: {fileID: 5987163745460373093}
@@ -1788,6 +1788,9 @@ MonoBehaviour:
   gun1Img: {fileID: 0}
   gun2Img: {fileID: 0}
   gun3Img: {fileID: 0}
+  gun1Txt: {fileID: 0}
+  gun2Txt: {fileID: 0}
+  gun3Txt: {fileID: 0}
   pistolSprite: {fileID: 1300033457, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   shotgunSprite: {fileID: -403753677, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
   rocketLauncherSprite: {fileID: -590502317, guid: 3d0406c2d9d382048bb08840239964e8, type: 3}
